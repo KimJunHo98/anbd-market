@@ -1,0 +1,13 @@
+.login {
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .login_title {
+        margin-bottom: 30px;
+        text-align: center;
+        font-size: 2rem;
+    }
+}
