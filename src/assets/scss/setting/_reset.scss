@@ -1,0 +1,20 @@
+// 전체 초기화
+* {
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.inner {
+    width: 100%;
+    padding: 0 20px;
+    
+    .container {
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+}

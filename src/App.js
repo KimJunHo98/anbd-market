@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { auth } from "./firebase";
+import CreateAccount from "./components/CreateAccount";
 
-function App() {
+import "./assets/scss/style.scss";
+
+const App = () => {
+  const [isloading, setIsLoading] = useState(true);
+
+  const init = async() => {
+    await auth.authStateReady(); // 인증상태 확인
+
+    setIsLoading(false);
+  }
+
+  useEffect(() => {
+    init();
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="wrap">
+      {!isloading ? <CreateAccount /> : "stay"}
     </div>
   );
 }
