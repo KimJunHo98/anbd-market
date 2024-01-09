@@ -1,16 +1,15 @@
 import React from "react";
-import { BtnInput, Form, Input, Label, MoveBtn, MoveSection } from "../styledComponents";
-
+import { BtnInput, Form, Input, Label, MoveBtn, MoveSection, Section, H2, Inner, Container, Div, H3, P } from "../styledComponents";
 
 const Login = () => {
     return (
-        <section id="login">
-            <h2 className="blind">로그인</h2>
-            <div className="container">
-                <div className="inner">
-                    <div className="login">
-                        <h3 className="login_title">로그인</h3>
-                        <div className="login_form">
+        <Section id="login">
+            <H2 className="blind">로그인</H2>
+            <Container>
+                <Inner>
+                    <Div className="login">
+                        <H3 className="login_title">로그인</H3>
+                        <Div className="login_form">
                             <Form>
                                 <Label htmlFor="email">이메일</Label>
                                 <Input id="email" name="email" type="email" required placeholder="이메일" />
@@ -18,15 +17,17 @@ const Login = () => {
                                 <Input id="password" name="password" type="password" required placeholder="비밀번호" />
                                 <BtnInput type="submit" value="로그인" />
                             </Form>
-                        </div>
+                        </Div>
                         <MoveSection>
-                            <p>계정이 없으신가요?</p>
-                            <MoveBtn to="/signup" title="회원가입 하기">회원가입 하기</MoveBtn>
+                            <P>계정이 없으신가요?</P>
+                            <MoveBtn to="/signup" title="회원가입 하기">
+                                회원가입 하기
+                            </MoveBtn>
                         </MoveSection>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    </Div>
+                </Inner>
+            </Container>
+        </Section>
     );
 };
 

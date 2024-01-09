@@ -1,25 +1,25 @@
 import React from "react";
-import { HeaderLink, MainLogo, MenuBtn } from "../styledComponents";
+import { Btnbar, H2, ALink, H1, MenuBtn, HeaderTag, Container, Inner, Div, Img } from "../styledComponents";
 
-const Header = () => {
+const Header = ({ handleMenuClick }) => {
     return (
-        <header id="header">
-            <h2 className="blind">헤더</h2>
-            <div className="container">
-                <div className="inner">
-                    <div className="header">
-                        <MainLogo>
-                            <HeaderLink>
-                                <img src="/images/header/main_logo.png" alt="메인로고" />
-                            </HeaderLink>
-                        </MainLogo>
-                        <MenuBtn>
-                            <span className="bar"></span>
+        <HeaderTag id="header">
+            <H2 className="blind">헤더</H2>
+            <Container>
+                <Inner>
+                    <Div className="header">
+                        <H1>
+                            <ALink to="/" className="header_link">
+                                <Img src="/images/header/main_logo.png" alt="메인로고" className="logo_img" />
+                            </ALink>
+                        </H1>
+                        <MenuBtn onClick={handleMenuClick}>
+                            <Btnbar />
                         </MenuBtn>
-                    </div>
-                </div>
-            </div>
-        </header>
+                    </Div>
+                </Inner>
+            </Container>
+        </HeaderTag>
     );
 };
 

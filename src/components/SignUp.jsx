@@ -1,15 +1,15 @@
 import React from "react";
-import { BtnInput, Form, Input, Label, MoveBtn, MoveSection } from "../styledComponents";
+import { BtnInput, Form, Input, Label, MoveBtn, MoveSection, Section, H2, Container, Inner, Div, H3, P } from "../styledComponents";
 
-const SignUp = () => {
+const Signup = () => {
     return (
-        <section id="signup">
-            <h2 className="blind">회원가입</h2>
-            <div className="container">
-                <div className="inner">
-                    <div className="signup">
-                        <h3 className="signup_title">회원가입</h3>
-                        <div className="signup_form">
+        <Section id="signup">
+            <H2 className="blind">회원가입</H2>
+            <Container>
+                <Inner>
+                    <Div className="signup">
+                        <H3 className="signup_title">회원가입</H3>
+                        <Div className="signup_form">
                             <Form>
                                 <Label htmlFor="name">닉네임</Label>
                                 <Input id="name" name="name" type="text" required placeholder="계정 이름" />
@@ -19,16 +19,18 @@ const SignUp = () => {
                                 <Input id="password" name="password" type="password" required placeholder="비밀번호" />
                                 <BtnInput type="submit" value="회원가입" />
                             </Form>
-                        </div>
+                        </Div>
                         <MoveSection>
-                            <p>이미 계정이 있으신가요?</p>
-                            <MoveBtn to="/login" title="로그인 하기">로그인 하기</MoveBtn>
+                            <P>이미 계정이 있으신가요?</P>
+                            <MoveBtn to="/login" title="로그인 하기">
+                                로그인 하기
+                            </MoveBtn>
                         </MoveSection>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    </Div>
+                </Inner>
+            </Container>
+        </Section>
     );
 };
 
-export default SignUp;
+export default Signup;

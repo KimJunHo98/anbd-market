@@ -1,17 +1,18 @@
 import React from "react";
+import { Container, Div, FooterTag, H2, Inner } from "../styledComponents";
 
 const Footer = () => {
     return (
-        <footer id="footer">
-            <h2 className="blind">푸터</h2>
-            <div className="container">
-                <div className="inner">
-                    <div className="footer" style={{padding: "50px 0"}}>
+        <FooterTag id="footer">
+            <H2 className="blind">푸터</H2>
+            <Container>
+                <Inner>
+                    <Div className="footer" style={{padding: "50px 0"}}>
                         푸터
-                    </div>
-                </div>
-            </div>
-        </footer>
+                    </Div>
+                </Inner>
+            </Container>
+        </FooterTag>
     );
 };
 

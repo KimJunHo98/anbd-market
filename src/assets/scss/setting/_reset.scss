@@ -20,20 +20,6 @@ body, input, textarea, select, option, button, table {
     font-family: var(--Kor-font), "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", helvetica, sans-serif;
 }
 
-.container {
-    width: 100%;
-    height: 100%;
-    max-width: 480px;
-    margin: 0 auto;
-    
-    .inner {
-        width: 100%;
-        height: 100%;
-        padding: 0 20px;
-        background-color: #fff;
-    }
-}
-
 // 링크 초기화
 a, a:hover, a:focus {
     color: #222;

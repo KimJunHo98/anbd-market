@@ -1,18 +1,20 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { MainTag } from "../styledComponents";
+
 import Home from "./Home";
-import SignUp from "../components/SignUp";
+import Signup from "../components/Signup";
 import Login from "../components/Login";
 
 const Main = () => {
     return (
-        <main id="main">
+        <MainTag>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/signup" element={<SignUp />} />
+                <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
             </Routes>
-        </main>
+        </MainTag>
     );
 };
 
