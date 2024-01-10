@@ -1,5 +1,5 @@
 import React from "react";
-import { AsideMenu, Nav, CancelBtn, Ul, Li, ALink } from "../styledComponents";
+import { Aside, Nav, Ul, Li, ALink, Button } from "../styledComponents";
 
 import { BsXLg } from "react-icons/bs";
 
@@ -9,11 +9,11 @@ const SideMenu = ({ show, setShow }) => {
     };
 
     return (
-        <AsideMenu className={`${show ? "show" : ""}`}>
-            <CancelBtn className="cancel_btn" onClick={hanleCancelBtnClick}>
+        <Aside id="side_menu" className={`${show ? "show" : ""}`}>
+            <Button className="cancel_btn" onClick={hanleCancelBtnClick}>
                 <BsXLg />
-            </CancelBtn>
-            <Nav>
+            </Button>
+            <Nav className="menu_nav">
                 <Ul className="menu_account">
                     <Li className="account_list">
                         <ALink to="/login" className="account_link" onClick={() => setShow((prevShow) => !prevShow)}>
@@ -27,7 +27,7 @@ const SideMenu = ({ show, setShow }) => {
                     </Li>
                 </Ul>
             </Nav>
-        </AsideMenu>
+        </Aside>
     );
 };
 

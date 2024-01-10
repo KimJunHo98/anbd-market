@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Loading } from "../styledComponents";
+import { Div, P } from "../styledComponents";
 
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
@@ -18,7 +18,7 @@ const AppRouter = ({ isloading }) => {
         <BrowserRouter>
             <Header handleMenuClick={handleMenuClick} />
             <SideMenu show={show} setShow={setShow} />
-            {!isloading ? <Main /> : <Loading><p>loading...</p></Loading>}
+            {!isloading ? <Main /> : <Div className="loading"><P>loading...</P></Div>}
             <Footer />
         </BrowserRouter>
     );

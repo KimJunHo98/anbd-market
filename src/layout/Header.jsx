@@ -1,5 +1,5 @@
 import React from "react";
-import { Btnbar, H2, ALink, H1, MenuBtn, HeaderTag, Container, Inner, Div, Img } from "../styledComponents";
+import { H2, ALink, H1, HeaderTag, Container, Inner, Div, Img, Button, Span } from "../styledComponents";
 
 const Header = ({ handleMenuClick }) => {
     return (
@@ -13,9 +13,9 @@ const Header = ({ handleMenuClick }) => {
                                 <Img src="/images/header/main_logo.png" alt="메인로고" className="logo_img" />
                             </ALink>
                         </H1>
-                        <MenuBtn onClick={handleMenuClick}>
-                            <Btnbar />
-                        </MenuBtn>
+                        <Button onClick={handleMenuClick} className="menu_btn">
+                            <Span className="bar" />
+                        </Button>
                     </Div>
                 </Inner>
             </Container>
