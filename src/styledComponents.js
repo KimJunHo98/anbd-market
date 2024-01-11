@@ -1,17 +1,54 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
+// 시멘틱 태그
+export const HeaderTag = styled.header``;
+export const MainTag = styled.main`
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+`;
+export const Section = styled.section``;
+export const FooterTag = styled.footer``;
+export const Aside = styled.aside`
+    &#side_menu {
+        width: 100%;
+        max-width: 480px;
+        height: 100vh;
+        position: fixed;
+        right: -480px;
+        top: 0;
+        padding: 30px;
+        transition: all 0.2s ease-in;
+        background-color: #111;
+
+        &.show {
+            right: 0;
+        }
+    }
+`;
+export const Nav = styled.nav`
+    &.menu_nav {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0 10px;
+    }
+`;
+
 export const Container = styled.div`
     width: 100%;
     height: 100%;
     max-width: 480px;
     margin: 0 auto;
+    background-color: #fff;
 `;
 export const Inner = styled.div`
     width: 100%;
     height: 100%;
     padding: 0 20px;
-    background-color: #fff;
 `;
 
 // h1 ~ h6 태그
@@ -30,42 +67,6 @@ export const H3 = styled.h3`
         margin-bottom: 30px;
         text-align: center;
         font-size: 2rem;
-    }
-`;
-
-// 시멘틱 태그
-export const Section = styled.section``;
-export const HeaderTag = styled.header``;
-export const FooterTag = styled.footer``;
-export const MainTag = styled.main`
-    width: 100%;
-    height: calc(100vh - 60px);
-    display: flex;
-    flex-direction: column;
-`;
-export const Aside = styled.aside`
-    &#side_menu {
-        width: 100%;
-        max-width: 480px;
-        height: 100vh;
-        position: fixed;
-        right: -480px;
-        top: 0;
-        padding: 30px;
-        transition: all 0.2s ease-in;
-        background-color: #fff;
-
-        &.show {
-            right: 0;
-        }
-    }
-`;
-export const Nav = styled.nav`
-    &.menu_nav {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
     }
 `;
 
@@ -90,12 +91,19 @@ export const ALink = styled(Link)`
         display: block;
     }
 
+    &.profile_link {
+        color: #fff;
+    }
+
     &.account_link {
         width: 100px;
         display: block;
         padding: 8px 0;
         text-align: center;
+        border: 1px solid #fff;
         font-size: 1.6rem;
+        background-color: #transparent;
+        color: #fff;
     }
 
     &.move_btn {
@@ -130,16 +138,19 @@ export const Button = styled.button`
 
         svg {
             font-size: 2rem;
+            color: #fff;
         }
     }
 
     &.logut_btn {
-        width: 102px;
+        width: 100px;
         height: 32px;
         display: block;
-        border: 1px solid #111;
+        margin: 30px 0 0 1px;
+        border: 1px solid #fff;
         font-size: 1.6rem;
-        background-color: #fff;
+        background-color: #111;
+        color: #fff;
         cursor: pointer;
     }
 `;
@@ -172,6 +183,19 @@ export const Div = styled.div`
         }
     }
 
+    &.my_page {
+        width: 100%
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+
+        .my_page_items {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 30px;
+        }
+    }
+
     &.banner {
         width: 100%;
     }
@@ -183,23 +207,17 @@ export const Div = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: center;
-    }
-
-    &.move {
-        display: flex;
-        padding: 0 20px;
-        margin-top: 20px;
-
-        p {
-            color: #666;
-        }
-    }
+    
 
     &.footer {
         padding: 30px 0;
     }
 `;
 export const P = styled.p`
+    &.nick_name {
+        color: #fff;
+    }    
+    
     &.copyright {
         text-align: center;
     }
@@ -271,7 +289,7 @@ export const Label = styled.label`
 // 이미지
 export const Img = styled.img``;
 
-// 에러
+// 커스텀
 export const Error = styled.span`
     width: 100%;
     display: block;
@@ -279,4 +297,13 @@ export const Error = styled.span`
     text-align: center;
     font-size: 1.4rem;
     color: #ff5252;
+`;
+export const Switcher = styled.div`
+    display: flex;
+    padding: 0 20px;
+    margin-top: 20px;
+
+    p {
+        color: #666;
+    }
 `;

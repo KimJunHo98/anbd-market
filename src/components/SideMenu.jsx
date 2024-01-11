@@ -1,23 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
-import { Aside, Nav, Ul, Li, ALink, Button } from "../styledComponents";
+import { Aside, Nav, Ul, Li, ALink, Button, Div, Span, P } from "../styledComponents";
 
 import { BsXLg } from "react-icons/bs";
 
-const SideMenu = ({ show, setShow }) => {
-    const navigate = useNavigate();
-
+const SideMenu = ({ show, setShow, isLogIn, useObj }) => {
     const handleCancelBtnClick = () => {
         setShow((prevShow) => !prevShow);
-    }
-    ;
-    const handleLogOutClick = () => {
-        auth.signOut();
-        setShow((prevShow) => !prevShow);
-
-        navigate("/login");
-    }
+    };
+    console.log(useObj);
 
     return (
         <Aside id="side_menu" className={`${show ? "show" : ""}`}>
@@ -25,19 +15,30 @@ const SideMenu = ({ show, setShow }) => {
                 <BsXLg />
             </Button>
             <Nav className="menu_nav">
-                <Ul className="menu_account">
-                    <Li className="account_list">
-                        <ALink to="/login" className="account_link" onClick={() => setShow((prevShow) => !prevShow)}>
-                            로그인
+                {isLogIn ? (
+                    <Div className="my_page">
+                        <Div className="my_page_items">
+                            <Span className="thumb"></Span>
+                            <P className="nick_name">{useObj.displayName} 님</P>
+                        </Div>
+                        <ALink to="/profile" className="profile_link">
+                            마이 페이지
                         </ALink>
-                    </Li>
-                    <Li className="account_list">
-                        <ALink to="/signup" className="account_link" onClick={() => setShow((prevShow) => !prevShow)}>
-                            회원가입
-                        </ALink>
-                    </Li>
-                </Ul>
-                <Button className="logut_btn" onClick={handleLogOutClick}>로그아웃</Button>
+                    </Div>
+                ) : (
+                    <Ul className="menu_account">
+                        <Li className="account_list">
+                            <ALink to="/login" className="account_link" onClick={() => setShow((prevShow) => !prevShow)}>
+                                로그인
+                            </ALink>
+                        </Li>
+                        <Li className="account_list">
+                            <ALink to="/signup" className="account_link" onClick={() => setShow((prevShow) => !prevShow)}>
+                                회원가입
+                            </ALink>
+                        </Li>
+                    </Ul>
+                )}
             </Nav>
         </Aside>
     );

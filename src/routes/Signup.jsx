@@ -1,6 +1,6 @@
 import React from "react";
 import useAuth from "../context/useAuth";
-import { Form, Input, Label, Section, H2, Container, Inner, Div, H3, P, ALink, Error } from "../styledComponents";
+import { Form, Input, Label, Section, H2, Container, Inner, Div, H3, P, ALink, Error, Switcher } from "../styledComponents";
 
 const Signup = () => {
     const { email, password, name, onChange, onSubmit, error, onSignUp } = useAuth();
@@ -51,12 +51,12 @@ const Signup = () => {
                             </Form>
                             {error !== "" ? <Error>{error}</Error> : ""}
                         </Div>
-                        <Div className="move">
+                        <Switcher>
                             <P>이미 계정이 있으신가요?</P>
                             <ALink to="/login" title="로그인 하기" className="move_btn">
                                 로그인 하기
                             </ALink>
-                        </Div>
+                        </Switcher>
                     </Div>
                 </Inner>
             </Container>

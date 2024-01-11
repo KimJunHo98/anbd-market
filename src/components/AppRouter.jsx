@@ -7,7 +7,7 @@ import Footer from "../layout/Footer";
 import Main from "../layout/Main";
 import SideMenu from "./SideMenu";
 
-const AppRouter = ({ isLoading }) => {
+const AppRouter = ({ isLoading, useObj, isLogIn }) => {
     const [show, setShow] = useState(false);
 
     const handleMenuClick = () => {
@@ -17,9 +17,9 @@ const AppRouter = ({ isLoading }) => {
     return (
         <BrowserRouter>
             <Header handleMenuClick={handleMenuClick} />
-            <SideMenu show={show} setShow={setShow} />
+            <SideMenu show={show} setShow={setShow} isLogIn={isLogIn} useObj={useObj} />
             {!isLoading ? (
-                <Main />
+                <Main setShow={setShow} isLogIn={isLogIn} />
             ) : (
                 <Div className="loading">
                     <P>loading...</P>

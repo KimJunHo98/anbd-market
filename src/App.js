@@ -6,11 +6,20 @@ import AppRouter from "./components/AppRouter";
 
 const App = () => {
     const [isLoading, setIsLoading] = useState(true);
-    
+    const [useObj, setUseObj] = useState(null);
+
     useEffect(() => {
         const init = async () => {
             await auth.authStateReady(); // 인증상태 확인
-    
+
+            const user = auth.currentUser;
+
+            if (user) {
+                setUseObj(user);
+            } else {
+                setUseObj(null);
+            }
+
             setIsLoading(false);
         };
 
@@ -20,7 +29,7 @@ const App = () => {
     return (
         <>
             <GlobalStyles />
-            <AppRouter isLoading={isLoading} />
+            <AppRouter isLoading={isLoading} isLogIn={Boolean(useObj)} useObj={useObj} />
         </>
     );
 };

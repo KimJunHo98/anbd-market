@@ -63,6 +63,8 @@ const useAuth = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        setError("");
     };
 
     return { name, email, password, onChange, onSubmit, error, onLogin, onSignUp };

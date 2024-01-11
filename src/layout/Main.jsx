@@ -8,28 +8,35 @@ import Login from "../routes/Login";
 import Profile from "../routes/Profile";
 import ProtectedRoute from "../components/ProtectedRoute";
 
-const Main = () => {
+const Main = ({ setShow, isLogIn }) => {
     return (
         <MainTag>
             <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <ProtectedRoute>
-                            <Home />
-                        </ProtectedRoute>
-                    }
-                />
-                <Route
-                    path="/profile"
-                    element={
-                        <ProtectedRoute>
-                            <Profile />
-                        </ProtectedRoute>
-                    }
-                />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />
+                {isLogIn ? (
+                    <>
+                        <Route
+                            path="/"
+                            element={
+                                <ProtectedRoute>
+                                    <Home />
+                                </ProtectedRoute>
+                            }
+                        />
+                        <Route
+                            path="/profile"
+                            element={
+                                <ProtectedRoute>
+                                    <Profile setShow={setShow} />
+                                </ProtectedRoute>
+                            }
+                        />
+                    </>
+                ) : (
+                    <>
+                        <Route path="/signup" element={<Signup />} />
+                        <Route path="/login" element={<Login />} />
+                    </>
+                )}
             </Routes>
         </MainTag>
     );
