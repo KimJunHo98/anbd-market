@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase";
 
 const useAuth = () => {
-    const [isloading, setIsLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -26,10 +26,10 @@ const useAuth = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        if (isloading || name === "" || email === "" || password === "") return; // 이름, 이메일, 비민번호가 비어있으면 함수 종료
+        if (loading || name === "" || email === "" || password === "") return; // 이름, 이메일, 비민번호가 비어있으면 함수 종료
 
         try {
-            setIsLoading(true);
+            setLoading(true);
 
             const credentials = await createUserWithEmailAndPassword(auth, email, password);
             console.log(credentials.user);
@@ -39,7 +39,7 @@ const useAuth = () => {
         } catch (err) {
             setError(err);
         } finally {
-            setIsLoading(false);
+            setLoading(false);
         }
 
         setName("");
