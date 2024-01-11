@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase";
+import { FirebaseError } from "firebase/app";
 
 const useAuth = () => {
     const [loading, setLoading] = useState(false);
@@ -10,6 +11,43 @@ const useAuth = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+
+    const onSignUp = async () => {
+        if (loading || name === "" || email === "" || password === "") return; // 이름, 이메일, 비민번호가 비어있으면 함수 종료
+
+        try {
+            setLoading(true);
+
+            const credentials = await createUserWithEmailAndPassword(auth, email, password);
+            await updateProfile(credentials.user, { displayName: name });
+
+            navigate("/");
+        } catch (e) {
+            if (e instanceof FirebaseError) {
+                setError(e.message);
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const onLogin = async () => {
+        if (loading || email === "" || password === "") return; // 이메일, 비민번호가 비어있으면 함수 종료
+
+        try {
+            setLoading(true);
+
+            await signInWithEmailAndPassword(auth, email, password);
+
+            navigate("/");
+        } catch (e) {
+            if (e instanceof FirebaseError) {
+                setError(e.message);
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const onChange = (e) => {
         const { name, value } = e.target;
@@ -23,31 +61,11 @@ const useAuth = () => {
         }
     };
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
-
-        if (loading || name === "" || email === "" || password === "") return; // 이름, 이메일, 비민번호가 비어있으면 함수 종료
-
-        try {
-            setLoading(true);
-
-            const credentials = await createUserWithEmailAndPassword(auth, email, password);
-            console.log(credentials.user);
-            await updateProfile(credentials.user, { displayName: name });
-
-            navigate("/");
-        } catch (err) {
-            setError(err);
-        } finally {
-            setLoading(false);
-        }
-
-        setName("");
-        setEmail("");
-        setPassword("");
     };
 
-    return { name, email, password, onChange, onSubmit, error };
+    return { name, email, password, onChange, onSubmit, error, onLogin, onSignUp };
 };
 
 export default useAuth;

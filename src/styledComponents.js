@@ -132,6 +132,16 @@ export const Button = styled.button`
             font-size: 2rem;
         }
     }
+
+    &.logut_btn {
+        width: 102px;
+        height: 32px;
+        display: block;
+        border: 1px solid #111;
+        font-size: 1.6rem;
+        background-color: #fff;
+        cursor: pointer;
+    }
 `;
 
 // div 태그
@@ -263,9 +273,10 @@ export const Img = styled.img``;
 
 // 에러
 export const Error = styled.span`
-    font-weight: 600;
+    width: 100%;
+    display: block;
+    padding-top: 10px;
+    text-align: center;
     font-size: 1.4rem;
-    color: #999;
+    color: #ff5252;
 `;
-
-

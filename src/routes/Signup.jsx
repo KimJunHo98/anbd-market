@@ -3,7 +3,7 @@ import useAuth from "../context/useAuth";
 import { Form, Input, Label, Section, H2, Container, Inner, Div, H3, P, ALink, Error } from "../styledComponents";
 
 const Signup = () => {
-    const { email, password, name, onChange, onSubmit, error } = useAuth();
+    const { email, password, name, onChange, onSubmit, error, onSignUp } = useAuth();
 
     return (
         <Section id="signup">
@@ -47,9 +47,9 @@ const Signup = () => {
                                     value={password}
                                     onChange={onChange}
                                 />
-                                <Input type="submit" value="회원가입" className="btn_input" />
+                                <Input type="submit" value="회원가입" className="btn_input" onClick={onSignUp} />
                             </Form>
-                            {error !== "" ? <Error></Error> : ""}
+                            {error !== "" ? <Error>{error}</Error> : ""}
                         </Div>
                         <Div className="move">
                             <P>이미 계정이 있으신가요?</P>

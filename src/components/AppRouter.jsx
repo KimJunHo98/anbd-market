@@ -11,14 +11,20 @@ const AppRouter = ({ isLoading }) => {
     const [show, setShow] = useState(false);
 
     const handleMenuClick = () => {
-        setShow(prevShow => !prevShow);
-    }
+        setShow((prevShow) => !prevShow);
+    };
 
     return (
         <BrowserRouter>
             <Header handleMenuClick={handleMenuClick} />
             <SideMenu show={show} setShow={setShow} />
-            {!isLoading ? <Main /> : <Div className="loading"><P>loading...</P></Div>}
+            {!isLoading ? (
+                <Main />
+            ) : (
+                <Div className="loading">
+                    <P>loading...</P>
+                </Div>
+            )}
             <Footer />
         </BrowserRouter>
     );
