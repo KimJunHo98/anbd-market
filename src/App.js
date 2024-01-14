@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import GlobalStyles from "./GlobalStyles";
 import { auth } from "./firebase";
+import GlobalStyles from "./GlobalStyles";
 
 import AppRouter from "./components/AppRouter";
 
@@ -9,11 +9,7 @@ const App = () => {
     const [useObj, setUseObj] = useState(null);
 
     useEffect(() => {
-        const init = async () => {
-            await auth.authStateReady(); // 인증상태 확인
-
-            const user = auth.currentUser;
-
+        const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
                 setUseObj(user);
             } else {
@@ -21,9 +17,9 @@ const App = () => {
             }
 
             setIsLoading(false);
-        };
+        }); // 인증상태 확인
 
-        init();
+        return () => unsubscribe();
     }, []);
 
     return (

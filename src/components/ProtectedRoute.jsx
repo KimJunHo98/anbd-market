@@ -8,7 +8,6 @@ const ProtectedRoute = ({ children }) => {
     if(user === null){
         return navigate("/login");
     }
-    console.log(user);
 
     return children;
 };

@@ -1,23 +1,24 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
-import { Button } from "../styledComponents";
+import { Container, Div, H2, Inner, P, Section, Span } from "../styledComponents";
+import { FaUserCircle } from "react-icons/fa";
 
-const Profile = ({ setShow }) => {
-    const navigate = useNavigate();
-
-    const handleLogOutClick = () => {
-        auth.signOut().then(() => navigate("/login"));
-
-        setShow((prevShow) => !prevShow);
-    };
-    
+const Profile = ({useObj}) => {
     return (
-        <div>
-            <Button className="logut_btn" onClick={handleLogOutClick}>
-                로그아웃
-            </Button>
-        </div>
+        <Section id="profile">
+            <H2 className="blind">프로필</H2>
+            <Container>
+                <Inner>
+                    <Div className="profile">
+                        <Div className="my_profile">
+                            <Span className="thumb">
+                                <FaUserCircle />
+                            </Span>
+                            <P className="nick_name">{useObj.displayName} 님</P>
+                        </Div>
+                    </Div>
+                </Inner>
+            </Container>
+        </Section>
     );
 };
 

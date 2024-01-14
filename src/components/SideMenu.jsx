@@ -1,45 +1,64 @@
 import React from "react";
-import { Aside, Nav, Ul, Li, ALink, Button, Div, Span, P } from "../styledComponents";
+import { Aside, Nav, Ul, Li, ALink, Button, Div, Span, P, H2 } from "../styledComponents";
 
-import { BsXLg } from "react-icons/bs";
+import { IoClose } from "react-icons/io5";
+import { FaUserCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 
 const SideMenu = ({ show, setShow, isLogIn, useObj }) => {
+    const navigate = useNavigate();
+
+    const handleLogOutClick = () => {
+        auth.signOut().then(() => navigate("/login"));
+
+        setShow((prevShow) => !prevShow);
+    };
+
     const handleCancelBtnClick = () => {
         setShow((prevShow) => !prevShow);
     };
-    console.log(useObj);
 
     return (
         <Aside id="side_menu" className={`${show ? "show" : ""}`}>
-            <Button className="cancel_btn" onClick={handleCancelBtnClick}>
-                <BsXLg />
-            </Button>
-            <Nav className="menu_nav">
-                {isLogIn ? (
-                    <Div className="my_page">
-                        <Div className="my_page_items">
-                            <Span className="thumb"></Span>
-                            <P className="nick_name">{useObj.displayName} 님</P>
+            <H2 className="blind">사이드 메뉴</H2>
+            <Div className="side_menu_wrap">
+                <Div className="side_menu_header">
+                    <Button className="cancel_btn" onClick={handleCancelBtnClick}>
+                        <IoClose />
+                    </Button>
+                    {isLogIn ? (
+                        <Button className="logut_btn" onClick={handleLogOutClick}>
+                            로그아웃
+                        </Button>
+                    ) : (
+                        <Ul className="menu_account">
+                            <Li className="account_list">
+                                <ALink to="/login" className="account_link" onClick={() => setShow((prevShow) => !prevShow)}>
+                                    로그인
+                                </ALink>
+                            </Li>
+                            <Li className="account_list">
+                                <ALink to="/signup" className="account_link" onClick={() => setShow((prevShow) => !prevShow)}>
+                                    회원가입
+                                </ALink>
+                            </Li>
+                        </Ul>
+                    )}
+                </Div>
+                <Nav className="menu_nav">
+                    {isLogIn && (
+                        <Div className="my_page">
+                            <Div className="my_page_items">
+                                <Span className="thumb">
+                                    <FaUserCircle />
+                                </Span>
+                                <P className="nick_name">{useObj.displayName} 님</P>
+                            </Div>
                         </Div>
-                        <ALink to="/profile" className="profile_link">
-                            마이 페이지
-                        </ALink>
-                    </Div>
-                ) : (
-                    <Ul className="menu_account">
-                        <Li className="account_list">
-                            <ALink to="/login" className="account_link" onClick={() => setShow((prevShow) => !prevShow)}>
-                                로그인
-                            </ALink>
-                        </Li>
-                        <Li className="account_list">
-                            <ALink to="/signup" className="account_link" onClick={() => setShow((prevShow) => !prevShow)}>
-                                회원가입
-                            </ALink>
-                        </Li>
-                    </Ul>
-                )}
-            </Nav>
+                    )}
+                </Nav>
+            </Div>
         </Aside>
     );
 };

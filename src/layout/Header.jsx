@@ -6,7 +6,7 @@ const Header = ({ handleMenuClick }) => {
         <HeaderTag id="header">
             <H2 className="blind">헤더</H2>
             <Container>
-                <Inner>
+                <Inner className="inner">
                     <Div className="header">
                         <H1>
                             <ALink to="/" className="header_link">

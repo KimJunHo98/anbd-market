@@ -19,13 +19,13 @@ const AppRouter = ({ isLoading, useObj, isLogIn }) => {
             <Header handleMenuClick={handleMenuClick} />
             <SideMenu show={show} setShow={setShow} isLogIn={isLogIn} useObj={useObj} />
             {!isLoading ? (
-                <Main setShow={setShow} isLogIn={isLogIn} />
+                <Main setShow={setShow} isLogIn={isLogIn} useObj={useObj} />
             ) : (
                 <Div className="loading">
                     <P>loading...</P>
                 </Div>
             )}
-            <Footer />
+            <Footer isLogIn={isLogIn} />
         </BrowserRouter>
     );
 };

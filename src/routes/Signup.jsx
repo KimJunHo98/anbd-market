@@ -21,7 +21,7 @@ const Signup = () => {
                                     className="signup_input"
                                     type="text"
                                     required
-                                    placeholder="계정 이름"
+                                    placeholder="닉네임"
                                     value={name}
                                     onChange={onChange}
                                 />

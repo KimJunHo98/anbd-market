@@ -7,7 +7,7 @@ const Banner = () => {
             <H2 className="blind">배너 영역</H2>
             <Container>
                 <Inner>
-                    <Div className="banner">
+                    <Div className="banner" style={{height: "2000px"}}>
                         banner
                     </Div>
                 </Inner>

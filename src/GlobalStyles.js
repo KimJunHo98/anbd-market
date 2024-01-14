@@ -10,6 +10,9 @@ const GlobalStyles = createGlobalStyle`
     :root {
         --main-font: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", helvetica, sans-serif;
         --main-color: #222;
+        --primary-color: #93f205;
+        --secondary-color: #;
+        --accent-color: #;
     }
 
     * {

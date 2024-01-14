@@ -8,7 +8,7 @@ import Login from "../routes/Login";
 import Profile from "../routes/Profile";
 import ProtectedRoute from "../components/ProtectedRoute";
 
-const Main = ({ setShow, isLogIn }) => {
+const Main = ({ setShow, isLogIn, useObj }) => {
     return (
         <MainTag>
             <Routes>
@@ -26,7 +26,7 @@ const Main = ({ setShow, isLogIn }) => {
                             path="/profile"
                             element={
                                 <ProtectedRoute>
-                                    <Profile setShow={setShow} />
+                                    <Profile setShow={setShow} useObj={useObj} />
                                 </ProtectedRoute>
                             }
                         />
