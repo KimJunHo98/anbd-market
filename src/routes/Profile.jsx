@@ -1,6 +1,5 @@
 import React from "react";
-import { Container, Div, H2, Inner, P, Section, Span } from "../styledComponents";
-import { FaUserCircle } from "react-icons/fa";
+import { Container, Div, H2, Inner, P, Section } from "../styledComponents";
 
 const Profile = ({useObj}) => {
     return (
@@ -10,9 +9,6 @@ const Profile = ({useObj}) => {
                 <Inner>
                     <Div className="profile">
                         <Div className="my_profile">
-                            <Span className="thumb">
-                                <FaUserCircle />
-                            </Span>
                             <P className="nick_name">{useObj.displayName} 님</P>
                         </Div>
                     </Div>

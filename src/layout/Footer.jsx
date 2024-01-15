@@ -1,8 +1,8 @@
 import React from "react";
-import { ALink, Container, Div, FooterTag, H2, Inner, Li, Nav, Span, Ul } from "../styledComponents";
+import { Container, Div, FooterTag, H2, Inner, Li, Nav, Span, Ul, Paginate } from "../styledComponents";
 
-import { GoHome } from "react-icons/go";
-import { FiUser } from "react-icons/fi";
+import { GoHomeFill } from "react-icons/go";
+import { RiUser3Fill } from "react-icons/ri";
 
 const Footer = ({ isLogIn }) => {
     return (
@@ -14,34 +14,34 @@ const Footer = ({ isLogIn }) => {
                         <Nav className="footer_nav">
                             <Ul className="quick_menu_list">
                                 <Li className="quick_menu_items">
-                                    <ALink to="/" className="quick_menu_link">
-                                        <GoHome className="menu_icon" />
+                                    <Paginate to="/" exact="true" className="quick_menu_link" activeclassname="active">
+                                        <GoHomeFill className="menu_icon" />
                                         <Span className="home">홈</Span>
-                                    </ALink>
+                                    </Paginate>
                                 </Li>
                                 <Li className="quick_menu_items">
-                                    <ALink className="quick_menu_link">
-                                        <GoHome className="menu_icon" />
+                                    <Paginate className="quick_menu_link" activeclassname="active">
+                                        <GoHomeFill className="menu_icon" />
                                         <Span className="home">홈</Span>
-                                    </ALink>
+                                    </Paginate>
                                 </Li>
                                 <Li className="quick_menu_items">
-                                    <ALink className="quick_menu_link">
-                                        <GoHome className="menu_icon" />
+                                    <Paginate className="quick_menu_link" activeclassname="active">
+                                        <GoHomeFill className="menu_icon" />
                                         <Span className="home">홈</Span>
-                                    </ALink>
+                                    </Paginate>
                                 </Li>
                                 <Li className="quick_menu_items">
                                     {isLogIn ? (
-                                        <ALink to="/profile" className="quick_menu_link">
-                                            <FiUser className="menu_icon" />
+                                        <Paginate to="/profile" className="quick_menu_link" activeclassname="active">
+                                            <RiUser3Fill className="menu_icon" />
                                             <Span className="mypage">My</Span>
-                                        </ALink>
+                                        </Paginate>
                                     ) : (
-                                        <ALink to="/login" className="quick_menu_link">
-                                            <FiUser className="menu_icon" />
+                                        <Paginate to="/login" className="quick_menu_link" activeclassname="active">
+                                            <RiUser3Fill className="menu_icon" />
                                             <Span className="mypage">My</Span>
-                                        </ALink>
+                                        </Paginate>
                                     )}
                                 </Li>
                             </Ul>

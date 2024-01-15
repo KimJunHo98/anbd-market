@@ -7,6 +7,7 @@ import AppRouter from "./components/AppRouter";
 const App = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [useObj, setUseObj] = useState(null);
+    const [isLoadingTimeout, setIsLoadingTimeout] = useState(0);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -15,12 +16,20 @@ const App = () => {
             } else {
                 setUseObj(null);
             }
+    
+            const loadingTimeout = setTimeout(() => {
+                setIsLoading(false);
+            }, 3000);
+    
+            setIsLoadingTimeout(loadingTimeout);
+        });
+        
+        return () => {
+            clearTimeout(isLoadingTimeout);
+            unsubscribe();
+        };
+    }, [isLoadingTimeout]);
 
-            setIsLoading(false);
-        }); // 인증상태 확인
-
-        return () => unsubscribe();
-    }, []);
 
     return (
         <>

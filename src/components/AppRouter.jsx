@@ -6,6 +6,7 @@ import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import Main from "../layout/Main";
 import SideMenu from "./SideMenu";
+import Splash from "./Splash";
 
 const AppRouter = ({ isLoading, useObj, isLogIn }) => {
     const [show, setShow] = useState(false);
@@ -16,6 +17,7 @@ const AppRouter = ({ isLoading, useObj, isLogIn }) => {
 
     return (
         <BrowserRouter>
+            {isLoading && <Splash />}
             <Header handleMenuClick={handleMenuClick} />
             <SideMenu show={show} setShow={setShow} isLogIn={isLogIn} useObj={useObj} />
             {!isLoading ? (

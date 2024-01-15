@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { styled } from "styled-components";
 
 // 레이아웃
@@ -22,6 +22,7 @@ export const HeaderTag = styled.header`
     top: 0;
     left: 0;
     z-index: 99;
+
     .inner {
         border-bottom: 1px solid #ddd;
     }
@@ -45,6 +46,9 @@ export const Aside = styled.aside`
         position: fixed;
         right: -100%;
         top: 0;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
         justify-content: flex-end;
         z-index: 999;
@@ -62,6 +66,9 @@ export const Nav = styled.nav`
     &.menu_nav {
         width: 100%;
         height: 100%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
         flex-direction: column;
         padding: 0 10px;
@@ -93,6 +100,9 @@ export const Div = styled.div`
     &.header {
         width: 100%;
         height: 60px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -102,6 +112,9 @@ export const Div = styled.div`
         width: 100%;
         max-width: 480px;
         height: 100vh;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -125,6 +138,9 @@ export const Div = styled.div`
 
         .side_menu_header {
             width: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
             justify-content: space-between;
             padding-bottom: 10px;
@@ -133,11 +149,17 @@ export const Div = styled.div`
 
         .my_page {
             width: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
             flex-direction: column;
             margin-top: 30px;
 
             .my_page_items {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
                 display: flex;
                 flex-direction: column;
                 gap: 5px 0;
@@ -147,20 +169,70 @@ export const Div = styled.div`
 
     &.banner {
         width: 100%;
+        background-color: #fff;
+
+        .banner_wrap {
+            width: 100%;
+
+            .swiper_wrap {
+                width: 100%;
+
+                .swiper-pagination {
+                    width: 110px !important;
+                    padding: 5px 0;
+                    border-radius: 15px;
+                    background-color: rgba(0, 0, 0, 0.3);
+
+                    .swiper-pagination-bullet {
+                        width: 5px;
+                        height: 5px;
+                        border-radius: 5px;
+                        background-color: #fff;
+                    }
+                    .swiper-pagination-bullet-active.swiper-pagination-bullet-active-main {
+                        width: 18px;
+                        height: 5px;
+                        border-radius: 5px;
+                        background-color: #fff;
+                    }
+                    .swiper-pagination-bullet-active-prev,
+                    .swiper-pagination-bullet-active-next {
+                        width: 10px;
+                        height: 5px;
+                        border-radius: 30px;
+                        background-color: #fff;
+                        opacity: 0.7;
+                    }
+                    .swiper-pagination-bullet-active-prev-prev,
+                    .swiper-pagination-bullet-active-next-next {
+                        width: 6px;
+                        height: 5px;
+                        border-radius: 30px;
+                        background-color: #fff;
+                        opacity: 0.5;
+                    }
+                }
+            }
+        }
     }
 
     &.profile {
         width: 100%;
         height: calc(100vh - 60px);
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
         flex-direction: column;
         align-items: center;
 
         .my_profile {
             width: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
             flex-direction: column;
-            align-items: center;
             gap: 5px 0;
             margin-top: 30px;
 
@@ -173,7 +245,10 @@ export const Div = styled.div`
     &.signup,
     &.login {
         width: 100%;
-        height: 100vh;
+        height: calc(100vh - 60px);
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -183,11 +258,17 @@ export const Div = styled.div`
 export const Ul = styled.ul`
     &.menu_account {
         width: 60%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
         justify-content: flex-end;
     }
 
     &.quick_menu_list {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
         display: flex;
         justify-content: space-between;
     }
@@ -242,11 +323,34 @@ export const Span = styled.span`
     &.thumb {
         margin-left: 10px;
         font-size: 3rem;
-        color: var(--primary-color);
+        color: #999;
     }
 `;
 
 // 링크, 버튼
+export const StyledNavLink = styled(NavLink)``;
+export const Paginate = styled(StyledNavLink)`
+    &.quick_menu_link {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px 0;
+        padding: 10px 15px;
+        font-size: 1.2rem;
+
+        .menu_icon {
+            font-size: 2.4rem;
+        }
+        &.active {
+            .menu_icon {
+                fill: var(--primary-color);
+            }
+        }
+    }
+`;
 export const ALink = styled(Link)`
     &.header_link {
         width: 80%;
@@ -273,32 +377,14 @@ export const ALink = styled(Link)`
             text-decoration: underline;
         }
     }
-
-    &.quick_menu_link {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 5px 0;
-        padding: 10px 15px;
-        font-size: 1.2rem;
-
-        .menu_icon {
-            font-size: 1.8rem;
-        }
-    }
 `;
 export const Button = styled.button`
     &.menu_btn {
         width: 40px;
         height: 40px;
         border-radius: 10px;
-        transition: all 0.3s ease-in;
         background-color: #fff;
         cursor: pointer;
-
-        &:hover {
-            background-color: var(--primary-color);
-        }
     }
 
     &.cancel_btn {
@@ -326,6 +412,9 @@ export const Button = styled.button`
 
 // 폼, 인풋
 export const Form = styled.form`
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     flex-direction: column;
     padding: 0 20px;
@@ -373,6 +462,9 @@ export const Error = styled.span`
     color: #ff5252;
 `;
 export const Switcher = styled.div`
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     padding: 0 20px;
     margin-top: 20px;
