@@ -16,19 +16,24 @@ const AppRouter = ({ isLoading, useObj, isLogIn }) => {
     };
 
     return (
-        <BrowserRouter>
-            {isLoading && <Splash />}
-            <Header handleMenuClick={handleMenuClick} />
-            <SideMenu show={show} setShow={setShow} isLogIn={isLogIn} useObj={useObj} />
-            {!isLoading ? (
-                <Main setShow={setShow} isLogIn={isLogIn} useObj={useObj} />
+        <>
+            {isLoading ? (
+                <Splash />
             ) : (
-                <Div className="loading">
-                    <P>loading...</P>
-                </Div>
+                <BrowserRouter>
+                    <Header handleMenuClick={handleMenuClick} />
+                    <SideMenu show={show} setShow={setShow} isLogIn={isLogIn} useObj={useObj} />
+                    {!isLoading ? (
+                        <Main setShow={setShow} isLogIn={isLogIn} useObj={useObj} />
+                    ) : (
+                        <Div className="loading">
+                            <P>loading...</P>
+                        </Div>
+                    )}
+                    <Footer isLogIn={isLogIn} />
+                </BrowserRouter>
             )}
-            <Footer isLogIn={isLogIn} />
-        </BrowserRouter>
+        </>
     );
 };
 

@@ -7,21 +7,17 @@ import Signup from "../routes/Signup";
 import Login from "../routes/Login";
 import Profile from "../routes/Profile";
 import ProtectedRoute from "../components/ProtectedRoute";
+import Category from "../routes/Category";
+import Notice from "../routes/Notice";
+import Mypick from "../routes/Mypick";
 
 const Main = ({ setShow, isLogIn, useObj }) => {
     return (
         <MainTag>
             <Routes>
+                <Route path="/" element={<Home />} />
                 {isLogIn ? (
                     <>
-                        <Route
-                            path="/"
-                            element={
-                                <ProtectedRoute>
-                                    <Home />
-                                </ProtectedRoute>
-                            }
-                        />
                         <Route
                             path="/profile"
                             element={
@@ -37,6 +33,9 @@ const Main = ({ setShow, isLogIn, useObj }) => {
                         <Route path="/login" element={<Login />} />
                     </>
                 )}
+                <Route path="/category" element={<Category />} />
+                <Route path="/mypick" element={<Mypick />} />
+                <Route path="/notice" element={<Notice />} />
             </Routes>
         </MainTag>
     );

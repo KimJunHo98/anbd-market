@@ -1,8 +1,6 @@
 import React from "react";
+import { footerNav } from "../constant";
 import { Container, Div, FooterTag, H2, Inner, Li, Nav, Span, Ul, Paginate } from "../styledComponents";
-
-import { GoHomeFill } from "react-icons/go";
-import { RiUser3Fill } from "react-icons/ri";
 
 const Footer = ({ isLogIn }) => {
     return (
@@ -13,37 +11,28 @@ const Footer = ({ isLogIn }) => {
                     <Div className="footer">
                         <Nav className="footer_nav">
                             <Ul className="quick_menu_list">
-                                <Li className="quick_menu_items">
-                                    <Paginate to="/" exact="true" className="quick_menu_link" activeclassname="active">
-                                        <GoHomeFill className="menu_icon" />
-                                        <Span className="home">홈</Span>
-                                    </Paginate>
-                                </Li>
-                                <Li className="quick_menu_items">
-                                    <Paginate className="quick_menu_link" activeclassname="active">
-                                        <GoHomeFill className="menu_icon" />
-                                        <Span className="home">홈</Span>
-                                    </Paginate>
-                                </Li>
-                                <Li className="quick_menu_items">
-                                    <Paginate className="quick_menu_link" activeclassname="active">
-                                        <GoHomeFill className="menu_icon" />
-                                        <Span className="home">홈</Span>
-                                    </Paginate>
-                                </Li>
-                                <Li className="quick_menu_items">
-                                    {isLogIn ? (
-                                        <Paginate to="/profile" className="quick_menu_link" activeclassname="active">
-                                            <RiUser3Fill className="menu_icon" />
-                                            <Span className="mypage">My</Span>
-                                        </Paginate>
-                                    ) : (
-                                        <Paginate to="/login" className="quick_menu_link" activeclassname="active">
-                                            <RiUser3Fill className="menu_icon" />
-                                            <Span className="mypage">My</Span>
-                                        </Paginate>
-                                    )}
-                                </Li>
+                                {footerNav.map((footer) => (
+                                    <Li className="quick_menu_items" key={footer.text}>
+                                        {footer.path === "/profile" ? (
+                                            isLogIn ? (
+                                                <Paginate to={footer.path} exact="true" className="quick_menu_link" activeclassname="active">
+                                                    <Span className="menu_icon">{footer.icon}</Span>
+                                                    <Span className="quick_menu_text">{footer.text}</Span>
+                                                </Paginate>
+                                            ) : (
+                                                <Paginate to="/login" exact="true" className="quick_menu_link" activeclassname="active">
+                                                    <Span className="menu_icon">{footer.icon}</Span>
+                                                    <Span className="quick_menu_text">{footer.text}</Span>
+                                                </Paginate>
+                                            )
+                                        ) : (
+                                            <Paginate to={footer.path} exact="true" className="quick_menu_link" activeclassname="active">
+                                                <Span className="menu_icon">{footer.icon}</Span>
+                                                <Span className="quick_menu_text">{footer.text}</Span>
+                                            </Paginate>
+                                        )}
+                                    </Li>
+                                ))}
                             </Ul>
                         </Nav>
                     </Div>

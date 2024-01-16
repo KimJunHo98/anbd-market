@@ -1,4 +1,5 @@
 import React from "react";
+import { images } from "../constant";
 import { Container, Div, H2, Img, Section } from "../styledComponents";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Mousewheel, Keyboard, Autoplay } from "swiper/modules";
@@ -30,21 +31,11 @@ const Banner = () => {
                             modules={[Pagination, Mousewheel, Keyboard, Autoplay]}
                             className="swiper_wrap"
                         >
-                            <SwiperSlide className="slide_items">
-                                <Img src="/images/banner/img_ban1.svg" alt="배너 이미지1" className="banner_img" />
-                            </SwiperSlide>
-                            <SwiperSlide className="slide_items">
-                                <Img src="/images/banner/img_ban2.svg" alt="배너 이미지1" className="banner_img" />
-                            </SwiperSlide>
-                            <SwiperSlide className="slide_items">
-                                <Img src="/images/banner/img_ban3.svg" alt="배너 이미지1" className="banner_img" />
-                            </SwiperSlide>
-                            <SwiperSlide className="slide_items">
-                                <Img src="/images/banner/img_ban4.svg" alt="배너 이미지1" className="banner_img" />
-                            </SwiperSlide>
-                            <SwiperSlide className="slide_items">
-                                <Img src="/images/banner/img_ban5.svg" alt="배너 이미지1" className="banner_img" />
-                            </SwiperSlide>
+                            {images.slice(0, 5).map((image) => (
+                                <SwiperSlide className="slide_items" key={image.title}>
+                                    <Img src={image.src} alt={image.title} className="banner_img" />
+                                </SwiperSlide>
+                            ))}
                         </Swiper>
                     </Div>
                 </Div>

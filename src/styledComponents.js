@@ -22,15 +22,17 @@ export const HeaderTag = styled.header`
     top: 0;
     left: 0;
     z-index: 99;
-
-    .inner {
-        border-bottom: 1px solid #ddd;
-    }
 `;
 export const MainTag = styled.main`
     padding-top: 60px;
 `;
-export const Section = styled.section``;
+export const Section = styled.section`
+    &#search {
+        .inner {
+            border-bottom: 1px solid #ddd;
+        }
+    }
+`;
 export const FooterTag = styled.footer`
     width: 100%;
     position: fixed;
@@ -75,13 +77,20 @@ export const Nav = styled.nav`
     }
 
     &.footer_nav {
-        padding: 10px 0;
+        padding: 6px 0 10px;
     }
 `;
 
 // h1 ~ h6 태그
 export const H1 = styled.h1``;
-export const H2 = styled.h2``;
+export const H2 = styled.h2`
+    &.anbd {
+        font-size: 5rem;
+        font-weight: 800;
+        font-family: var(--Eng-font);
+        color: var(--primary-color);
+    }
+`;
 export const H3 = styled.h3`
     &.signup_title {
         margin-bottom: 30px;
@@ -97,6 +106,21 @@ export const H3 = styled.h3`
 
 // div 태그
 export const Div = styled.div`
+    &#splash {
+        width: 100%;
+        max-width: 480px;
+        height: 100vh;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        background-color: #111;
+    }
+
     &.header {
         width: 100%;
         height: 60px;
@@ -167,6 +191,11 @@ export const Div = styled.div`
         }
     }
 
+    &.search {
+        width: 100%;
+        padding: 10px 0 15px;
+    }
+
     &.banner {
         width: 100%;
         background-color: #fff;
@@ -214,6 +243,11 @@ export const Div = styled.div`
                 }
             }
         }
+    }
+
+    &.home {
+        width: 100%;
+        padding: 50px 0;
     }
 
     &.profile {
@@ -294,7 +328,7 @@ export const P = styled.p`
 `;
 export const Span = styled.span`
     &.bar {
-        width: 16px;
+        width: 20px;
         height: 2px;
         position: relative;
         top: 0;
@@ -338,15 +372,20 @@ export const Paginate = styled(StyledNavLink)`
         flex-direction: column;
         align-items: center;
         gap: 5px 0;
-        padding: 10px 15px;
+        padding: 5px 15px;
         font-size: 1.2rem;
 
         .menu_icon {
             font-size: 2.4rem;
         }
         &.active {
+            .quick_menu_text {
+                color: var(--primary-color);
+            }
             .menu_icon {
-                fill: var(--primary-color);
+                svg {
+                    fill: var(--primary-color);
+                }
             }
         }
     }
@@ -365,7 +404,7 @@ export const ALink = styled(Link)`
         text-align: center;
         font-size: 1.6rem;
         background-color: #111;
-        color: var(--primary-color);
+        color: var(--accent-color);
     }
 
     &.move_btn {
@@ -375,6 +414,7 @@ export const ALink = styled(Link)`
 
         &:hover {
             text-decoration: underline;
+            color: var(--primary-color);
         }
     }
 `;
@@ -405,8 +445,24 @@ export const Button = styled.button`
         display: block;
         font-size: 1.6rem;
         background-color: #111;
-        color: var(--primary-color);
+        color: var(--accent-color);
         cursor: pointer;
+    }
+
+    &.search_btn {
+        width: 40px;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 5px;
+        border-radius: 0 30px 30px 0;
+        background-color: transparent;
+        cursor: pointer;
+
+        .search_icon {
+            font-size: 2.4rem;
+            color: #999;
+        }
     }
 `;
 
@@ -418,6 +474,12 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     padding: 0 20px;
+
+    &.search_form {
+        width: 100%;
+        position: relative;
+        padding: 0;
+    }
 `;
 export const Input = styled.input`
     &.login_input,
@@ -425,7 +487,6 @@ export const Input = styled.input`
         width: 100%;
         padding: 10px 0px 10px 10px;
         margin-bottom: 15px;
-        outline: 0 none;
         border-radius: 10px;
         border: 1px solid #999;
     }
@@ -433,11 +494,22 @@ export const Input = styled.input`
     &.btn_input {
         width: 100%;
         padding: 10px 0px 10px 10px;
-        outline: 0 none;
         border-radius: 10px;
         border: 0 none;
         background-color: var(--primary-color);
         cursor: pointer;
+    }
+
+    &.search_input {
+        width: 100%;
+        padding: 10px 0px 10px 15px;
+        border-radius: 30px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+
+        &:placeholder {
+            color: #ccc;
+        }
     }
 `;
 export const Label = styled.label`

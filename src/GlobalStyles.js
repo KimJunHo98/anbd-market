@@ -10,9 +10,11 @@ const GlobalStyles = createGlobalStyle`
     :root {
         --main-font: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", helvetica, sans-serif;
         --main-color: #222;
-        --primary-color: #93f205;
-        --secondary-color: #;
-        --accent-color: #;
+        --Kor-font: "Noto Sans KR";
+        --Eng-font: "Apple SD Gothic Neo";
+        --primary-color: #74BF04;
+        --secondary-color: #558C03;
+        --accent-color: #93F205;
     }
 
     * {
@@ -34,6 +36,11 @@ const GlobalStyles = createGlobalStyle`
 
     body, input, textarea, select, option, button, table {
         font-family: var(--main-font);
+    }
+
+    input {
+        outline: 0 none;
+        border: 0 none;
     }
 
     // 링크 초기화

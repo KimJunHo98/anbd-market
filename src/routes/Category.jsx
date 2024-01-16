@@ -1,20 +1,16 @@
 import React from "react";
-import Banner from "../components/Banner";
 import Search from "../components/Search";
 import { Container, Div, H2, Inner, Section } from "../styledComponents";
 
-const Home = () => {
+const Category = () => {
     return (
         <>
             <Search />
-            <Banner />
-            <Section id="home">
-              <H2 className="blind"></H2>
+            <Section>
+                <H2 className="blind">카테고리</H2>
                 <Container>
                     <Inner>
-                        <Div className="home">
-                          home
-                        </Div>
+                        <Div>Category</Div>
                     </Inner>
                 </Container>
             </Section>
@@ -22,4 +18,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Category;
