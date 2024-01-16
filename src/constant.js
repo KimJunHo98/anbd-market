@@ -34,6 +34,14 @@ export const images = [
     },
 ];
 
+export const homeCategory = [
+    {path: "/product", text: "All"},
+    {path: "/product/best", text: "베스트"},
+    {path: "/product/free", text: "나눔"},
+    {path: "/product/barter", text: "교환"},
+    {path: "/product/reuse", text: "재사용"},
+]
+
 export const footerNav = [
     { icon: <GoHomeFill />, path: "/", text: "홈" },
     { icon: <FaBars />, path: "/category", text: "카테고리" },

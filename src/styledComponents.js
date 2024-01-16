@@ -247,7 +247,7 @@ export const Div = styled.div`
 
     &.home {
         width: 100%;
-        padding: 50px 0;
+        padding: 30px 0;
     }
 
     &.profile {
@@ -297,6 +297,14 @@ export const Ul = styled.ul`
         display: -ms-flexbox;
         display: flex;
         justify-content: flex-end;
+    }
+
+    &.category_list {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: space-evenly;
     }
 
     &.quick_menu_list {
@@ -416,6 +424,13 @@ export const ALink = styled(Link)`
             text-decoration: underline;
             color: var(--primary-color);
         }
+    }
+
+    &.category_link {
+        display: block;
+        padding: 10px;
+        font-size: 1.4rem;
+        font-weight: 500;
     }
 `;
 export const Button = styled.button`

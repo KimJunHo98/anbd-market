@@ -10,12 +10,14 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import Category from "../routes/Category";
 import Notice from "../routes/Notice";
 import Mypick from "../routes/Mypick";
+import Product from "../components/Product";
 
 const Main = ({ setShow, isLogIn, useObj }) => {
     return (
         <MainTag>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/product" element={<Product />} />
                 {isLogIn ? (
                     <>
                         <Route
