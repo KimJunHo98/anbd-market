@@ -9,7 +9,7 @@ const Home = () => {
             <Search />
             <Banner />
             <Section id="home">
-              <H2 className="blind"></H2>
+              <H2 className="blind">홈</H2>
                 <Container>
                     <Inner>
                         <Div className="home">
