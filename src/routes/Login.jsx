@@ -14,7 +14,7 @@ const Login = () => {
                         <H3 className="login_title">로그인</H3>
                         <Div className="login_form">
                             <Form onSubmit={onSubmit}>
-                                <Label htmlFor="email">이메일</Label>
+                                <Label htmlFor="email" className="blind">이메일</Label>
                                 <Input
                                     id="email"
                                     name="email"
@@ -25,7 +25,7 @@ const Login = () => {
                                     value={email}
                                     onChange={onChange}
                                 />
-                                <Label htmlFor="password">비밀번호</Label>
+                                <Label htmlFor="password" className="blind">비밀번호</Label>
                                 <Input
                                     id="password"
                                     name="password"

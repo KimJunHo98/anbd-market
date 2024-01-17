@@ -10,7 +10,8 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import Category from "../routes/Category";
 import Notice from "../routes/Notice";
 import Mypick from "../routes/Mypick";
-import Product from "../components/Product";
+import Product from "../components/product/Product";
+import Register from "../routes/Register";
 
 const Main = ({ setShow, isLogIn, useObj }) => {
     return (
@@ -38,6 +39,7 @@ const Main = ({ setShow, isLogIn, useObj }) => {
                 <Route path="/category" element={<Category />} />
                 <Route path="/mypick" element={<Mypick />} />
                 <Route path="/notice" element={<Notice />} />
+                <Route path="/register" element={<Register />} />
             </Routes>
         </MainTag>
     );

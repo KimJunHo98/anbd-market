@@ -1,6 +1,7 @@
 import React from "react";
 import { footerNav } from "../constant";
 import { Container, Div, FooterTag, H2, Inner, Li, Nav, Span, Ul, Paginate } from "../styledComponents";
+import Sell from "../components/Sell";
 
 const Footer = ({ isLogIn }) => {
     return (
@@ -9,6 +10,7 @@ const Footer = ({ isLogIn }) => {
             <Container>
                 <Inner className="inner">
                     <Div className="footer">
+                        <Sell isLogIn={isLogIn} />
                         <Nav className="footer_nav">
                             <Ul className="quick_menu_list">
                                 {footerNav.map((footer) => (

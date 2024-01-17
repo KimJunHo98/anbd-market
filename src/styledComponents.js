@@ -32,6 +32,12 @@ export const Section = styled.section`
             border-bottom: 1px solid #ddd;
         }
     }
+
+    &#register {
+        .inner {
+            border-top: 1px solid #ddd;
+        }
+    }
 `;
 export const FooterTag = styled.footer`
     width: 100%;
@@ -62,6 +68,12 @@ export const Aside = styled.aside`
             left: 0;
             bottom: 0;
         }
+    }
+
+    &#sell {
+        position: absolute;
+        bottom: 100px;
+        right: 5px;
     }
 `;
 export const Nav = styled.nav`
@@ -153,47 +165,14 @@ export const Div = styled.div`
         }
     }
 
-    &.side_menu_wrap {
+    &.home {
         width: 100%;
-        max-width: 480px;
-        height: 100%;
-        padding: 30px;
-        background-color: #fff;
-
-        .side_menu_header {
-            width: 100%;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-            justify-content: space-between;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #111;
-        }
-
-        .my_page {
-            width: 100%;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-            flex-direction: column;
-            margin-top: 30px;
-
-            .my_page_items {
-                display: -webkit-box;
-                display: -webkit-flex;
-                display: -ms-flexbox;
-                display: flex;
-                flex-direction: column;
-                gap: 5px 0;
-            }
-        }
+        padding: 30px 0;
     }
 
     &.search {
         width: 100%;
-        padding: 10px 0 15px;
+        padding: 10px 0 0;
     }
 
     &.banner {
@@ -245,11 +224,6 @@ export const Div = styled.div`
         }
     }
 
-    &.home {
-        width: 100%;
-        padding: 30px 0;
-    }
-
     &.profile {
         width: 100%;
         height: calc(100vh - 60px);
@@ -272,6 +246,69 @@ export const Div = styled.div`
 
             .thumb {
                 margin: 0;
+            }
+        }
+    }
+
+    &.footer {
+        position: relative;
+    }
+
+    &.register {
+        width: 100%;
+        height: calc(100vh - 60px);
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .register_input_box {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            flex-direction: column;
+            gap: 10px 0;
+            padding-top: 10px;
+        }
+    }
+
+    &.side_menu_wrap {
+        width: 100%;
+        max-width: 480px;
+        height: 100%;
+        padding: 30px;
+        background-color: #fff;
+
+        .side_menu_header {
+            width: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #111;
+        }
+
+        .my_page {
+            width: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            flex-direction: column;
+            margin-top: 30px;
+
+            .my_page_items {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                flex-direction: column;
+                gap: 5px 0;
             }
         }
     }
@@ -304,7 +341,8 @@ export const Ul = styled.ul`
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-around;
+        padding-top: 20px;
     }
 
     &.quick_menu_list {
@@ -367,6 +405,12 @@ export const Span = styled.span`
         font-size: 3rem;
         color: #999;
     }
+
+    &.register_input_desc {
+        display: block;
+        padding-top: 5px;
+        color: #999;
+    }
 `;
 
 // 링크, 버튼
@@ -395,6 +439,25 @@ export const Paginate = styled(StyledNavLink)`
                     fill: var(--primary-color);
                 }
             }
+        }
+    }
+
+    &.category_link {
+        display: block;
+        position: relative;
+        padding: 10px;
+        transition: all 0.2s ease-in;
+        font-size: 1.4rem;
+        font-weight: 500;
+
+        &.active:after {
+            content: "";
+            width: 100%;
+            height: 2px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: #111;
         }
     }
 `;
@@ -426,11 +489,17 @@ export const ALink = styled(Link)`
         }
     }
 
-    &.category_link {
+    &.sell_link {
         display: block;
         padding: 10px;
-        font-size: 1.4rem;
-        font-weight: 500;
+        border-radius: 20px;
+        font-size: 1.6rem;
+        background-color: var(--primary-color);
+        color: #fff;
+
+        .sell_icon {
+            vertical-align: top;
+        }
     }
 `;
 export const Button = styled.button`
@@ -476,7 +545,7 @@ export const Button = styled.button`
 
         .search_icon {
             font-size: 2.4rem;
-            color: #999;
+            color: var(--primary-color);
         }
     }
 `;
@@ -494,6 +563,12 @@ export const Form = styled.form`
         width: 100%;
         position: relative;
         padding: 0;
+    }
+
+    &.register_form {
+        width: 100%;
+        padding: 30px 0;
+        gap: 30px 0;
     }
 `;
 export const Input = styled.input`
@@ -519,21 +594,43 @@ export const Input = styled.input`
         width: 100%;
         padding: 10px 0px 10px 15px;
         border-radius: 30px;
-        border: 1px solid #ccc;
+        border: 2px solid var(--primary-color);
         background-color: #fff;
 
         &:placeholder {
             color: #ccc;
         }
     }
+
+    &.photo_input {
+        display: none;
+    }
+
+    &.register_input {
+        width: 100%;
+        padding: 10px 0px 10px 15px;
+        border-radius: 5px;
+        border: 1px solid #999;
+    }
 `;
 export const Label = styled.label`
-    overflow: hidden;
-    position: absolute;
-    width: 0;
-    height: 0;
-    line-height: 0;
-    text-indent: -9999px;
+    &.register_label {
+        font-size: 1.4rem;
+        font-weight: 500;
+        color: var(--secondary-color);
+    }
+    &.photo_label {
+        display: inline-block;
+        padding: 15px;
+        border-radius: 5px;
+        border: 1px solid #999;
+        cursor: pointer;
+
+        svg {
+            font-size: 1.8rem;
+            color: #999;
+        }
+    }
 `;
 
 // 이미지

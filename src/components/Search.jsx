@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Container, Div, H2, Inner, Input, Label, Section, Form, Button } from "../styledComponents";
+import { categoryList } from "../constant";
+import { Container, Div, H2, Inner, Input, Label, Section, Form, Button, Ul, Li, Paginate } from "../styledComponents";
 
 import { IoMdSearch } from "react-icons/io";
 
@@ -9,13 +10,13 @@ const Search = () => {
     const onChange = (e) => {
         setSearch(e.target.value);
         console.log(search);
-    }
+    };
 
     const onSubmit = (e) => {
         e.preventDefault();
 
         setSearch("");
-    }
+    };
 
     return (
         <Section id="search">
@@ -35,9 +36,18 @@ const Search = () => {
                                 onChange={onChange}
                             ></Input>
                             <Button className="search_btn" type="submit">
-                                <IoMdSearch className="search_icon"/>
+                                <IoMdSearch className="search_icon" />
                             </Button>
                         </Form>
+                        <Ul className="category_list">
+                            {categoryList.map((category) => (
+                                <Li className="category_items" key={category.text}>
+                                    <Paginate to={category.path} className="category_link">
+                                        {category.text}
+                                    </Paginate>
+                                </Li>
+                            ))}
+                        </Ul>
                     </Div>
                 </Inner>
             </Container>

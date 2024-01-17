@@ -14,7 +14,7 @@ const Signup = () => {
                         <H3 className="signup_title">회원가입</H3>
                         <Div className="signup_form">
                             <Form onSubmit={onSubmit}>
-                                <Label htmlFor="name">닉네임</Label>
+                                <Label htmlFor="name" className="blind">닉네임</Label>
                                 <Input
                                     id="name"
                                     name="name"
@@ -25,7 +25,7 @@ const Signup = () => {
                                     value={name}
                                     onChange={onChange}
                                 />
-                                <Label htmlFor="email">이메일</Label>
+                                <Label htmlFor="email" className="blind">이메일</Label>
                                 <Input
                                     id="email"
                                     name="email"
@@ -36,7 +36,7 @@ const Signup = () => {
                                     value={email}
                                     onChange={onChange}
                                 />
-                                <Label htmlFor="password">비밀번호</Label>
+                                <Label htmlFor="password" className="blind">비밀번호</Label>
                                 <Input
                                     id="password"
                                     name="password"

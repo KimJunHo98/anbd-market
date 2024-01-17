@@ -10,7 +10,8 @@ const SideMenu = ({ show, setShow, isLogIn, useObj }) => {
     const navigate = useNavigate();
 
     const handleLogOutClick = () => {
-        auth.signOut().then(() => navigate("/login"));
+        auth.signOut(); 
+        navigate("/login");
 
         setShow((prevShow) => !prevShow);
     };
