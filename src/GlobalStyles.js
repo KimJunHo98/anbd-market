@@ -38,7 +38,7 @@ const GlobalStyles = createGlobalStyle`
         font-family: var(--main-font);
     }
 
-    input {
+    input, textarea, button {
         outline: 0 none;
         border: 0 none;
     }

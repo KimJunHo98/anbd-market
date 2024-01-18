@@ -11,9 +11,9 @@ import Category from "../routes/Category";
 import Notice from "../routes/Notice";
 import Mypick from "../routes/Mypick";
 import Product from "../components/product/Product";
-import Register from "../routes/Register";
+import UploadForm from "../routes/UploadForm";
 
-const Main = ({ setShow, isLogIn, useObj }) => {
+const Main = ({ setShow, isLogIn, useObj, sell, setSell }) => {
     return (
         <MainTag>
             <Routes>
@@ -39,7 +39,7 @@ const Main = ({ setShow, isLogIn, useObj }) => {
                 <Route path="/category" element={<Category />} />
                 <Route path="/mypick" element={<Mypick />} />
                 <Route path="/notice" element={<Notice />} />
-                <Route path="/register" element={<Register />} />
+                <Route path="/upload" element={<UploadForm sell={sell} setSell={setSell} />} />
             </Routes>
         </MainTag>
     );

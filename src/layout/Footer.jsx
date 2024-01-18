@@ -3,21 +3,26 @@ import { footerNav } from "../constant";
 import { Container, Div, FooterTag, H2, Inner, Li, Nav, Span, Ul, Paginate } from "../styledComponents";
 import Sell from "../components/Sell";
 
-const Footer = ({ isLogIn }) => {
+const Footer = ({ isLogIn, handleSellClick, sell }) => {
     return (
         <FooterTag id="footer">
             <H2 className="blind">푸터</H2>
             <Container>
                 <Inner className="inner">
                     <Div className="footer">
-                        <Sell isLogIn={isLogIn} />
+                        {!sell && <Sell isLogIn={isLogIn} handleSellClick={handleSellClick} />}
                         <Nav className="footer_nav">
                             <Ul className="quick_menu_list">
                                 {footerNav.map((footer) => (
                                     <Li className="quick_menu_items" key={footer.text}>
                                         {footer.path === "/profile" ? (
                                             isLogIn ? (
-                                                <Paginate to={footer.path} exact="true" className="quick_menu_link" activeclassname="active">
+                                                <Paginate
+                                                    to={footer.path}
+                                                    exact="true"
+                                                    className="quick_menu_link"
+                                                    activeclassname="active"
+                                                >
                                                     <Span className="menu_icon">{footer.icon}</Span>
                                                     <Span className="quick_menu_text">{footer.text}</Span>
                                                 </Paginate>

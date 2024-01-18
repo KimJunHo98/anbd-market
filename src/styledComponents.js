@@ -256,15 +256,17 @@ export const Div = styled.div`
 
     &.register {
         width: 100%;
-        height: calc(100vh - 60px);
+        height: 100%;
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-bottom: 100px;
 
-        .register_input_box {
+        .register_input_box,
+        .register_textarea {
             display: -webkit-box;
             display: -webkit-flex;
             display: -ms-flexbox;
@@ -272,6 +274,14 @@ export const Div = styled.div`
             flex-direction: column;
             gap: 10px 0;
             padding-top: 10px;
+        }
+        .register_category.register_input_box {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
         }
     }
 
@@ -406,12 +416,23 @@ export const Span = styled.span`
         color: #999;
     }
 
-    &.register_input_desc {
+    &.maximun {
         display: block;
         padding-top: 5px;
         color: #999;
+
+        em {
+            color: var(--primary-color);
+        }
+    }
+
+    &.required {
+        padding-right: 5px;
+        vertical-align: middle;
+        color: #cf4344;
     }
 `;
+export const Em = styled.em``;
 
 // 링크, 버튼
 export const StyledNavLink = styled(NavLink)``;
@@ -612,6 +633,14 @@ export const Input = styled.input`
         border-radius: 5px;
         border: 1px solid #999;
     }
+
+    &.category_input {
+        width: 80px;
+        padding: 10px 0;
+        border-radius: 15px;
+        text-align: center;
+        background-color: #eee;
+    }
 `;
 export const Label = styled.label`
     &.register_label {
@@ -630,6 +659,14 @@ export const Label = styled.label`
             font-size: 1.8rem;
             color: #999;
         }
+    }
+`;
+export const TextArea = styled.textarea`
+    &.product_desc {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #999;
+        resize: none;
     }
 `;
 
