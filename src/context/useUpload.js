@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../firebase";
 
@@ -22,46 +22,51 @@ const useUpload = () => {
         }
     };
 
-    const onChange = (e) => {
-        const { name, value } = e.target;
+    const onChange = useMemo(
+        () => (e) => {
+            const { name, value } = e.target;
 
-        if (name === "title") {
-            setTitle(value);
-        } else if (name === "price") {
-            setPrice(value.replace(/\D/g, "")); // 숫자만 입력
-        } else if (name === "brand") {
-            setBrand(value);
-        } else if (name === "size") {
-            setSize(value);
-        } else if (name === "desc") {
-            setDesc(value);
-        }
-    };
+            if (name === "title") {
+                setTitle(value);
+            } else if (name === "price") {
+                setPrice(value.replace(/\D/g, "")); // 숫자만 입력
+            } else if (name === "brand") {
+                setBrand(value);
+            } else if (name === "size") {
+                setSize(value);
+            } else if (name === "desc") {
+                setDesc(value);
+            }
+        },
+        []
+    );
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
+        if (!title || !price || !brand || !size || !desc || loading) return;
+
         const user = auth.currentUser; // 현재 유저 확인
 
-        if (!user || loading || title === "" || price === "" || brand === "" || size === "" || desc === "") return;
+        if (!user) return;
 
         try {
-            setLoading(true);
+            setLoading((prevLoading) => !prevLoading);
 
             await addDoc(collection(db, "product"), {
-                title: title, // 제목
-                price: price, // 가격
-                brand: brand, // 브랜드
-                size: size, // 사이즈
-                desc: desc, // 설명
+                title, // 제목
+                price, // 가격
+                brand, // 브랜드
+                size, // 사이즈
+                desc, // 설명
                 createdAt: Date.now(), // 작성 시간
                 username: user.displayName, // 유저이름
                 useId: user.uid, // 유저 아이디(삭제 권한)
             });
         } catch (err) {
-            console.message(err);
+            console.error(err);
         } finally {
-            setLoading(false);
+            setLoading((prevLoading) => !prevLoading);
         }
     };
 

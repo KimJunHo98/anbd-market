@@ -1,7 +1,10 @@
 import React from "react";
+import { useStateContext } from "../context/useStateContext";
 import { Container, Div, H2, Inner, P, Section } from "../styledComponents";
 
-const Profile = ({useObj}) => {
+const Profile = () => {
+    const { useObj } = useStateContext();
+
     return (
         <Section id="profile">
             <H2 className="blind">프로필</H2>

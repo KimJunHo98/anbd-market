@@ -1,16 +1,18 @@
 import React from "react";
+import { useStateContext } from "../context/useStateContext";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 import { Aside, Nav, Ul, Li, ALink, Button, Div, Span, P, H2 } from "../styledComponents";
 
 import { IoClose } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
 
-const SideMenu = ({ show, setShow, isLogIn, useObj }) => {
+const SideMenu = () => {
+    const { show, setShow, isLogIn, useObj } = useStateContext();
     const navigate = useNavigate();
 
     const handleLogOutClick = () => {
-        auth.signOut(); 
+        auth.signOut();
         navigate("/login");
 
         setShow((prevShow) => !prevShow);

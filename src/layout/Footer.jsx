@@ -1,16 +1,20 @@
 import React from "react";
+import { useStateContext } from "../context/useStateContext";
 import { footerNav } from "../constant";
 import { Container, Div, FooterTag, H2, Inner, Li, Nav, Span, Ul, Paginate } from "../styledComponents";
+
 import Sell from "../components/Sell";
 
-const Footer = ({ isLogIn, handleSellClick, sell }) => {
+const Footer = () => {
+    const { isLogIn } = useStateContext();
+
     return (
         <FooterTag id="footer">
             <H2 className="blind">푸터</H2>
             <Container>
                 <Inner className="inner">
                     <Div className="footer">
-                        {!sell && <Sell isLogIn={isLogIn} handleSellClick={handleSellClick} />}
+                        <Sell isLogIn={isLogIn} />
                         <Nav className="footer_nav">
                             <Ul className="quick_menu_list">
                                 {footerNav.map((footer) => (

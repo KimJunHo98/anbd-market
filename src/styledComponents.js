@@ -72,8 +72,9 @@ export const Aside = styled.aside`
 
     &#sell {
         position: absolute;
-        bottom: 100px;
-        right: 5px;
+        bottom: 90px;
+        right: 0px;
+        z-index: 9;
     }
 `;
 export const Nav = styled.nav`

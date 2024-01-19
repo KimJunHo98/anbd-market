@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
+import { useStateContext } from "../context/useStateContext";
 import { Div, P } from "../styledComponents";
 
 import Header from "../layout/Header";
@@ -8,18 +9,8 @@ import Main from "../layout/Main";
 import SideMenu from "./SideMenu";
 import Splash from "./Splash";
 
-const AppRouter = ({ isLoading, useObj, isLogIn }) => {
-    const [show, setShow] = useState(false);
-    const [sell, setSell] = useState(false);
-
-    const handleMenuClick = () => {
-        setShow((prevShow) => !prevShow);
-    };
-
-
-    const handleSellClick = () => {
-        setSell(prevSell => !prevSell);
-    }
+const AppRouter = () => {
+    const { isLoading } = useStateContext();
 
     return (
         <>
@@ -27,16 +18,16 @@ const AppRouter = ({ isLoading, useObj, isLogIn }) => {
                 <Splash />
             ) : (
                 <BrowserRouter>
-                    <Header handleMenuClick={handleMenuClick} />
-                    <SideMenu show={show} setShow={setShow} isLogIn={isLogIn} useObj={useObj} />
+                    <Header />
+                    <SideMenu />
                     {!isLoading ? (
-                        <Main setShow={setShow} isLogIn={isLogIn} useObj={useObj} sell={sell} setSell={setSell} />
+                        <Main />
                     ) : (
                         <Div className="loading">
                             <P>loading...</P>
                         </Div>
                     )}
-                    <Footer isLogIn={isLogIn} sell={sell} handleSellClick={handleSellClick} />
+                    <Footer />
                 </BrowserRouter>
             )}
         </>

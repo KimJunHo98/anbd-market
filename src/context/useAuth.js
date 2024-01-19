@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase";
@@ -12,54 +12,63 @@ const useAuth = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const onSignUp = async () => {
-        if (loading || name === "" || email === "" || password === "") return; // 이름, 이메일, 비민번호가 비어있으면 함수 종료
+    const onSignUp = useMemo(
+        () => async () => {
+            if (loading || !name || !email || !password) return; // 이름, 이메일, 비민번호가 비어있으면 함수 종료
 
-        try {
-            setLoading(true);
+            try {
+                setLoading((prevLoading) => !prevLoading);
 
-            const credentials = await createUserWithEmailAndPassword(auth, email, password);
-            await updateProfile(credentials.user, { displayName: name });
+                const credentials = await createUserWithEmailAndPassword(auth, email, password);
+                await updateProfile(credentials.user, { displayName: name });
 
-            navigate("/");
-        } catch (e) {
-            if (e instanceof FirebaseError) {
-                setError(e.message);
+                navigate("/");
+            } catch (e) {
+                if (e instanceof FirebaseError) {
+                    setError(e.message);
+                }
+            } finally {
+                setLoading((prevLoading) => !prevLoading);
             }
-        } finally {
-            setLoading(false);
-        }
-    };
+        },
+        [loading, name, email, password, navigate]
+    );
 
-    const onLogin = async () => {
-        if (loading || email === "" || password === "") return; // 이메일, 비민번호가 비어있으면 함수 종료
+    const onLogin = useMemo(
+        () => async () => {
+            if (loading || !email || !password) return; // 이메일, 비민번호가 비어있으면 함수 종료
 
-        try {
-            setLoading(true);
+            try {
+                setLoading((prevLoading) => !prevLoading);
 
-            await signInWithEmailAndPassword(auth, email, password);
+                await signInWithEmailAndPassword(auth, email, password);
 
-            navigate("/");
-        } catch (e) {
-            if (e instanceof FirebaseError) {
-                setError(e.message);
+                navigate("/");
+            } catch (e) {
+                if (e instanceof FirebaseError) {
+                    setError(e.message);
+                }
+            } finally {
+                setLoading((prevLoading) => !prevLoading);
             }
-        } finally {
-            setLoading(false);
-        }
-    };
+        },
+        [loading, email, password, navigate]
+    );
 
-    const onChange = (e) => {
-        const { name, value } = e.target;
+    const onChange = useMemo(
+        () => (e) => {
+            const { name, value } = e.target;
 
-        if (name === "name") {
-            setName(value);
-        } else if (name === "email") {
-            setEmail(value);
-        } else if (name === "password") {
-            setPassword(value);
-        }
-    };
+            if (name === "name") {
+                setName(value);
+            } else if (name === "email") {
+                setEmail(value);
+            } else if (name === "password") {
+                setPassword(value);
+            }
+        },
+        []
+    );
 
     const onSubmit = (e) => {
         e.preventDefault();

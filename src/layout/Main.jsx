@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import { useStateContext } from "../context/useStateContext";
 import { MainTag } from "../styledComponents";
 
 import Home from "../routes/Home";
@@ -13,7 +14,9 @@ import Mypick from "../routes/Mypick";
 import Product from "../components/product/Product";
 import UploadForm from "../routes/UploadForm";
 
-const Main = ({ setShow, isLogIn, useObj, sell, setSell }) => {
+const Main = () => {
+    const { isLogIn } = useStateContext();
+
     return (
         <MainTag>
             <Routes>
@@ -25,7 +28,7 @@ const Main = ({ setShow, isLogIn, useObj, sell, setSell }) => {
                             path="/profile"
                             element={
                                 <ProtectedRoute>
-                                    <Profile setShow={setShow} useObj={useObj} />
+                                    <Profile />
                                 </ProtectedRoute>
                             }
                         />
@@ -39,7 +42,7 @@ const Main = ({ setShow, isLogIn, useObj, sell, setSell }) => {
                 <Route path="/category" element={<Category />} />
                 <Route path="/mypick" element={<Mypick />} />
                 <Route path="/notice" element={<Notice />} />
-                <Route path="/upload" element={<UploadForm sell={sell} setSell={setSell} />} />
+                <Route path="/upload" element={<UploadForm />} />
             </Routes>
         </MainTag>
     );

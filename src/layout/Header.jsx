@@ -1,7 +1,10 @@
 import React from "react";
+import { useStateContext } from "../context/useStateContext";
 import { H2, ALink, H1, HeaderTag, Container, Inner, Div, Img, Button, Span } from "../styledComponents";
 
-const Header = ({ handleMenuClick }) => {
+const Header = () => {
+    const { handleMenuClick } = useStateContext();
+
     return (
         <HeaderTag id="header">
             <H2 className="blind">헤더</H2>

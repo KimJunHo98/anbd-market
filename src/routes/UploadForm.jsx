@@ -5,13 +5,11 @@ import { Container, Div, H2, Inner, Section, Form, Label, Input, Span, TextArea,
 
 import { FaCamera } from "react-icons/fa";
 
-const UploadForm = ({ setSell }) => {
+const UploadForm = () => {
     const { file, title, price, brand, size, desc, onFileChange, onChange, onSubmit } = useUpload();
     const navigate = useNavigate();
 
     const handleUploadClick = () => {
-        setSell((prevSell) => !prevSell);
-
         navigate("/");
     };
 
@@ -26,7 +24,9 @@ const UploadForm = ({ setSell }) => {
                                 <Label htmlFor="photo_input" className="photo_label">
                                     <FaCamera />
                                 </Label>
-                                <Span className="maximun">(최대 <Em>{file.length}</Em> /10장)</Span>
+                                <Span className="maximun">
+                                    (최대 <Em>{file.length}</Em> /10장)
+                                </Span>
                                 <Input
                                     id="photo_input"
                                     name="photo_input"
