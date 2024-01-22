@@ -276,13 +276,22 @@ export const Div = styled.div`
             gap: 10px 0;
             padding-top: 10px;
         }
-        .register_category.register_input_box {
+        .register_category {
             display: -webkit-box;
             display: -webkit-flex;
             display: -ms-flexbox;
             display: flex;
-            flex-direction: row;
-            justify-content: space-around;
+            flex-direction: column;
+            gap: 10px 0;
+
+            .category_btns {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+            }
         }
     }
 
@@ -348,11 +357,11 @@ export const Ul = styled.ul`
     }
 
     &.category_list {
+        width: 100%;
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        justify-content: space-around;
         padding-top: 20px;
     }
 
@@ -371,6 +380,10 @@ export const Li = styled.li`
         &:last-child {
             margin: 0;
         }
+    }
+
+    &.category_items {
+        width: 20%;
     }
 `;
 export const P = styled.p`
@@ -431,12 +444,32 @@ export const Span = styled.span`
         padding-right: 5px;
         vertical-align: middle;
         color: #cf4344;
+
+        em {
+            padding-left: 5px;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
     }
 `;
 export const Em = styled.em``;
 
 // 링크, 버튼
-export const StyledNavLink = styled(NavLink)``;
+export const StyledNavLink = styled(NavLink)`
+    &.category_link {
+        display: block;
+        padding: 10px;
+        transition: all 0.2s ease-in;
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: 500;
+
+        &.active {
+            background-color: #eee;
+        }
+    }
+`;
 export const Paginate = styled(StyledNavLink)`
     &.quick_menu_link {
         display: -webkit-box;
@@ -461,25 +494,6 @@ export const Paginate = styled(StyledNavLink)`
                     fill: var(--primary-color);
                 }
             }
-        }
-    }
-
-    &.category_link {
-        display: block;
-        position: relative;
-        padding: 10px;
-        transition: all 0.2s ease-in;
-        font-size: 1.4rem;
-        font-weight: 500;
-
-        &.active:after {
-            content: "";
-            width: 100%;
-            height: 2px;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            background-color: #111;
         }
     }
 `;
@@ -570,6 +584,23 @@ export const Button = styled.button`
             color: var(--primary-color);
         }
     }
+
+    &.category_btn {
+        width: 60px;
+        padding: 8px 0;
+        border-radius: 15px;
+        text-align: center;
+        border: 1px solid #111;
+        transition: all 0.2s ease-in;
+        background-color: #fff;
+        color: #111;
+        cursor: pointer;
+
+        &.active {
+            background-color: #111;
+            color: #fff;
+        }
+    }
 `;
 
 // 폼, 인풋
@@ -634,14 +665,6 @@ export const Input = styled.input`
         border-radius: 5px;
         border: 1px solid #999;
     }
-
-    &.category_input {
-        width: 80px;
-        padding: 10px 0;
-        border-radius: 15px;
-        text-align: center;
-        background-color: #eee;
-    }
 `;
 export const Label = styled.label`
     &.register_label {
@@ -670,6 +693,14 @@ export const TextArea = styled.textarea`
         resize: none;
     }
 `;
+
+export const Select = styled.select`
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #999;
+    color: #777;
+`;
+export const Option = styled.option``;
 
 // 이미지
 export const Img = styled.img``;

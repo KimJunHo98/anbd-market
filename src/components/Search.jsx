@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { categoryList } from "../constant";
-import { Container, Div, H2, Inner, Input, Label, Section, Form, Button, Ul, Li, Paginate } from "../styledComponents";
+import { Container, Div, H2, Inner, Input, Label, Section, Form, Button, Ul, Li, StyledNavLink } from "../styledComponents";
 
 import { IoMdSearch } from "react-icons/io";
 
@@ -9,7 +9,6 @@ const Search = () => {
 
     const onChange = (e) => {
         setSearch(e.target.value);
-        console.log(search);
     };
 
     const onSubmit = (e) => {
@@ -40,11 +39,16 @@ const Search = () => {
                             </Button>
                         </Form>
                         <Ul className="category_list">
-                            {categoryList.map((category) => (
+                            <Li className="category_items">
+                                <StyledNavLink to="/product" className="category_link" activeclassname="active">
+                                    전체
+                                </StyledNavLink>
+                            </Li>
+                            {categoryList.slice(1, 5).map((category) => (
                                 <Li className="category_items" key={category.text}>
-                                    <Paginate to={category.path} className="category_link">
+                                    <StyledNavLink to={category.path} className="category_link" activeclassname="active">
                                         {category.text}
-                                    </Paginate>
+                                    </StyledNavLink>
                                 </Li>
                             ))}
                         </Ul>

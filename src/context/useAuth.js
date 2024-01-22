@@ -17,7 +17,7 @@ const useAuth = () => {
             if (loading || !name || !email || !password) return; // 이름, 이메일, 비민번호가 비어있으면 함수 종료
 
             try {
-                setLoading((prevLoading) => !prevLoading);
+                setLoading(true);
 
                 const credentials = await createUserWithEmailAndPassword(auth, email, password);
                 await updateProfile(credentials.user, { displayName: name });
@@ -28,7 +28,7 @@ const useAuth = () => {
                     setError(e.message);
                 }
             } finally {
-                setLoading((prevLoading) => !prevLoading);
+                setLoading(false);
             }
         },
         [loading, name, email, password, navigate]
@@ -39,7 +39,7 @@ const useAuth = () => {
             if (loading || !email || !password) return; // 이메일, 비민번호가 비어있으면 함수 종료
 
             try {
-                setLoading((prevLoading) => !prevLoading);
+                setLoading(true);
 
                 await signInWithEmailAndPassword(auth, email, password);
 
@@ -49,7 +49,7 @@ const useAuth = () => {
                     setError(e.message);
                 }
             } finally {
-                setLoading((prevLoading) => !prevLoading);
+                setLoading(false);
             }
         },
         [loading, email, password, navigate]

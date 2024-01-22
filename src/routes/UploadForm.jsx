@@ -1,17 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import useUpload from "../context/useUpload";
-import { Container, Div, H2, Inner, Section, Form, Label, Input, Span, TextArea, Em } from "../styledComponents";
+import useUpload  from "../context/useUpload";
+import { categoryList } from "../constant";
 
+import { Container, Div, H2, Inner, Section, Form, Label, Input, Span, TextArea, Em, Select, Option } from "../styledComponents";
 import { FaCamera } from "react-icons/fa";
 
 const UploadForm = () => {
-    const { file, title, price, brand, size, desc, onFileChange, onChange, onSubmit } = useUpload();
-    const navigate = useNavigate();
-
-    const handleUploadClick = () => {
-        navigate("/");
-    };
+    const { file, title, price, brand, size, desc, category, onFileChange, onChange, onSubmit } = useUpload();   
 
     return (
         <Section id="register">
@@ -68,39 +63,25 @@ const UploadForm = () => {
                                     onChange={onChange}
                                 />
                             </Div>
-                            <Div className="register_category register_input_box">
-                                <Input
-                                    name="category_input"
-                                    className="category_input"
-                                    type="submit"
+                            <Div className="register_category">
+                                <Label htmlFor="category_input" className="category_label register_label">
+                                    <Span className="required">*</Span>카테고리
+                                </Label>
+                                <Select
+                                    id="category_input"
+                                    name="category"
+                                    className="category_input register_input"
                                     required
-                                    value="베스트"
-                                    // onChange={handleInputChange}
-                                />
-                                <Input
-                                    name="category_input"
-                                    className="category_input"
-                                    type="submit"
-                                    required
-                                    value="나눔"
-                                    // onChange={handleInputChange}
-                                />
-                                <Input
-                                    name="category_input"
-                                    className="category_input"
-                                    type="submit"
-                                    required
-                                    value="교환"
-                                    // onChange={handleInputChange}
-                                />
-                                <Input
-                                    name="category_input"
-                                    className="category_input"
-                                    type="submit"
-                                    required
-                                    value="재사용"
-                                    // onChange={handleInputChange}
-                                />
+                                    value={category}
+                                    onChange={(e) => onChange({ target: e.target })}
+                                >
+                                    <Option value="">선택하세요</Option>
+                                    {categoryList.slice(1, 5).map((category) => (
+                                        <Option key={category.text} value={category.path}>
+                                            {category.text}
+                                        </Option>
+                                    ))}
+                                </Select>
                             </Div>
                             <Div className="register_brand register_input_box">
                                 <Label htmlFor="brand_input" className="brand_label register_label">
@@ -150,7 +131,7 @@ const UploadForm = () => {
                                     placeholder="상품설명을 작성해주세요. 판매할 물건에 대한 설명을 자세히 작성하면 신뢰도가 오를 수 있습니다."
                                 />
                             </Div>
-                            <Input type="submit" value="등록" className="btn_input" onClick={handleUploadClick} />
+                            <Input type="submit" value="등록" className="btn_input" />
                         </Form>
                     </Div>
                 </Inner>

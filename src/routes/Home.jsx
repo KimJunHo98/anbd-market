@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Div, H2, Inner, Section } from "../styledComponents";
 import Banner from "../components/Banner";
-import Search from "../components/Search";
+import Search from "../components/Search";;
 
 const Home = () => {
     return (
@@ -13,7 +13,6 @@ const Home = () => {
                 <Container>
                     <Inner className="inner">
                         <Div className="home">
-                            home
                         </Div>
                     </Inner>
                 </Container>

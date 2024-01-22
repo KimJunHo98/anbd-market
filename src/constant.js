@@ -4,11 +4,11 @@ import { FaBell, FaBars } from "react-icons/fa6";
 import { IoMdHeart } from "react-icons/io";
 
 export const categoryList = [
-    { path: "/product", text: "All" },
-    { path: "/product/best", text: "베스트" },
-    { path: "/product/free", text: "나눔" },
-    { path: "/product/barter", text: "교환" },
-    { path: "/product/reuse", text: "재사용" },
+    { path: "/product", text: "전체" },
+    { path: "/product/best", text: "베스트", value: "best" },
+    { path: "/product/free", text: "나눔", value: "free" },
+    { path: "/product/barter", text: "교환", value: "barter" },
+    { path: "/product/reuse", text: "재사용", value: "reuse" },
 ];
 
 export const bannerImages = [

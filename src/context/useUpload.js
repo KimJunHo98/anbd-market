@@ -1,8 +1,11 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { addDoc, collection } from "firebase/firestore";
-import { auth, db } from "../firebase";
+import { firestore } from "../firebase";
+import { useStateContext } from "./useStateContext";
+import { useNavigate } from "react-router-dom";
 
 const useUpload = () => {
+    const { useObj } = useStateContext();
     const [loading, setLoading] = useState(false);
     const [file, setFile] = useState("");
     const [title, setTitle] = useState("");
@@ -10,6 +13,8 @@ const useUpload = () => {
     const [brand, setBrand] = useState("");
     const [size, setSize] = useState("");
     const [desc, setDesc] = useState("");
+    const [category, setCategory] = useState("");
+    const navigate = useNavigate();
 
     const onFileChange = (e) => {
         const { files } = e.target;
@@ -22,52 +27,50 @@ const useUpload = () => {
         }
     };
 
-    const onChange = useMemo(
-        () => (e) => {
-            const { name, value } = e.target;
+    const onChange = (e) => {
+        const { name, value } = e.target;
 
-            if (name === "title") {
-                setTitle(value);
-            } else if (name === "price") {
-                setPrice(value.replace(/\D/g, "")); // 숫자만 입력
-            } else if (name === "brand") {
-                setBrand(value);
-            } else if (name === "size") {
-                setSize(value);
-            } else if (name === "desc") {
-                setDesc(value);
-            }
-        },
-        []
-    );
+        if (name === "title") {
+            setTitle(value);
+        } else if (name === "price") {
+            setPrice(value.replace(/\D/g, "")); // 숫자만 입력
+        } else if (name === "brand") {
+            setBrand(value);
+        } else if (name === "category") {
+            setCategory(value);
+        } else if (name === "size") {
+            setSize(value);
+        } else if (name === "desc") {
+            setDesc(value);
+        }
+    };
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        if (!title || !price || !brand || !size || !desc || loading) return;
-
-        const user = auth.currentUser; // 현재 유저 확인
-
-        if (!user) return;
+        if (!useObj || !title || !price || !category || !brand || !size || !desc || loading) return;
 
         try {
-            setLoading((prevLoading) => !prevLoading);
+            setLoading(true);
 
-            await addDoc(collection(db, "product"), {
-                title, // 제목
-                price, // 가격
-                brand, // 브랜드
-                size, // 사이즈
-                desc, // 설명
+            await addDoc(collection(firestore, "product"), {
+                text: title,
+                price: price,
+                brand: brand,
+                size: size,
+                desc: desc,
+                category: category,
                 createdAt: Date.now(), // 작성 시간
-                username: user.displayName, // 유저이름
-                useId: user.uid, // 유저 아이디(삭제 권한)
+                username: useObj.displayName, // 유저이름
+                useId: useObj.uid,
             });
         } catch (err) {
             console.error(err);
         } finally {
-            setLoading((prevLoading) => !prevLoading);
+            setLoading(false);
         }
+
+        navigate("/");
     };
 
     return { file, title, price, brand, size, desc, onFileChange, onChange, onSubmit };

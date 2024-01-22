@@ -12,6 +12,10 @@ import Category from "../routes/Category";
 import Notice from "../routes/Notice";
 import Mypick from "../routes/Mypick";
 import Product from "../components/product/Product";
+import Best from "../components/product/Best";
+import Free from "../components/product/Free";
+import Barter from "../components/product/Barter";
+import Reuse from "../components/product/Reuse";
 import UploadForm from "../routes/UploadForm";
 
 const Main = () => {
@@ -22,6 +26,10 @@ const Main = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/product" element={<Product />} />
+                <Route path="/product/best" element={<Best />} />
+                <Route path="/product/free" element={<Free />} />
+                <Route path="/product/barter" element={<Barter />} />
+                <Route path="/product/reuse" element={<Reuse />} />
                 {isLogIn ? (
                     <>
                         <Route
