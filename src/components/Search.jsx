@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { categoryList } from "../constant";
-import { Container, Div, H2, Inner, Input, Label, Section, Form, Button, Ul, Li, StyledNavLink } from "../styledComponents";
+import { Div, Input, Label, Form, Button } from "../styledComponents";
 
 import { IoMdSearch } from "react-icons/io";
 
@@ -18,44 +17,23 @@ const Search = () => {
     };
 
     return (
-        <Section id="search">
-            <H2 className="blind">검색</H2>
-            <Container>
-                <Inner className="inner">
-                    <Div className="search">
-                        <Form className="search_form" onSubmit={onSubmit}>
-                            <Label htmlFor="search_input"></Label>
-                            <Input
-                                id="search_input"
-                                name="search_input"
-                                className="search_input"
-                                type="text"
-                                placeholder="검색어를 입력하세요."
-                                value={search}
-                                onChange={onChange}
-                            ></Input>
-                            <Button className="search_btn" type="submit">
-                                <IoMdSearch className="search_icon" />
-                            </Button>
-                        </Form>
-                        <Ul className="category_list">
-                            <Li className="category_items">
-                                <StyledNavLink to="/product" className="category_link" activeclassname="active">
-                                    전체
-                                </StyledNavLink>
-                            </Li>
-                            {categoryList.slice(1, 5).map((category) => (
-                                <Li className="category_items" key={category.text}>
-                                    <StyledNavLink to={category.path} className="category_link" activeclassname="active">
-                                        {category.text}
-                                    </StyledNavLink>
-                                </Li>
-                            ))}
-                        </Ul>
-                    </Div>
-                </Inner>
-            </Container>
-        </Section>
+        <Div className="search">
+            <Form className="search_form" onSubmit={onSubmit}>
+                <Label htmlFor="search_input"></Label>
+                <Input
+                    id="search_input"
+                    name="search_input"
+                    className="search_input"
+                    type="text"
+                    placeholder="검색어를 입력하세요."
+                    value={search}
+                    onChange={onChange}
+                ></Input>
+                <Button className="search_btn" type="submit">
+                    <IoMdSearch className="search_icon" />
+                </Button>
+            </Form>
+        </Div>
     );
 };
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { firestore } from "../firebase";
 import { useStateContext } from "./useStateContext";
 import { useNavigate } from "react-router-dom";
@@ -53,17 +53,20 @@ const useUpload = () => {
         try {
             setLoading(true);
 
-            await addDoc(collection(firestore, "product"), {
+            const docRef = await addDoc(collection(firestore, "product"), {
                 text: title,
                 price: price,
                 brand: brand,
                 size: size,
                 desc: desc,
                 category: category,
-                createdAt: Date.now(), // 작성 시간
-                username: useObj.displayName, // 유저이름
+                createdAt: Date.now(),
+                username: useObj.displayName,
                 useId: useObj.uid,
             });
+            
+            const newDocId = docRef.id;
+            await setDoc(doc(collection(firestore, "product"), newDocId), { id: newDocId }, { merge: true });
         } catch (err) {
             console.error(err);
         } finally {
@@ -73,7 +76,7 @@ const useUpload = () => {
         navigate("/");
     };
 
-    return { file, title, price, brand, size, desc, onFileChange, onChange, onSubmit };
+    return { file, title, price, brand, size, desc, category, onFileChange, onChange, onSubmit };
 };
 
 export default useUpload;

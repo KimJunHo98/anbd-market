@@ -22,23 +22,22 @@ export const HeaderTag = styled.header`
     top: 0;
     left: 0;
     z-index: 99;
+
+    .inner {
+        border-bottom: 1px solid #ddd;
+    }
 `;
 export const MainTag = styled.main`
-    padding-top: 60px;
+    padding-top: 167.5px;
 `;
 export const Section = styled.section`
-    &#search {
-        .inner {
-            border-bottom: 1px solid #ddd;
-        }
-    }
-
     &#register {
         .inner {
             border-top: 1px solid #ddd;
         }
     }
 `;
+export const Article = styled.article``;
 export const FooterTag = styled.footer`
     width: 100%;
     position: fixed;
@@ -136,13 +135,28 @@ export const Div = styled.div`
 
     &.header {
         width: 100%;
-        height: 60px;
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         align-items: center;
+
+        .header_top {
+            width: 100%;
+            height: 60px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header_bottom {
+            width: 100%;
+        }
     }
 
     &.loading {

@@ -1,14 +1,14 @@
 import { GoHomeFill } from "react-icons/go";
 import { RiUser3Fill } from "react-icons/ri";
-import { FaBell, FaBars } from "react-icons/fa6";
+import { FaBell } from "react-icons/fa6";
 import { IoMdHeart } from "react-icons/io";
+import { IoReceiptSharp } from "react-icons/io5";
 
 export const categoryList = [
-    { path: "/product", text: "전체" },
-    { path: "/product/best", text: "베스트", value: "best" },
-    { path: "/product/free", text: "나눔", value: "free" },
-    { path: "/product/barter", text: "교환", value: "barter" },
-    { path: "/product/reuse", text: "재사용", value: "reuse" },
+    { text: "베스트", desc: "(상태가 좋은 물건 판매)", value: "best" },
+    { text: "나눔", desc: "(무료 나눔)", value: "free" },
+    { text: "교환", desc: "(서로 교환)", value: "exchange" },
+    { text: "재사용", desc: "(쓸만한 물건 판매)", value: "reuse" },
 ];
 
 export const bannerImages = [
@@ -44,8 +44,8 @@ export const bannerImages = [
 
 export const footerNav = [
     { icon: <GoHomeFill />, path: "/", text: "홈" },
-    { icon: <FaBars />, path: "/category", text: "카테고리" },
     { icon: <IoMdHeart />, path: "/mypick", text: "찜" },
+    { icon: <IoReceiptSharp />, path: "/receipt", text: "구매내역" },
     { icon: <FaBell />, path: "/notice", text: "알림" },
     { icon: <RiUser3Fill />, path: "/profile", text: "My" },
 ];

@@ -76,9 +76,9 @@ const UploadForm = () => {
                                     onChange={(e) => onChange({ target: e.target })}
                                 >
                                     <Option value="">선택하세요</Option>
-                                    {categoryList.slice(1, 5).map((category) => (
-                                        <Option key={category.text} value={category.path}>
-                                            {category.text}
+                                    {categoryList.map((category) => (
+                                        <Option key={category.text} value={category.value}>
+                                            {category.text} {category.desc}
                                         </Option>
                                     ))}
                                 </Select>

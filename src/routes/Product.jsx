@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { getDocs, collection } from "firebase/firestore";
 import { firestore } from "../firebase";
-import { Container, Div, H2, Inner, Section, ALink, Li, Ul, Article } from "../styledComponents";
 
-const Category = () => {
-    const { category } = useParams();
+import { Container, Div, Inner, Section, ALink, H2, Article, Ul, Li } from "../styledComponents";
+
+const Product = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchCategoryProducts = async () => {
+        const fetchProducts = async () => {
             try {
-                // 특정 카테고리에 속하는 제품들을 가져오기 위한 Firestore 쿼리
-                const q = query(collection(firestore, "product"), where("category", "==", category));
-                const querySnapshot = await getDocs(q);
+                const productCollectionRef = collection(firestore, "product");
+                const productQuerySnapshot = await getDocs(productCollectionRef);
 
-                const categoryProducts = querySnapshot.docs.map((doc) => ({
+                const productsData = productQuerySnapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data(),
                 }));
 
-                setProducts(categoryProducts);
+                setProducts(productsData);
             } catch (error) {
                 console.error("데이터를 가져오는 중 오류 발생:", error);
             } finally {
@@ -29,21 +27,21 @@ const Category = () => {
             }
         };
 
-        fetchCategoryProducts();
-    }, [category]);
+        fetchProducts();
+    }, []);
 
     return (
-        <Section id="category">
-            <H2 className="blind">카테고리 제품 목록</H2>
+        <Section id="product">
+            <H2 className="blind">상품 페이지</H2>
             <Container>
                 <Inner>
-                    <Div className="category">
+                    <Div className="product">
                         {loading ? (
                             <p>로딩 중...</p>
                         ) : (
                             <>
                                 {products.map((product) => (
-                                    <Article className="category_lists" key={product.id}>
+                                    <Article className="product_lists" key={product.id}>
                                         <ALink to={`/product/detail/${product.id}`}>
                                             <Ul>
                                                 <Li>{product.text}</Li>
@@ -64,4 +62,4 @@ const Category = () => {
     );
 };
 
-export default Category;
+export default Product;
