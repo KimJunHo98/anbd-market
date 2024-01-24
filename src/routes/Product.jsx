@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, orderBy, query } from "firebase/firestore";
 import { firestore } from "../firebase";
 
-import { Container, Div, Inner, Section, ALink, H2, Article, Ul, Li } from "../styledComponents";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/ko";
+import { Container, Div, Inner, Section, ALink, H2, Article, Ul, Li, Img, P } from "../styledComponents";
+
+dayjs.extend(relativeTime);
+dayjs.locale("ko");
 
 const Product = () => {
     const [products, setProducts] = useState([]);
@@ -11,7 +17,7 @@ const Product = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const productCollectionRef = collection(firestore, "product");
+                const productCollectionRef = query(collection(firestore, "product"), orderBy("createdAt", "desc"));
                 const productQuerySnapshot = await getDocs(productCollectionRef);
 
                 const productsData = productQuerySnapshot.docs.map((doc) => ({
@@ -19,9 +25,13 @@ const Product = () => {
                     ...doc.data(),
                 }));
 
-                setProducts(productsData);
-            } catch (error) {
-                console.error("데이터를 가져오는 중 오류 발생:", error);
+                if (productsData) {
+                    setProducts(productsData);
+                } else {
+                    console.log("제품이 존재하지 않습니다.");
+                }
+            } catch (err) {
+                console.error(err);
             } finally {
                 setLoading(false);
             }
@@ -37,22 +47,37 @@ const Product = () => {
                 <Inner>
                     <Div className="product">
                         {loading ? (
-                            <p>로딩 중...</p>
+                            <Div className="loading">
+                                <P>로딩 중...</P>
+                            </Div>
                         ) : (
                             <>
-                                {products.map((product) => (
-                                    <Article className="product_lists" key={product.id}>
-                                        <ALink to={`/product/detail/${product.id}`}>
-                                            <Ul>
-                                                <Li>{product.text}</Li>
-                                                <Li>가격: {product.price}</Li>
-                                                <Li>브랜드: {product.brand}</Li>
-                                                <Li>사이즈: {product.size}</Li>
-                                                <Li>상품설명 : {product.desc}</Li>
-                                            </Ul>
-                                        </ALink>
-                                    </Article>
-                                ))}
+                                {products < 1 ? (
+                                    <P>등록된 상품이 없습니다.</P>
+                                ) : (
+                                    <>
+                                        {products.map((product) => (
+                                            <Article className="product_list" key={product.id}>
+                                                <ALink to={`/product/detail/${product.id}`} className="product_item">
+                                                    <Div className="product_image">
+                                                        <Img src={product.imageUrl} alt={product.title} />
+                                                    </Div>
+                                                    <Div className="product_text">
+                                                        <Ul className="col_text">
+                                                            <Li className="title">{product.title}</Li>
+                                                            <Li className="price">{product.price}원</Li>
+                                                        </Ul>
+                                                        <Ul className="row_text">
+                                                            {product.brand === "" ? null : <Li className="brand">{product.brand}</Li>}
+                                                            <Li className="size">{product.size}</Li>
+                                                        </Ul>
+                                                        <P className="time">{dayjs(product.createdAt).fromNow()}</P>
+                                                    </Div>
+                                                </ALink>
+                                            </Article>
+                                        ))}
+                                    </>
+                                )}
                             </>
                         )}
                     </Div>

@@ -1,9 +1,9 @@
 import React from "react";
 import { useStateContext } from "../context/useStateContext";
 import { footerNav } from "../constant";
-import { Container, Div, FooterTag, H2, Inner, Li, Nav, Span, Ul, Paginate } from "../styledComponents";
 
 import Sell from "../components/Sell";
+import { Container, Div, FooterTag, H2, Inner, Li, Nav, Span, Ul, Paginate } from "../styledComponents";
 
 const Footer = () => {
     const { isLogIn } = useStateContext();

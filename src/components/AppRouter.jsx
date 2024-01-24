@@ -24,7 +24,7 @@ const AppRouter = () => {
                         <Main />
                     ) : (
                         <Div className="loading">
-                            <P>loading...</P>
+                            <P>로딩 중...</P>
                         </Div>
                     )}
                     <Footer />

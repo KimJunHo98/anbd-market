@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { useStateContext } from "../context/useStateContext";
 import { MainTag } from "../styledComponents";
 
@@ -11,10 +11,6 @@ import Category from "../routes/Category";
 import Notice from "../routes/Notice";
 import Mypick from "../routes/Mypick";
 import Product from "../routes/Product";
-// import Best from "../components/product/Best";
-// import Free from "../components/product/Free";
-// import Barter from "../components/product/Barter";
-// import Reuse from "../components/product/Reuse";
 import UploadForm from "../routes/UploadForm";
 import Detail from "../routes/Detail";
 import Receipt from "../routes/Receipt";
@@ -22,9 +18,11 @@ import ProtectedRoute from "../components/ProtectedRoute";
 
 const Main = () => {
     const { isLogIn } = useStateContext();
+    const location = useLocation();
+    const isDetailPage = location.pathname.includes("/detail");
 
     return (
-        <MainTag>
+        <MainTag style={{paddingTop: `${!isDetailPage ? "177.5px" : "60px"}`}}>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/product" element={<Product />} />

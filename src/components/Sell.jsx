@@ -1,7 +1,7 @@
 import React from "react";
 import { useStateContext } from "../context/useStateContext";
-import { ALink, Aside, Div, H2 } from "../styledComponents";
 
+import { ALink, Aside, Div, H2 } from "../styledComponents";
 import { FaPlus } from "react-icons/fa6";
 
 const Sell = () => {

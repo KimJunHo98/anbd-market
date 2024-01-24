@@ -1,6 +1,6 @@
 import React from "react";
-import { Container, Div, H2, Inner, Section } from "../styledComponents";
 import Banner from "../components/Banner";
+import { Container, Div, H2, Inner, Section } from "../styledComponents";
 
 const Home = () => {
     return (

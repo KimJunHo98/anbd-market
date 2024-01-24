@@ -28,6 +28,7 @@ const UploadForm = () => {
                                     type="file"
                                     accept="image/*"
                                     multiple
+                                    required
                                     onChange={onFileChange}
                                     className="photo_input register_input"
                                 />
@@ -85,7 +86,7 @@ const UploadForm = () => {
                             </Div>
                             <Div className="register_brand register_input_box">
                                 <Label htmlFor="brand_input" className="brand_label register_label">
-                                    <Span className="required">*</Span>브랜드
+                                    브랜드
                                 </Label>
                                 <Input
                                     id="brand_input"
@@ -94,7 +95,6 @@ const UploadForm = () => {
                                     type="text"
                                     maxLength={100}
                                     placeholder="브랜드명을 입력하세요."
-                                    required
                                     value={brand}
                                     onChange={onChange}
                                 />

@@ -25,19 +25,9 @@ export const HeaderTag = styled.header`
 
     .inner {
         border-bottom: 1px solid #ddd;
+        position: relative;
     }
 `;
-export const MainTag = styled.main`
-    padding-top: 167.5px;
-`;
-export const Section = styled.section`
-    &#register {
-        .inner {
-            border-top: 1px solid #ddd;
-        }
-    }
-`;
-export const Article = styled.article``;
 export const FooterTag = styled.footer`
     width: 100%;
     position: fixed;
@@ -46,6 +36,54 @@ export const FooterTag = styled.footer`
 
     .inner {
         border-top: 1px solid #ddd;
+    }
+`;
+export const MainTag = styled.main`
+    padding-top: 168.5px;
+`;
+export const Section = styled.section`
+    &#register {
+        .inner {
+            border-top: 1px solid #ddd;
+        }
+    }
+`;
+export const Article = styled.article`
+    &.toggle_search {
+        width: 100%;
+        max-width: 480px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0 20px 10px;
+        background-color: #fff;
+
+        &:after {
+            content: "";
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .search {
+            width: 90%;
+        }
+        .cancel_btn {
+            padding-top: 10px
+        }
     }
 `;
 export const Aside = styled.aside`
@@ -158,6 +196,41 @@ export const Div = styled.div`
             width: 100%;
         }
     }
+    &.detail_header {
+        width: 100%;
+        height: 60px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .detail_header_right {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            gap: 0 5px;
+        }
+        .detail_header_left > button,
+        .detail_header_right > button {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background-color: #fff;
+            cursor: pointer;
+
+            svg {
+                font-size: 2.4rem;
+            }
+
+            &.back_btn {
+                text-align: left;
+            }
+        }
+    }
 
     &.loading {
         width: 100%;
@@ -239,9 +312,43 @@ export const Div = styled.div`
         }
     }
 
+    &.product, &.category, &.detail {
+        padding: 30px 0 69px;
+    }
+    &.product, &.category {
+        width: 100%;
+        height: calc(100vh - 177.5px);
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-direction: column;
+        gap: 10px 0;
+
+        .product_text {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            flex-direction: column;
+            gap: 10px 0;
+            font-size: 1.4rem;
+        }
+        .product_image {
+            width: 100px;
+            height: 100px;
+            border: 1px soild #eee;
+            border-radius: 15px;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
     &.profile {
         width: 100%;
-        height: calc(100vh - 60px);
+        height: calc(100vh - 168.5px);
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -350,7 +457,7 @@ export const Div = styled.div`
     &.signup,
     &.login {
         width: 100%;
-        height: calc(100vh - 60px);
+        height: calc(100vh - 168.5px);
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -386,6 +493,21 @@ export const Ul = styled.ul`
         display: flex;
         justify-content: space-between;
     }
+
+    &.col_text {}
+    &.row_text > li {
+        display: inline-block;
+        padding: 5px 5px 7px 5px;
+        border-radius: 3px;
+        font-size: 1.2rem;
+        font-weight: 500;
+        background-color: #111;
+        color: var(--accent-color);
+
+        &:first-child {
+            margin-right: 5px;
+        }
+    }
 `;
 export const Li = styled.li`
     &.account_list {
@@ -399,6 +521,16 @@ export const Li = styled.li`
     &.category_items {
         width: 20%;
     }
+
+    &.title {
+        padding-bottom: 10px;
+        font-weight: 600;
+    }
+    &.price {}
+    &.brand {}
+    &.size {}
+    &.desc {}
+    &.time {}
 `;
 export const P = styled.p`
     &.nick_name {
@@ -408,6 +540,11 @@ export const P = styled.p`
 
     &.copyright {
         text-align: center;
+    }
+
+    &.time {
+        font-size: 1.2rem;
+        color: #999;
     }
 `;
 export const Span = styled.span`
@@ -473,7 +610,7 @@ export const Em = styled.em``;
 export const StyledNavLink = styled(NavLink)`
     &.category_link {
         display: block;
-        padding: 10px;
+        padding: 15px 10px;
         transition: all 0.2s ease-in;
         text-align: center;
         font-size: 1.4rem;
@@ -550,6 +687,18 @@ export const ALink = styled(Link)`
         .sell_icon {
             vertical-align: top;
         }
+    }
+
+    &.product_item {
+        width: 100%;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-direction: row;
+        gap: 0 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
     }
 `;
 export const Button = styled.button`
@@ -660,7 +809,7 @@ export const Input = styled.input`
     &.search_input {
         width: 100%;
         padding: 10px 0px 10px 15px;
-        border-radius: 30px;
+        border-radius: 15px;
         border: 2px solid var(--primary-color);
         background-color: #fff;
 

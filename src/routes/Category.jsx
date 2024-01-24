@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { firestore } from "../firebase";
-import { Container, Div, H2, Inner, Section, ALink, Li, Ul, Article } from "../styledComponents";
+
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/ko";
+import { Container, Div, H2, Inner, Section, ALink, Li, Ul, Article, Img, P } from "../styledComponents";
+
+dayjs.extend(relativeTime);
+dayjs.locale("ko");
 
 const Category = () => {
     const { category } = useParams();
@@ -21,9 +28,13 @@ const Category = () => {
                     ...doc.data(),
                 }));
 
-                setProducts(categoryProducts);
-            } catch (error) {
-                console.error("데이터를 가져오는 중 오류 발생:", error);
+                if (categoryProducts) {
+                    setProducts(categoryProducts);
+                } else {
+                    console.log("제품이 존재하지 않습니다.");
+                }
+            } catch (err) {
+                console.error(err);
             } finally {
                 setLoading(false);
             }
@@ -39,22 +50,33 @@ const Category = () => {
                 <Inner>
                     <Div className="category">
                         {loading ? (
-                            <p>로딩 중...</p>
+                            <Div className="loading">
+                                <P>로딩 중...</P>
+                            </Div>
                         ) : (
                             <>
-                                {products.map((product) => (
-                                    <Article className="category_lists" key={product.id}>
-                                        <ALink to={`/product/detail/${product.id}`}>
-                                            <Ul>
-                                                <Li>{product.text}</Li>
-                                                <Li>가격: {product.price}</Li>
-                                                <Li>브랜드: {product.brand}</Li>
-                                                <Li>사이즈: {product.size}</Li>
-                                                <Li>상품설명 : {product.desc}</Li>
-                                            </Ul>
-                                        </ALink>
-                                    </Article>
-                                ))}
+                                {products.length < 1 ? (
+                                    <P>등록된 상품이 없습니다.</P>
+                                ) : (
+                                    <>
+                                        {products.map((product) => (
+                                            <Article className="category_list" key={product.id}>
+                                                <ALink to={`/product/detail/${product.id}`} className="category_item">
+                                                    <Div className="category_image">
+                                                        <Img src={product.image} alt={product.title} />
+                                                    </Div>
+                                                    <Ul className="category_text">
+                                                        <Li className="title">{product.title}</Li>
+                                                        <Li className="price">{product.price} 원</Li>
+                                                        <Li className="brand">{product.brand}</Li>
+                                                        <Li className="size">{product.size}</Li>
+                                                        <Li className="time">{dayjs(product.createdAt).fromNow()}</Li>
+                                                    </Ul>
+                                                </ALink>
+                                            </Article>
+                                        ))}
+                                    </>
+                                )}
                             </>
                         )}
                     </Div>

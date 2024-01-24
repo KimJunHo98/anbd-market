@@ -3,7 +3,13 @@ import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { firestore } from "../firebase";
 
-import { Article, Container, Div, H2, Inner, Li, Section, Ul } from "../styledComponents";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/ko";
+import { Article, Container, Div, H2, Img, Inner, Li, P, Section, Ul } from "../styledComponents";
+
+dayjs.extend(relativeTime);
+dayjs.locale("ko");
 
 const Detail = () => {
     const { id } = useParams();
@@ -21,8 +27,8 @@ const Detail = () => {
                 } else {
                     console.log("해당 제품이 존재하지 않습니다.");
                 }
-            } catch (error) {
-                console.error("데이터를 가져오는 중 오류 발생:", error);
+            } catch (err) {
+                console.error(err);
             } finally {
                 setLoading(false);
             }
@@ -38,15 +44,21 @@ const Detail = () => {
                 <Inner>
                     <Div className="detail">
                         {loading ? (
-                            <p>로딩 중...</p>
+                            <Div className="loading">
+                                <P>로딩 중...</P>
+                            </Div>
                         ) : (
                             <Article className="detail_item">
-                                <Ul>
-                                    <Li>{product.text}</Li>
-                                    <Li>가격: {product.price}</Li>
-                                    <Li>브랜드: {product.brand}</Li>
-                                    <Li>사이즈: {product.size}</Li>
-                                    <Li>상품설명 : {product.desc}</Li>
+                                <Div className="detail_image">
+                                    <Img src={product.image} alt={product.title} />
+                                </Div>
+                                <Ul className="detail_text">
+                                    <Li className="title">{product.title}</Li>
+                                    <Li className="price">{product.price}</Li>
+                                    <Li className="brand">{product.brand}</Li>
+                                    <Li className="size">{product.size}</Li>
+                                    <Li className="desc">{product.desc}</Li>
+                                    <Li className="time">{dayjs(product.createdAt).fromNow()}</Li>
                                 </Ul>
                             </Article>
                         )}

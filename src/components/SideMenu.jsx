@@ -2,8 +2,8 @@ import React from "react";
 import { useStateContext } from "../context/useStateContext";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
-import { Aside, Nav, Ul, Li, ALink, Button, Div, Span, P, H2 } from "../styledComponents";
 
+import { Aside, Nav, Ul, Li, ALink, Button, Div, Span, P, H2 } from "../styledComponents";
 import { IoClose } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 

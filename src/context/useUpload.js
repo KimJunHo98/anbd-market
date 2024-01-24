@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
-import { firestore } from "../firebase";
+import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
+import { firestore, storage } from "../firebase";
 import { useStateContext } from "./useStateContext";
 import { useNavigate } from "react-router-dom";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const useUpload = () => {
     const { useObj } = useStateContext();
@@ -48,13 +49,15 @@ const useUpload = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        if (!useObj || !title || !price || !category || !brand || !size || !desc || loading) return;
+        let url = "";
+
+        if (!file || !useObj || !title || !price || !category || !size || !desc || loading) return;
 
         try {
             setLoading(true);
 
             const docRef = await addDoc(collection(firestore, "product"), {
-                text: title,
+                title: title,
                 price: price,
                 brand: brand,
                 size: size,
@@ -64,9 +67,25 @@ const useUpload = () => {
                 username: useObj.displayName,
                 useId: useObj.uid,
             });
-            
+
             const newDocId = docRef.id;
-            await setDoc(doc(collection(firestore, "product"), newDocId), { id: newDocId }, { merge: true });
+            await setDoc(doc(collection(firestore, "product"), newDocId), { id: newDocId }, { merge: true }); // id값 추가
+
+            if (file !== "") {
+                try {
+                    const fileRef = ref(storage, `product/${useObj.uid}/${newDocId}`);
+                    await uploadBytes(fileRef, file); // 파일 저장 위치
+                    url = await getDownloadURL(fileRef); // 파일 url 반환
+
+                    await updateDoc(doc(collection(firestore, "product"), newDocId), {
+                        imageUrl: url,
+                    });
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+
+            setFile("");
         } catch (err) {
             console.error(err);
         } finally {
