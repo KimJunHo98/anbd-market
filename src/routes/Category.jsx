@@ -59,11 +59,39 @@ const Category = () => {
                                     <P>등록된 상품이 없습니다.</P>
                                 ) : (
                                     <>
-                                        {products.map((product) => (
+                                        {products.length === 0 ? (
+                                            <P>등록된 상품이 없습니다.</P>
+                                        ) : (
+                                            <>
+                                                {products.map((product) => (
+                                                    <Article className="category_list" key={product.id}>
+                                                        <ALink to={`/product/detail/${product.id}`} className="category_item">
+                                                            <Div className="category_image">
+                                                                <Img src={product.imageUrl} alt={product.title} />
+                                                            </Div>
+                                                            <Div className="category_text">
+                                                                <Ul className="col_text">
+                                                                    <Li className="title">{product.title}</Li>
+                                                                    <Li className="price">{product.price}원</Li>
+                                                                </Ul>
+                                                                <Ul className="row_text">
+                                                                    {product.brand === "" ? null : (
+                                                                        <Li className="brand">{product.brand}</Li>
+                                                                    )}
+                                                                    <Li className="size">{product.size}</Li>
+                                                                </Ul>
+                                                                <P className="time">{dayjs(product.createdAt).fromNow()}</P>
+                                                            </Div>
+                                                        </ALink>
+                                                    </Article>
+                                                ))}
+                                            </>
+                                        )}
+                                        {/* {products.map((product) => (
                                             <Article className="category_list" key={product.id}>
                                                 <ALink to={`/product/detail/${product.id}`} className="category_item">
                                                     <Div className="category_image">
-                                                        <Img src={product.image} alt={product.title} />
+                                                        <Img src={product.imageUrl} alt={product.title} />
                                                     </Div>
                                                     <Ul className="category_text">
                                                         <Li className="title">{product.title}</Li>
@@ -74,7 +102,7 @@ const Category = () => {
                                                     </Ul>
                                                 </ALink>
                                             </Article>
-                                        ))}
+                                        ))} */}
                                     </>
                                 )}
                             </>

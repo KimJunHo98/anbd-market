@@ -1,12 +1,13 @@
 import React from "react";
-import useUpload  from "../context/useUpload";
+import useUpload from "../context/useUpload";
 import { categoryList } from "../constant";
 
-import { Container, Div, H2, Inner, Section, Form, Label, Input, Span, TextArea, Em, Select, Option } from "../styledComponents";
+import { Container, Div, H2, Inner, Section, Form, Label, Input, Span, TextArea, Select, Option, Img, Button } from "../styledComponents";
 import { FaCamera } from "react-icons/fa";
+import { MdCancel } from "react-icons/md";
 
 const UploadForm = () => {
-    const { file, title, price, brand, size, desc, category, onFileChange, onChange, onSubmit } = useUpload();   
+    const { file, title, price, brand, size, desc, category, onFileChange, onChange, onSubmit, handleImageDeleteCLick } = useUpload();
 
     return (
         <Section id="register">
@@ -19,19 +20,21 @@ const UploadForm = () => {
                                 <Label htmlFor="photo_input" className="photo_label">
                                     <FaCamera />
                                 </Label>
-                                <Span className="maximun">
-                                    (최대 <Em>{file.length}</Em> /10장)
-                                </Span>
                                 <Input
                                     id="photo_input"
                                     name="photo_input"
                                     type="file"
                                     accept="image/*"
-                                    multiple
                                     required
                                     onChange={onFileChange}
                                     className="photo_input register_input"
                                 />
+                                {file && (
+                                    <Div className="thumb_img">
+                                        <Img src={file} alt="" />
+                                        <Button className="delete_btn" onClick={handleImageDeleteCLick}><MdCancel /></Button>
+                                    </Div>
+                                )}
                             </Div>
                             <Div className="register_title register_input_box">
                                 <Label htmlFor="title_input" className="title_label register_label">

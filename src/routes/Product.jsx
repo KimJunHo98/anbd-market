@@ -40,6 +40,8 @@ const Product = () => {
         fetchProducts();
     }, []);
 
+    console.log(products);
+
     return (
         <Section id="product">
             <H2 className="blind">상품 페이지</H2>
@@ -52,7 +54,7 @@ const Product = () => {
                             </Div>
                         ) : (
                             <>
-                                {products < 1 ? (
+                                {products.length === 0 ? (
                                     <P>등록된 상품이 없습니다.</P>
                                 ) : (
                                     <>
