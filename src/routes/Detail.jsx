@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore";
-import { firestore } from "../firebase";
+import React from "react";
+import useFetchProducts from "../hooks/useFetchProducts";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -12,32 +10,7 @@ dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
 const Detail = () => {
-    const { id } = useParams();
-    const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchProductDetail = async () => {
-            try {
-                const productDocRef = doc(firestore, "product", id);
-                const productDocSnapshot = await getDoc(productDocRef);
-
-                if (productDocSnapshot.exists()) {
-                    setProduct(productDocSnapshot.data());
-                } else {
-                    console.log("해당 제품이 존재하지 않습니다.");
-                }
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProductDetail();
-    }, [id]);
-
-    console.log(product);
+  const { product, loading } = useFetchProducts();
 
     return (
         <Section id="detail">

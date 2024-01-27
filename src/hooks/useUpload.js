@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 import { firestore, storage } from "../firebase";
-import { useStateContext } from "./useStateContext";
+import { useStateContext } from "../context/useStateContext";
 import { useNavigate } from "react-router-dom";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 

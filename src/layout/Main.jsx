@@ -22,7 +22,7 @@ const Main = () => {
     const isDetailPage = location.pathname.includes("/detail");
 
     return (
-        <MainTag style={{paddingTop: `${!isDetailPage ? "177.5px" : "60px"}`}}>
+        <MainTag style={{paddingTop: `${!isDetailPage ? "173.5px" : "60px"}`}}>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/product" element={<Product />} />

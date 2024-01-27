@@ -9,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
 
     :root {
         --main-font: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", helvetica, sans-serif;
-        --main-color: #222;
+        --main-color: #fff;
         --Kor-font: "Noto Sans KR";
         --Eng-font: "Apple SD Gothic Neo";
         --primary-color: #74BF04;
@@ -28,16 +28,13 @@ const GlobalStyles = createGlobalStyle`
     html {
         font-size: 62.5%; /* 1rem = 10px */
     }
-
     body {
         background-color: #eee;
         color: var(--main-color);
     }
-
     body, input, textarea, select, option, button, table {
         font-family: var(--main-font);
     }
-
     input, textarea, button, select, option {
         outline: 0 none;
         border: 0 none;
@@ -107,6 +104,11 @@ const GlobalStyles = createGlobalStyle`
     }
     @media all and (max-width: 480px) {
         
+    }
+
+    // 스크롤바
+    body::-webkit-scrollbar {
+        width: 0;
     }
 `;
 

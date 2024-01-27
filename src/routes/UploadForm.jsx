@@ -1,5 +1,5 @@
 import React from "react";
-import useUpload from "../context/useUpload";
+import useUpload from "../hooks/useUpload";
 import { categoryList } from "../constant";
 
 import { Container, Div, H2, Inner, Section, Form, Label, Input, Span, TextArea, Select, Option, Img, Button } from "../styledComponents";
@@ -68,13 +68,13 @@ const UploadForm = () => {
                                 />
                             </Div>
                             <Div className="register_category">
-                                <Label htmlFor="category_input" className="category_label register_label">
+                                <Label htmlFor="category_select" className="category_label register_label">
                                     <Span className="required">*</Span>카테고리
                                 </Label>
                                 <Select
-                                    id="category_input"
+                                    id="category_select"
                                     name="category"
-                                    className="category_input register_input"
+                                    className="category_select register_select"
                                     required
                                     value={category}
                                     onChange={(e) => onChange({ target: e.target })}

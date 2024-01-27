@@ -69,7 +69,7 @@ const Header = () => {
                                 <Nav className="header_nav">
                                     <Ul className="category_list">
                                         <Li className="category_items">
-                                            <StyledNavLink to="/product" className="category_link" activeclassname="active">
+                                            <StyledNavLink to="/" className="category_link" activeclassname="active">
                                                 전체
                                             </StyledNavLink>
                                         </Li>
@@ -108,10 +108,12 @@ const Header = () => {
                             </Div>
                             {search && (
                                 <Article className="toggle_search">
-                                    <Search />
-                                    <Button onClick={handleCanelbtnClick} className="cancel_btn">
-                                        취소
-                                    </Button>
+                                    <Div className="toggle_search_top">
+                                        <Search />
+                                        <Button onClick={handleCanelbtnClick} className="cancel_btn">
+                                            취소
+                                        </Button>
+                                    </Div>
                                 </Article>
                             )}
                         </Div>

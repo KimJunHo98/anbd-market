@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { getDocs, collection, orderBy, query } from "firebase/firestore";
-import { firestore } from "../firebase";
+import React from "react";
+import useFetchProducts from "../hooks/useFetchProducts";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -11,36 +10,8 @@ dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
 const Product = () => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const productCollectionRef = query(collection(firestore, "product"), orderBy("createdAt", "desc"));
-                const productQuerySnapshot = await getDocs(productCollectionRef);
-
-                const productsData = productQuerySnapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
-
-                if (productsData) {
-                    setProducts(productsData);
-                } else {
-                    console.log("제품이 존재하지 않습니다.");
-                }
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProducts();
-    }, []);
-
-    console.log(products);
+    const { products, loading } = useFetchProducts();
+    // console.log(products);
 
     return (
         <Section id="product">

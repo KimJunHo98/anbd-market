@@ -1,25 +1,16 @@
-import React, { useState } from "react";
-import { Div, Input, Label, Form, Button } from "../styledComponents";
+import React from "react";
+import { useSearchContext } from "../context/useSearchContext";
 
+import { Div, Input, Label, Form, Button } from "../styledComponents";
 import { IoMdSearch } from "react-icons/io";
 
 const Search = () => {
-    const [search, setSearch] = useState("");
-
-    const onChange = (e) => {
-        setSearch(e.target.value);
-    };
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-
-        setSearch("");
-    };
+    const { search, onChange, onSubmit } = useSearchContext();
 
     return (
         <Div className="search">
             <Form className="search_form" onSubmit={onSubmit}>
-                <Label htmlFor="search_input"></Label>
+                <Label htmlFor="search_input" className="blind">검색 인풋</Label>
                 <Input
                     id="search_input"
                     name="search_input"

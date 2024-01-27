@@ -12,7 +12,7 @@ export const Inner = styled.div`
     width: 100%;
     height: 100%;
     padding: 0 20px;
-    background-color: #fff;
+    background-color: #222;
 `;
 
 // 시멘틱 태그
@@ -24,7 +24,7 @@ export const HeaderTag = styled.header`
     z-index: 99;
 
     .inner {
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #555;
         position: relative;
     }
 `;
@@ -35,7 +35,7 @@ export const FooterTag = styled.footer`
     left: 0;
 
     .inner {
-        border-top: 1px solid #ddd;
+        border-top: 1px solid #555;
     }
 `;
 export const MainTag = styled.main`
@@ -52,13 +52,12 @@ export const Article = styled.article`
     &.toggle_search {
         width: 100%;
         max-width: 480px;
+        height: 100vh;
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
         position: absolute;
         top: 60px;
         left: 50%;
@@ -66,23 +65,24 @@ export const Article = styled.article`
         padding: 0 20px 10px;
         background-color: #fff;
 
-        &:after {
-            content: "";
-            width: 100%;
-            height: 100vh;
-            position: fixed;
-            top: 64px;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background-color: rgba(0, 0, 0, 0.3);
-        }
-
         .search {
             width: 90%;
+
+            .search_input {
+                border: 0 none;
+            }
+        }
+        .toggle_search_top {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         .cancel_btn {
             padding-top: 10px;
+            cursor: pointer;
         }
     }
 `;
@@ -264,6 +264,10 @@ export const Div = styled.div`
     &.home {
         width: 100%;
         padding: 30px 0;
+
+        .product {
+            padding: 0;
+        }
     }
 
     &.search {
@@ -273,7 +277,6 @@ export const Div = styled.div`
 
     &.banner {
         width: 100%;
-        background-color: #fff;
 
         .banner_wrap {
             width: 100%;
@@ -351,7 +354,8 @@ export const Div = styled.div`
         gap: 10px 0;
         padding: 30px 0 69px;
 
-        .product_text, .category_text {
+        .product_text,
+        .category_text {
             display: -webkit-box;
             display: -webkit-flex;
             display: -ms-flexbox;
@@ -360,14 +364,15 @@ export const Div = styled.div`
             gap: 10px 0;
             font-size: 1.4rem;
         }
-        .product_image, .category_image {
+        .product_image,
+        .category_image {
             width: 100px;
             height: 100px;
 
             img {
                 width: 100%;
                 border-radius: 10px;
-                border: 1px solid #eee;
+                border: 1px solid #555;
             }
         }
     }
@@ -608,6 +613,10 @@ export const P = styled.p`
         font-size: 1.2rem;
         color: #999;
     }
+
+    &.not_have {
+        font-size: 1.4rem;
+    }
 `;
 export const Span = styled.span`
     &.bar {
@@ -618,7 +627,7 @@ export const Span = styled.span`
         left: 50%;
         transform: translateX(-50%);
         display: block;
-        background-color: #222;
+        background-color: #fff;
 
         &:after,
         &:before {
@@ -627,7 +636,7 @@ export const Span = styled.span`
             height: 2px;
             position: absolute;
             left: 0;
-            background-color: #222;
+            background-color: #fff;
         }
         &:after {
             bottom: 6px;
@@ -666,16 +675,16 @@ export const StyledNavLink = styled(NavLink)`
         padding: 15px 10px;
         text-align: center;
         font-size: 1.4rem;
-        font-weight: 600;
+        font-weight: 400;
 
         &.active:after {
             content: "";
             width: 100%;
             height: 2px;
             position: absolute;
-            bottom: 0;
+            bottom: 0px;
             left: 0;
-            background-color: #222;
+            background-color: #eee;
         }
     }
 `;
@@ -708,7 +717,7 @@ export const Paginate = styled(StyledNavLink)`
 `;
 export const ALink = styled(Link)`
     &.header_link {
-        width: 70%;
+        width: 100px;
         display: block;
         padding: 10px 10px 10px 0;
     }
@@ -747,7 +756,8 @@ export const ALink = styled(Link)`
         }
     }
 
-    &.product_item, &.category_item {
+    &.product_item,
+    &.category_item {
         width: 100%;
         display: -webkit-box;
         display: -webkit-flex;
@@ -756,7 +766,7 @@ export const ALink = styled(Link)`
         flex-direction: row;
         gap: 0 10px;
         padding-bottom: 10px;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #555;
     }
 `;
 export const Button = styled.button`
@@ -764,7 +774,7 @@ export const Button = styled.button`
         width: 40px;
         height: 40px;
         border-radius: 10px;
-        background-color: #fff;
+        background-color: transparent;
         cursor: pointer;
     }
 
@@ -868,10 +878,10 @@ export const Input = styled.input`
         width: 100%;
         padding: 10px 0px 10px 15px;
         border-radius: 15px;
-        border: 2px solid var(--primary-color);
-        background-color: #fff;
+        background-color: #333;
+        color: #eee;
 
-        &:placeholder {
+        &::placeholder {
             color: #ccc;
         }
     }
@@ -884,7 +894,12 @@ export const Input = styled.input`
         width: 100%;
         padding: 10px 0px 10px 15px;
         border-radius: 5px;
-        border: 1px solid #999;
+        background-color: #333;
+        color: #fff;
+
+        &::placeholder {
+            color: #ccc;
+        }
     }
 `;
 export const Label = styled.label`
@@ -910,16 +925,24 @@ export const TextArea = styled.textarea`
     &.product_desc {
         padding: 10px;
         border-radius: 5px;
-        border: 1px solid #999;
+        background-color: #333;
+        color: #fff;
         resize: none;
+
+        &::placeholder {
+            color: #ccc;
+        }
     }
 `;
 
 export const Select = styled.select`
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #999;
-    color: #777;
+    &.category_select {
+        width: 100%;
+        padding: 10px 0 10px 10px;
+        border-radius: 5px;
+        background-color: #333;
+        color: #ccc;
+    }
 `;
 export const Option = styled.option``;
 
