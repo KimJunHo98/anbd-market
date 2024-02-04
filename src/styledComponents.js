@@ -154,11 +154,14 @@ export const H3 = styled.h3`
     }
 
     &.username {
-        padding: 15px 5px;
-        border-top: 1px solid #999;
-        border-bottom: 1px solid #999;
+        display: inline-block;
         font-size: 1.6rem;
-        font-weight: 600;
+        font-weight: 400;
+    }
+`;
+export const H4 = styled.h4`
+    &.title {
+        font-size: 1.6rem;
     }
 `;
 
@@ -227,11 +230,12 @@ export const Div = styled.div`
             width: 40px;
             height: 40px;
             border-radius: 10px;
-            background-color: #fff;
+            background-color: transparent;
             cursor: pointer;
 
             svg {
                 font-size: 2.4rem;
+                color: var(--main-color);
             }
 
             &.back_btn {
@@ -326,7 +330,8 @@ export const Div = styled.div`
     &.detail {
         height: 100%;
         min-height: calc(100vh - 60px);
-        padding: 30px 0 69px;
+        padding-bottom: 69px;
+        background-color: #222;
 
         .detail_item {
             display: -webkit-box;
@@ -334,11 +339,69 @@ export const Div = styled.div`
             display: -ms-flexbox;
             display: flex;
             flex-direction: column;
+            padding-bottom: 30px;
 
-            .detail_image {
-                width: 100%;
-                max-width: 440px;
-                padding-bottom: 10px;
+            .detail_top {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 15px 20px;
+                border-bottom: 1px solid #444;
+
+                & > div {
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex;
+                    align-items: center;
+                    gap: 0 10px;
+
+                    .thumb {
+                        margin-left: 0;
+                    }
+                }
+            }
+            .detail_text {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                flex-direction: column;
+                gap: 20px 0;
+                padding: 30px 20px;
+                font-size: 2rem;
+
+                .desc {
+                    padding-top: 20px;
+                    font-size: 1.6rem;
+                    font-weight: 300;
+                }
+                .row_text > p {
+                    display: inline-block;
+                    font-size: 1.4rem;
+                    font-weight: 400;
+                    color: #999;
+
+                    &.price {
+                        color: #ccc;
+                    }
+                    &.time {
+                        margin-left: 10px;
+                        font-size: 1.2rem;
+                    }
+                    &.brand,
+                    &.size {
+                        margin-right: 5px;
+                        padding: 5px 7px 7px 7px;
+                        border-radius: 3px;
+                        font-size: 1.2rem;
+                        background-color: #fff;
+                        color: #222;
+                    }
+                }
             }
         }
     }
@@ -574,12 +637,6 @@ export const Ul = styled.ul`
             margin-right: 5px;
         }
     }
-
-    &.detail_text {
-        font-size: 2rem;
-
-        li.
-    }
 `;
 export const Li = styled.li`
     &.account_list {
@@ -770,19 +827,18 @@ export const ALink = styled(Link)`
     }
 `;
 export const Button = styled.button`
+    background-color: transparent;
+    cursor: pointer;
+
     &.menu_btn {
         width: 40px;
         height: 40px;
         border-radius: 10px;
-        background-color: transparent;
-        cursor: pointer;
     }
 
     &.cancel_btn {
         width: 40px;
         height: 40px;
-        background-color: transparent;
-        cursor: pointer;
 
         svg {
             font-size: 3rem;
@@ -797,7 +853,6 @@ export const Button = styled.button`
         font-size: 1.6rem;
         background-color: #111;
         color: var(--accent-color);
-        cursor: pointer;
     }
 
     &.search_btn {
@@ -807,8 +862,6 @@ export const Button = styled.button`
         top: 0;
         right: 5px;
         border-radius: 0 30px 30px 0;
-        background-color: transparent;
-        cursor: pointer;
 
         .search_icon {
             font-size: 2.4rem;
@@ -825,12 +878,25 @@ export const Button = styled.button`
         transition: all 0.2s ease-in;
         background-color: #fff;
         color: #111;
-        cursor: pointer;
 
         &.active {
             background-color: #111;
             color: #fff;
         }
+    }
+
+    &.pick_btn {
+        padding: 0 10px;
+        font-size: 2.4rem;
+        color: var(--main-color);
+    }
+
+    &.buy_btn {
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 1.6rem;
+        font-weight: 500;
+        background-color: var(--accent-color);
     }
 `;
 

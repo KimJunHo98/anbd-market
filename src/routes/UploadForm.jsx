@@ -25,7 +25,6 @@ const UploadForm = () => {
                                     name="photo_input"
                                     type="file"
                                     accept="image/*"
-                                    required
                                     onChange={onFileChange}
                                     className="photo_input register_input"
                                 />

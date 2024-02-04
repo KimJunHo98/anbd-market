@@ -31,7 +31,7 @@ const Banner = () => {
                             modules={[Pagination, Mousewheel, Keyboard, Autoplay]}
                             className="swiper_wrap"
                         >
-                            {bannerImages.slice(0, 5).map((banner) => (
+                            {bannerImages.slice(5, 7).map((banner) => (
                                 <SwiperSlide className="slide_items" key={banner.title}>
                                     <Img src={banner.src} alt={banner.title} className="banner_img" />
                                 </SwiperSlide>

@@ -21,7 +21,6 @@ const Category = () => {
             (result.category === category && result.title.toLowerCase().includes(search.toLowerCase())) ||
             result.brand.toLowerCase().includes(search.toLowerCase())
     );
-    console.log(productsCategory.length);
 
     return (
         <Section id="category">

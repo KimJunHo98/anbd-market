@@ -4,42 +4,59 @@ import useFetchProducts from "../hooks/useFetchProducts";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
-import { Article, Container, Div, H2, H3, Img, Inner, Li, P, Section, Ul } from "../styledComponents";
+import { Article, Button, Container, Div, H2, H3, H4, Img, P, Section, Span } from "../styledComponents";
+import { FaUserCircle } from "react-icons/fa";
+import { IoMdHeartEmpty } from "react-icons/io";
 
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
 const Detail = () => {
-  const { product, loading } = useFetchProducts();
+    const { product, loading } = useFetchProducts();
 
     return (
         <Section id="detail">
             <H2 className="blind">상품 디테일 페이지</H2>
             <Container>
-                <Inner>
-                    <Div className="detail">
-                        {loading ? (
-                            <Div className="loading">
-                                <P>로딩 중...</P>
+                <Div className="detail">
+                    {loading ? (
+                        <Div className="loading">
+                            <P>로딩 중...</P>
+                        </Div>
+                    ) : (
+                        <Article className="detail_item">
+                            <Div className="detail_image">
+                                <Img src={product.imageUrl} alt={product.title} />
                             </Div>
-                        ) : (
-                            <Article className="detail_item">
-                                <Div className="detail_image">
-                                    <Img src={product.imageUrl} alt={product.title} />
+                            <Div className="detail_top">
+                                <Div className="detail_user">
+                                    <Span className="thumb">
+                                        <FaUserCircle />
+                                    </Span>
+                                    <H3 className="username">{product.username}</H3>
                                 </Div>
-                                <H3 className="username">{product.username}</H3>
-                                <Ul className="detail_text">
-                                    <Li className="title">{product.title}</Li>
-                                    <Li className="price">{product.price}원</Li>
-                                    <Li className="brand">{product.brand}</Li>
-                                    <Li className="size">{product.size}</Li>
-                                    <Li className="time">{dayjs(product.createdAt).fromNow()}</Li>
-                                    <Li className="desc">{product.desc}</Li>
-                                </Ul>
-                            </Article>
-                        )}
-                    </Div>
-                </Inner>
+                                <Div className="user_btns">
+                                    <Button className="pick_btn">
+                                        <IoMdHeartEmpty />
+                                    </Button>
+                                    <Button className="buy_btn">구매하기</Button>
+                                </Div>
+                            </Div>
+                            <Div className="detail_text">
+                                <H4 className="title">{product.title}</H4>
+                                <Div className="row_text">
+                                    <P className="price">{product.price}원</P>
+                                    <P className="time">{dayjs(product.createdAt).fromNow()}</P>
+                                </Div>
+                                <Div className="row_text">
+                                    <P className="brand">{product.brand}</P>
+                                    <P className="size">{product.size}</P>
+                                </Div>
+                                <P className="desc">{product.desc}</P>
+                            </Div>
+                        </Article>
+                    )}
+                </Div>
             </Container>
         </Section>
     );

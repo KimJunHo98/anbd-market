@@ -55,18 +55,19 @@ const useUpload = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
+        let uploadedFileUrl = "";
+
         if (!file || !useObj || !title || !price || !category || !size || !desc || loading) return;
 
         try {
             setLoading(true);
 
             let newDocId;
-            let uploadedFileUrl = "";
 
             if (file !== "") {
-                const fileRef = ref(storage, `product/${useObj.uid}`);
+                const fileRef = ref(storage, `${useObj.uid}`);
 
-                await uploadString(fileRef, file);
+                await uploadString(fileRef, file, "data_url");
                 await getDownloadURL(fileRef)
                     .then((url) => {
                         uploadedFileUrl = url;
@@ -105,7 +106,7 @@ const useUpload = () => {
 
     const handleImageDeleteCLick = () => {
         setFile(null);
-    }
+    };
 
     return { file, title, price, brand, size, desc, category, onFileChange, onChange, onSubmit, handleImageDeleteCLick };
 };
