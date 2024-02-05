@@ -13,6 +13,7 @@ dayjs.locale("ko");
 
 const Detail = () => {
     const { product, loading } = useFetchProducts();
+    console.log(product);
 
     return (
         <Section id="detail">
@@ -45,11 +46,12 @@ const Detail = () => {
                             <Div className="detail_text">
                                 <H4 className="title">{product.title}</H4>
                                 <Div className="row_text">
+                                    <P className="subCategory">{product.subCategoryText}</P>
                                     <P className="price">{product.price}원</P>
                                     <P className="time">{dayjs(product.createdAt).fromNow()}</P>
                                 </Div>
                                 <Div className="row_text">
-                                    <P className="brand">{product.brand}</P>
+                                    {product.brand && <P className="brand">{product.brand}</P>}
                                     <P className="size">{product.size}</P>
                                 </Div>
                                 <P className="desc">{product.desc}</P>

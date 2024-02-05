@@ -1,14 +1,16 @@
 import React from "react";
 import useUpload from "../hooks/useUpload";
-import { categoryList } from "../constant";
+import { categoryList, subCategoryList } from "../constant";
 
 import { Container, Div, H2, Inner, Section, Form, Label, Input, Span, TextArea, Select, Option, Img, Button } from "../styledComponents";
 import { FaCamera } from "react-icons/fa";
 import { MdCancel } from "react-icons/md";
 
 const UploadForm = () => {
-    const { file, title, price, brand, size, desc, category, onFileChange, onChange, onSubmit, handleImageDeleteCLick } = useUpload();
+    const { fileUrls, title, price, brand, size, desc, subCategory, category, onFileChange, onChange, onSubmit, handleImageDeleteCLick } =
+        useUpload();
 
+        console.log(fileUrls);
     return (
         <Section id="register">
             <H2 className="blind">물건 등록 폼</H2>
@@ -25,15 +27,20 @@ const UploadForm = () => {
                                     name="photo_input"
                                     type="file"
                                     accept="image/*"
+                                    multiple
                                     onChange={onFileChange}
                                     className="photo_input register_input"
                                 />
-                                {file && (
-                                    <Div className="thumb_img">
-                                        <Img src={file} alt="" />
-                                        <Button className="delete_btn" onClick={handleImageDeleteCLick}><MdCancel /></Button>
-                                    </Div>
-                                )}
+                                {fileUrls &&
+                                    fileUrls.map((urls, i) => (
+                                        // console.log(urls)
+                                        <Div className="thumb_img" key={urls}>
+                                            <Img src={urls} alt="" />
+                                            <Button className="delete_btn" onClick={handleImageDeleteCLick(i)}>
+                                                <MdCancel />
+                                            </Button>
+                                        </Div>
+                                    ))}
                             </Div>
                             <Div className="register_title register_input_box">
                                 <Label htmlFor="title_input" className="title_label register_label">
@@ -82,6 +89,25 @@ const UploadForm = () => {
                                     {categoryList.map((category) => (
                                         <Option key={category.text} value={category.value}>
                                             {category.text} {category.desc}
+                                        </Option>
+                                    ))}
+                                </Select>
+                            </Div>
+                            <Div className="register_category">
+                                <Label htmlFor="subcategory_select" className="subcategory_label register_label">
+                                    <Span className="required">*</Span>서브 카테고리
+                                </Label>
+                                <Select
+                                    id="subcategory_select"
+                                    name="subCategory"
+                                    className="category_select register_select"
+                                    value={subCategory}
+                                    onChange={(e) => onChange({ target: e.target })}
+                                >
+                                    <Option value="">선택하세요</Option>
+                                    {subCategoryList.map((subCategory) => (
+                                        <Option key={subCategory.text} value={subCategory.value}>
+                                            {subCategory.text}
                                         </Option>
                                     ))}
                                 </Select>

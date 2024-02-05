@@ -11,6 +11,21 @@ export const categoryList = [
     { text: "재사용", desc: "(쓸만한 물건 판매)", value: "reuse" },
 ];
 
+export const subCategoryList = [
+    { text: "디지털기기", value: "digital" },
+    { text: "가구/인테리어", value: "furniture" },
+    { text: "여성의류/잡화", value: "women" },
+    { text: "남성의류/잡화", value: "men" },
+    { text: "생활가전", value: "home_appliance" },
+    { text: "주방", value: "kitchen" },
+    { text: "스포츠/레저", value: "sports_leisure" },
+    { text: "취미/게임/음반", value: "hobby_entertainment" },
+    { text: "뷰티/미용", value: "beauty" },
+    { text: "반려동물용품", value: "pet" },
+    { text: "도서", value: "books" },
+    { text: "기타", value: "other" },
+];
+
 export const bannerImages = [
     {
         title: "banner1",

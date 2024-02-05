@@ -1,37 +1,48 @@
 import { useState } from "react";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
 import { firestore, storage } from "../firebase";
 import { useStateContext } from "../context/useStateContext";
 import { useNavigate } from "react-router-dom";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
+import { subCategoryList } from "../constant";
 
 const useUpload = () => {
     const { useObj } = useStateContext();
     const [loading, setLoading] = useState(false);
-    const [file, setFile] = useState("");
+    const [fileUrls, setFileUrls] = useState([]);
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
     const [brand, setBrand] = useState("");
     const [size, setSize] = useState("");
     const [desc, setDesc] = useState("");
     const [category, setCategory] = useState("");
+    const [subCategory, setSubCategory] = useState("");
     const navigate = useNavigate();
 
     const onFileChange = (e) => {
         const {
             target: { files },
         } = e;
-        const theFile = files[0];
-        const reader = new FileReader();
 
-        reader.readAsDataURL(theFile);
-        reader.onloadend = (finishedEvent) => {
-            const {
-                currentTarget: { result },
-            } = finishedEvent;
+        if (files) {
+            const fileArray = Array.from(files);
+            let fileLength = fileArray.length <= 10;
 
-            setFile(result);
-        };
+            for (let i = 0; i < fileLength; i++) {
+                const fileReader = new FileReader();
+                const file = fileArray[i];
+
+                fileReader.readAsDataURL(file);
+                fileReader.onload = (e) => {
+                    const {
+                        currentTarget: { result },
+                    } = e;
+                    const Urls = [result];
+
+                    setFileUrls(() => [...Urls]);
+                };
+            }
+        }
     };
 
     const onChange = (e) => {
@@ -45,6 +56,8 @@ const useUpload = () => {
             setBrand(value);
         } else if (name === "category") {
             setCategory(value);
+        } else if (name === "subCategory") {
+            setSubCategory(value);
         } else if (name === "size") {
             setSize(value);
         } else if (name === "desc") {
@@ -55,27 +68,16 @@ const useUpload = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        let uploadedFileUrl = "";
-
-        if (!file || !useObj || !title || !price || !category || !size || !desc || loading) return;
+        if (!fileUrls || !useObj || !title || !price || !category || !subCategory || !size || !desc || loading) return;
 
         try {
             setLoading(true);
 
+            const imagesArray = [];
             let newDocId;
 
-            if (file !== "") {
-                const fileRef = ref(storage, `${useObj.uid}`);
-
-                await uploadString(fileRef, file, "data_url");
-                await getDownloadURL(fileRef)
-                    .then((url) => {
-                        uploadedFileUrl = url;
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    });
-            }
+            // subCategoryList에서 선택한 value에 대응하는 text 찾기
+            const SubCategoryText = subCategoryList.find((item) => item.value === subCategory)?.text || "";
 
             const docRef = await addDoc(collection(firestore, "product"), {
                 title: title,
@@ -84,17 +86,32 @@ const useUpload = () => {
                 size: size,
                 desc: desc,
                 category: category,
+                subCategory: subCategory,
+                subCategoryText: SubCategoryText,
                 createdAt: Date.now(),
                 username: useObj.displayName,
                 useId: useObj.uid,
-                imageUrl: uploadedFileUrl,
             });
 
             newDocId = docRef.id;
 
+            // Loop through image files
+            await Promise.all(
+                fileUrls.map(async (image, i) => {
+                    const fileRef = ref(storage, `product/${useObj.uid}/${newDocId}/image${i}`);
+
+                    await uploadString(fileRef, image, "data_url");
+
+                    const downloadURL = await getDownloadURL(fileRef);
+                    imagesArray.push(downloadURL);
+                })
+            );
+
+            // Update Firestore document with image URLs
+            await updateDoc(doc(firestore, "product", newDocId), { imageUrl: imagesArray });
             await setDoc(doc(collection(firestore, "product"), newDocId), { id: newDocId }, { merge: true }); // id값 추가
 
-            setFile("");
+            setFileUrls("");
         } catch (err) {
             console.error(err);
         } finally {
@@ -105,10 +122,10 @@ const useUpload = () => {
     };
 
     const handleImageDeleteCLick = () => {
-        setFile(null);
+        setFileUrls(null);
     };
 
-    return { file, title, price, brand, size, desc, category, onFileChange, onChange, onSubmit, handleImageDeleteCLick };
+    return { fileUrls, title, price, brand, size, desc, category, onFileChange, onChange, onSubmit, handleImageDeleteCLick };
 };
 
 export default useUpload;

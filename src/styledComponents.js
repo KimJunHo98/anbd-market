@@ -385,8 +385,13 @@ export const Div = styled.div`
                     font-weight: 400;
                     color: #999;
 
+                    &.subCategory {
+                        text-decoration: underline;
+                        font-size: 1.4rem;
+                    }
                     &.price {
-                        color: #ccc;
+                        margin-left: 10px;
+                        color: #ddd;
                     }
                     &.time {
                         margin-left: 10px;
