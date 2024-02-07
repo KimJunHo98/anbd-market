@@ -2,15 +2,14 @@ import React from "react";
 import useUpload from "../hooks/useUpload";
 import { categoryList, subCategoryList } from "../constant";
 
-import { Container, Div, H2, Inner, Section, Form, Label, Input, Span, TextArea, Select, Option, Img, Button } from "../styledComponents";
+import { Container, Div, H2, Inner, Section, Form, Label, Input, Span, TextArea, Select, Option, P } from "../styledComponents";
 import { FaCamera } from "react-icons/fa";
-import { MdCancel } from "react-icons/md";
 
 const UploadForm = () => {
-    const { fileUrls, title, price, brand, size, desc, subCategory, category, onFileChange, onChange, onSubmit, handleImageDeleteCLick } =
+    const { fileUrls, title, price, brand, size, desc, subCategory, category, onFileChange, onChange, onSubmit } =
         useUpload();
-
         console.log(fileUrls);
+
     return (
         <Section id="register">
             <H2 className="blind">물건 등록 폼</H2>
@@ -31,16 +30,7 @@ const UploadForm = () => {
                                     onChange={onFileChange}
                                     className="photo_input register_input"
                                 />
-                                {fileUrls &&
-                                    fileUrls.map((urls, i) => (
-                                        // console.log(urls)
-                                        <Div className="thumb_img" key={urls}>
-                                            <Img src={urls} alt="" />
-                                            <Button className="delete_btn" onClick={handleImageDeleteCLick(i)}>
-                                                <MdCancel />
-                                            </Button>
-                                        </Div>
-                                    ))}
+                                <P>최대 <Span>{fileUrls.length}</Span> / 10</P>
                             </Div>
                             <Div className="register_title register_input_box">
                                 <Label htmlFor="title_input" className="title_label register_label">

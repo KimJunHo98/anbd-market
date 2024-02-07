@@ -12,6 +12,7 @@ dayjs.locale("ko");
 const Product = () => {
     const { products, loading } = useFetchProducts();
 
+    console.log(products);
     return (
         <Article id="product">
             <H2 className="blind">상품 페이지</H2>

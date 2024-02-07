@@ -19,31 +19,35 @@ const useUpload = () => {
     const [subCategory, setSubCategory] = useState("");
     const navigate = useNavigate();
 
-    const onFileChange = (e) => {
+    const onFileChange = async (e) => {
         const {
             target: { files },
         } = e;
 
         if (files) {
             const fileArray = Array.from(files);
-            let fileLength = fileArray.length <= 10;
-
-            for (let i = 0; i < fileLength; i++) {
+            const newUrls = [];
+            const filesLength = fileArray.length > 10 ? 10 : fileArray.length;
+    
+            for (let i = 0; i < filesLength; i++) {
                 const fileReader = new FileReader();
                 const file = fileArray[i];
-
-                fileReader.readAsDataURL(file);
+    
                 fileReader.onload = (e) => {
                     const {
                         currentTarget: { result },
                     } = e;
-                    const Urls = [result];
-
-                    setFileUrls(() => [...Urls]);
+                    newUrls.push(result);
+    
+                    if (newUrls.length === filesLength) {
+                        setFileUrls([...newUrls]);
+                    }
                 };
+                fileReader.readAsDataURL(file);
             }
         }
     };
+    console.log(fileUrls);
 
     const onChange = (e) => {
         const { name, value } = e.target;
@@ -95,20 +99,17 @@ const useUpload = () => {
 
             newDocId = docRef.id;
 
-            // Loop through image files
-            await Promise.all(
-                fileUrls.map(async (image, i) => {
-                    const fileRef = ref(storage, `product/${useObj.uid}/${newDocId}/image${i}`);
+            await fileUrls.map(async (image, i) => {
+                const fileRef = ref(storage, `product/${useObj.uid}/${newDocId}/${i}`);
 
-                    await uploadString(fileRef, image, "data_url");
-
-                    const downloadURL = await getDownloadURL(fileRef);
+                uploadString(fileRef, image, "data_url").then(async (e) => {
+                    const downloadURL = await getDownloadURL(e.ref);
                     imagesArray.push(downloadURL);
-                })
-            );
 
-            // Update Firestore document with image URLs
-            await updateDoc(doc(firestore, "product", newDocId), { imageUrl: imagesArray });
+                    await updateDoc(doc(firestore, "product", newDocId), { imageUrl: imagesArray });
+                });
+            });
+
             await setDoc(doc(collection(firestore, "product"), newDocId), { id: newDocId }, { merge: true }); // id값 추가
 
             setFileUrls("");
