@@ -4,9 +4,10 @@ import { firestore } from "../firebase";
 import { useParams } from "react-router-dom";
 
 const useFetchProducts = () => {
-    const { category, id } = useParams();
+    const { category, id, value } = useParams();
     const [products, setProducts] = useState([]);
     const [product, setProduct] = useState("");
+    const [subCategoryItems, setSubCategoryItems] = useState([]);
     const [loading, setLoading] = useState(true);
 
     // product
@@ -66,6 +67,36 @@ const useFetchProducts = () => {
         fetchCategoryProducts();
     }, [category]);
 
+    // subCategory
+    useEffect(() => {
+        const fetchSubCategoryProducts = async () => {
+            try {
+                if (value) {
+                    // 특정 서브카테고리에 속하는 제품들을 가져오기 위한 Firestore 쿼리
+                    const q = query(collection(firestore, "product"), where("subCategory", "==", value));
+                    const querySnapshot = await getDocs(q);
+
+                    const subCategoryProducts = querySnapshot.docs.map((doc) => ({
+                        id: doc.id,
+                        ...doc.data(),
+                    }));
+
+                    if (subCategoryProducts) {
+                        setSubCategoryItems(subCategoryProducts);
+                    } else {
+                        console.log("제품이 존재하지 않습니다.");
+                    }
+                }
+            } catch (err) {
+                console.error(err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchSubCategoryProducts();
+    }, [value]);
+
     // detail
     useEffect(() => {
         const fetchProductDetail = async () => {
@@ -91,7 +122,7 @@ const useFetchProducts = () => {
         fetchProductDetail();
     }, [id]);
 
-    return { products, product, loading };
+    return { products, product, loading, subCategoryItems };
 };
 
 export default useFetchProducts;

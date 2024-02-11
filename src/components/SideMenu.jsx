@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useStateContext } from "../context/useStateContext";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 
-import { Aside, Nav, Ul, Li, ALink, Button, Div, Span, P, H2 } from "../styledComponents";
+import { Aside, Nav, Ul, Li, ALink, Button, Div, Span, P, H2, Em } from "../styledComponents";
 import { IoClose } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
+import { subCategoryList } from "../constant";
+import { FaMinus, FaPlus } from "react-icons/fa6";
 
 const SideMenu = () => {
-    const { show, setShow, isLogIn, useObj } = useStateContext();
+    const { show, setShow, isLogIn, useObj, handleMenuClick } = useStateContext();
+    const [isCategoryOpen, setIsCategoryOpen] = useState(false);
     const navigate = useNavigate();
 
     const handleLogOutClick = () => {
@@ -20,6 +23,10 @@ const SideMenu = () => {
 
     const handleCancelBtnClick = () => {
         setShow((prevShow) => !prevShow);
+    };
+
+    const handleToggleBtnClick = () => {
+        setIsCategoryOpen((prevOpen) => !prevOpen);
     };
 
     return (
@@ -49,17 +56,40 @@ const SideMenu = () => {
                         </Ul>
                     )}
                 </Div>
-                <Nav className="menu_nav">
-                    {isLogIn && (
-                        <Div className="my_page">
-                            <Div className="my_page_items">
-                                <Span className="thumb">
-                                    <FaUserCircle />
-                                </Span>
-                                <P className="nick_name">{useObj.displayName} 님</P>
-                            </Div>
+                {isLogIn && (
+                    <Div className="my_page">
+                        <Div className="my_page_items">
+                            <Span className="thumb">
+                                <FaUserCircle />
+                            </Span>
+                            <P className="nick_name">{useObj.displayName} 님</P>
                         </Div>
-                    )}
+                    </Div>
+                )}
+                <Nav className="menu_nav">
+                    <Ul className="category_menu">
+                        <Li className="menu_item">
+                            <Button className="toggle_button" onClick={handleToggleBtnClick}>
+                                <Span className="item_title">카테고리</Span>
+                                {isCategoryOpen ? (
+                                    <Em className="item_icon">
+                                        <FaMinus />
+                                    </Em>
+                                ) : (
+                                    <Em className="item_icon">
+                                        <FaPlus />
+                                    </Em>
+                                )}
+                            </Button>
+                            <Ul className={`menu_depth ${isCategoryOpen ? "open" : ""}`}>
+                                {subCategoryList.map((item) => (
+                                    <Li key={item.text} className="depth_item">
+                                        <ALink to={`/product/subcategory/${item.value}`} onClick={handleMenuClick} className="depth_link">{item.text}</ALink>
+                                    </Li>
+                                ))}
+                            </Ul>
+                        </Li>
+                    </Ul>
                 </Nav>
             </Div>
         </Aside>

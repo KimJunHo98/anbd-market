@@ -8,6 +8,7 @@ import Signup from "../routes/Signup";
 import Login from "../routes/Login";
 import Profile from "../routes/Profile";
 import Category from "../routes/Category";
+import SubCategory from "../routes/SubCategory";
 import Notice from "../routes/Notice";
 import Mypick from "../routes/Mypick";
 import Product from "../routes/Product";
@@ -27,6 +28,7 @@ const Main = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/product" element={<Product />} />
                 <Route path="/product/:category" element={<Category />} />
+                <Route path="/product/subcategory/:value" element={<SubCategory />} />
                 <Route path="/product/detail/:id/*" element={<Detail />} />
                 {isLogIn ? (
                     <Route

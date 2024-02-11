@@ -2,13 +2,11 @@ import React from "react";
 import useUpload from "../hooks/useUpload";
 import { categoryList, subCategoryList } from "../constant";
 
-import { Container, Div, H2, Inner, Section, Form, Label, Input, Span, TextArea, Select, Option, P } from "../styledComponents";
+import { Container, Div, H2, Inner, Section, Form, Label, Input, Span, TextArea, Select, Option, P, Img } from "../styledComponents";
 import { FaCamera } from "react-icons/fa";
 
 const UploadForm = () => {
-    const { fileUrls, title, price, brand, size, desc, subCategory, category, onFileChange, onChange, onSubmit } =
-        useUpload();
-        console.log(fileUrls);
+    const { fileUrls, title, price, brand, size, desc, subCategory, category, onFileChange, onChange, onSubmit } = useUpload();
 
     return (
         <Section id="register">
@@ -30,8 +28,11 @@ const UploadForm = () => {
                                     onChange={onFileChange}
                                     className="photo_input register_input"
                                 />
-                                <P>최대 <Span>{fileUrls.length}</Span> / 10</P>
+                                <Div className="file_image_wrap">{fileUrls && fileUrls.map((url) => <Img key={url} src={url} alt="" className="thumb_image" />)}</Div>
                             </Div>
+                            <P className="maximum">
+                                최대 <Span>{fileUrls.length}</Span> / 10
+                            </P>
                             <Div className="register_title register_input_box">
                                 <Label htmlFor="title_input" className="title_label register_label">
                                     <Span className="required">*</Span>제목

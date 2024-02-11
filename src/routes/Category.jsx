@@ -24,7 +24,7 @@ const Category = () => {
 
     return (
         <Section id="category">
-            <H2 className="blind">카테고리 제품 목록</H2>
+            <H2 className="blind">카테고리 제품 페이지</H2>
             <Container>
                 <Inner>
                     <Div className="category">
