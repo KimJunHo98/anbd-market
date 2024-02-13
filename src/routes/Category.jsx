@@ -38,7 +38,7 @@ const Category = () => {
                                     <P className="not_have">등록된 상품이 없습니다.</P>
                                 ) : productsCategory.length > 0 ? (
                                     productsCategory.map((product) => (
-                                        <Article className="category_list" key={product.id}>
+                                        <Article className="category_item_wrap" key={product.id}>
                                             <ALink to={`/product/detail/${product.id}`} className="category_item">
                                                 <Div className="category_image">
                                                     <Img src={product.imageUrl} alt={product.title} />

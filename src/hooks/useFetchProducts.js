@@ -122,7 +122,16 @@ const useFetchProducts = () => {
         fetchProductDetail();
     }, [id]);
 
-    return { products, product, loading, subCategoryItems };
+        // 최신순으로 정렬
+        const compareProductsByDate = (recentA, recentB) => new Date(recentB.createdAt) - new Date(recentA.createdAt);
+
+        // 카테고리별 필터링
+        const filteredBestCategory = products.filter((result) => result.category === "best").sort(compareProductsByDate);
+        const filteredFreeCategory = products.filter((result) => result.category === "free").sort(compareProductsByDate);
+        const filteredExchangeCategory = products.filter((result) => result.category === "exchange").sort(compareProductsByDate);
+        const filteredReuseCategory = products.filter((result) => result.category === "reuse").sort(compareProductsByDate);
+
+    return { products, product, loading, subCategoryItems, filteredBestCategory, filteredFreeCategory, filteredExchangeCategory,filteredReuseCategory };
 };
 
 export default useFetchProducts;

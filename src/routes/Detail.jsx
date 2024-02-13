@@ -24,7 +24,7 @@ const Detail = () => {
                             <P>로딩 중...</P>
                         </Div>
                     ) : (
-                        <Article className="detail_item">
+                        <Article className="detail_item_wrap">
                             <Div className="detail_image">
                                 <Img src={product.imageUrl} alt={product.title} />
                             </Div>

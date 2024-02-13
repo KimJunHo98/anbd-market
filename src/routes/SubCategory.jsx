@@ -38,7 +38,7 @@ const SubCategory = () => {
                                     <P className="not_have">등록된 상품이 없습니다.</P>
                                 ) : productsSubCategory.length > 0 ? (
                                     productsSubCategory.map((item) => (
-                                        <Article className="sub_category_list" key={item.id}>
+                                        <Article className="sub_category_item_wrap" key={item.id}>
                                             <ALink to={`/product/detail/${item.id}`} className="sub_category_item">
                                                 <Div className="sub_category_image">
                                                     <Img src={item.imageUrl} alt={item.title} />

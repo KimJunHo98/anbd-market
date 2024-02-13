@@ -28,7 +28,9 @@ const UploadForm = () => {
                                     onChange={onFileChange}
                                     className="photo_input register_input"
                                 />
-                                <Div className="file_image_wrap">{fileUrls && fileUrls.map((url) => <Img key={url} src={url} alt="" className="thumb_image" />)}</Div>
+                                <Div className="file_image_wrap">
+                                    {fileUrls && fileUrls.map((url) => <Img key={url} src={url} alt="" className="thumb_image" />)}
+                                </Div>
                             </Div>
                             <P className="maximum">
                                 최대 <Span>{fileUrls.length}</Span> / 10
@@ -105,13 +107,14 @@ const UploadForm = () => {
                             </Div>
                             <Div className="register_brand register_input_box">
                                 <Label htmlFor="brand_input" className="brand_label register_label">
-                                    브랜드
+                                    <Span className="required">*</Span>브랜드
                                 </Label>
                                 <Input
                                     id="brand_input"
                                     name="brand"
                                     className="brand_input register_input"
                                     type="text"
+                                    required
                                     maxLength={100}
                                     placeholder="브랜드명을 입력하세요."
                                     value={brand}

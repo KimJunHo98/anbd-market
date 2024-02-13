@@ -18,7 +18,7 @@ const Banner = () => {
                             spaceBetween={50}
                             slidesPerView={1}
                             pagination={{
-                                dynamicBullets: true,
+                                type: "fraction",
                                 clickable: true,
                             }}
                             mousewheel={true}
