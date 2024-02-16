@@ -17,7 +17,7 @@ const useUpload = () => {
     const [desc, setDesc] = useState("");
     const [category, setCategory] = useState("");
     const [subCategory, setSubCategory] = useState("");
-    const navigate = useNavigate();
+    const navigate = useNavigate("");
 
     const onFileChange = async (e) => {
         const {

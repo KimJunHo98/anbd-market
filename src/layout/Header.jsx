@@ -19,7 +19,6 @@ import {
     Ul,
     Li,
     StyledNavLink,
-    Article,
 } from "../styledComponents";
 
 import { IoMdSearch } from "react-icons/io";
@@ -43,9 +42,20 @@ const Header = () => {
     const handleSearchBtnClick = () => {
         setSearch((prevSearch) => !prevSearch);
     };
-    const handleCanelbtnClick = () => {
+    const handleCancelBtnClick = () => {
         setSearch((prevSearch) => !prevSearch);
     };
+
+    const renderSearch = () => (
+        <Div className="toggle_search">
+            <Div className="toggle_search_top">
+                <Search />
+                <Button onClick={handleCancelBtnClick} className="cancel_btn">
+                    취소
+                </Button>
+            </Div>
+        </Div>
+    );
 
     return (
         <HeaderTag id="header">
@@ -66,16 +76,17 @@ const Header = () => {
                             </Div>
                             <Div className="header_bottom">
                                 <Search />
-                                <Nav className="header_nav">
+                                <Nav className="header_nav">                        
                                     <Ul className="category_list">
-                                        <Li className="category_items">
+                                        {/* <Li className="category_items">
                                             <StyledNavLink to="/" className="category_link" activeclassname="active">
                                                 전체
                                             </StyledNavLink>
-                                        </Li>
+                                        </Li> */}
                                         {categoryList.map((category) => (
                                             <Li className="category_items" key={category.text}>
                                                 <StyledNavLink
+                                                    exact="true"
                                                     to={`/product/${category.value}`}
                                                     className="category_link"
                                                     activeclassname="active"
@@ -106,16 +117,7 @@ const Header = () => {
                                     <Span className="bar" />
                                 </Button>
                             </Div>
-                            {search && (
-                                <Article className="toggle_search">
-                                    <Div className="toggle_search_top">
-                                        <Search />
-                                        <Button onClick={handleCanelbtnClick} className="cancel_btn">
-                                            취소
-                                        </Button>
-                                    </Div>
-                                </Article>
-                            )}
+                            {search && renderSearch()}
                         </Div>
                     )}
                 </Inner>

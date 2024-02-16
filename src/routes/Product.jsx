@@ -1,165 +1,83 @@
 import React from "react";
 import useFetchProducts from "../hooks/useFetchProducts";
+import { useSearchContext } from "../context/useSearchContext";
+
+import { Div, ALink, H2, Article, Ul, Li, Img, P, Container, Inner } from "../styledComponents";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
-import { Div, ALink, H2, Article, Ul, Li, Img, P, H3 } from "../styledComponents";
-import { FaAngleRight } from "react-icons/fa6";
 
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
 const Product = () => {
-    const { loading, filteredBestCategory, filteredFreeCategory, filteredExchangeCategory, filteredReuseCategory } = useFetchProducts();
+    const { loading, products } = useFetchProducts();
+    const { search } = useSearchContext();
 
-    // 숫자에 쉼표 추가하는 함수
-    const formatNumberWithCommas = (number) => {
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
+    const productsCategory = products.filter(
+        (result) =>
+            (result && result.brand.toLowerCase().includes(search.toLowerCase())) ||
+            result.title.toLowerCase().includes(search.toLowerCase()) ||
+            result.desc.toLowerCase().includes(search.toLowerCase())
+    );
 
-    console.log(filteredBestCategory, filteredFreeCategory, filteredExchangeCategory, filteredReuseCategory);
     return (
         <Article id="product">
-            <H2 className="blind">상품 페이지</H2>
-            <Div className="product">
-                {loading ? (
-                    <Div className="loading">
-                        <P>로딩 중...</P>
+            <Container>
+                <Inner>
+                    <H2 className="blind">상품 페이지</H2>
+                    <Div className="product">
+                        {loading ? (
+                            <Div className="loading">
+                                <P>로딩 중...</P>
+                            </Div>
+                        ) : (
+                            <>
+                                {products.length === 0 ? (
+                                    <P className="not_have">등록된 상품이 없습니다.</P>
+                                ) : productsCategory.length > 0 ? (
+                                    productsCategory.map((product) => (
+                                        <Article className="category_item_wrap" key={product.id}>
+                                            <ALink to={`/product/detail/${product.id}`} className="category_item">
+                                                <Div className="category_image">
+                                                    <Img src={product.imageUrl} alt={product.title} />
+                                                </Div>
+                                                <Div className="category_text">
+                                                    <Ul className="col_text">
+                                                        <Li className="title">{product.title}</Li>
+                                                        <Li className="price">{product.price}원</Li>
+                                                    </Ul>
+                                                    <Ul className="row_text">
+                                                        {product.brand === "" ? null : <Li className="brand">{product.brand}</Li>}
+                                                        <Li className="size">{product.size}</Li>
+                                                    </Ul>
+                                                    <Ul className="row_text">
+                                                        <Li className="time">{dayjs(product.createdAt).fromNow()}</Li>
+                                                        <Li className="state">
+                                                            {product.category === "best"
+                                                                ? "/ 베스트"
+                                                                : product.category === "exchange"
+                                                                ? "/ 교환"
+                                                                : product.category === "free"
+                                                                ? "/ 나눔"
+                                                                : product.category === "reuse"
+                                                                ? "/ 재사용"
+                                                                : ""}
+                                                        </Li>
+                                                    </Ul>
+                                                </Div>
+                                            </ALink>
+                                        </Article>
+                                    ))
+                                ) : (
+                                    productsCategory.length === 0 && <P className="not_have">검색하신 상품이 없습니다.</P>
+                                )}
+                            </>
+                        )}
                     </Div>
-                ) : (
-                    <>
-                        {filteredBestCategory.length === 0 ? null : (
-                            <>
-                                <Article className="product_item_wrap">
-                                    <H3 className="product_item_title">상태 좋은 아이템</H3>
-                                    <Div className="product_item_box">
-                                        {filteredBestCategory.slice(0, 3).map((best) => (
-                                            <ALink to={`/product/detail/${best.id}`} key={best.id} className="product_item">
-                                                <Div className="product_image">
-                                                    <Img src={best.imageUrl} alt={best.title} />
-                                                </Div>
-                                                <Ul className="product_col_text">
-                                                    <Li className="title">{best.title}</Li>
-                                                    <Li className="depth_text">
-                                                        <Ul className="depth_item">
-                                                            {best.brand === "" ? null : <Li className="brand">{best.brand}</Li>}
-                                                            <Li className="size">{best.size}</Li>
-                                                        </Ul>
-                                                    </Li>
-                                                    <Li className="price">{formatNumberWithCommas(best.price)}원</Li>
-                                                </Ul>
-                                            </ALink>
-                                        ))}
-                                    </Div>
-                                    <Div className="show_more">
-                                        <ALink to="/product/best" className="more_btn">
-                                            더보기
-                                            <FaAngleRight />
-                                        </ALink>
-                                    </Div>
-                                </Article>
-                            </>
-                        )}
-                        {filteredFreeCategory.length === 0 ? null : (
-                            <>
-                                <Article className="product_item_wrap">
-                                    <H3 className="product_item_title">무료 나눔 아이템</H3>
-                                    <Div className="product_item_box">
-                                        {filteredFreeCategory.slice(0, 3).map((best) => (
-                                            <ALink to={`/product/detail/${best.id}`} key={best.id} className="product_item">
-                                                <Div className="product_image">
-                                                    <Img src={best.imageUrl} alt={best.title} />
-                                                </Div>
-                                                <Ul className="product_col_text">
-                                                    <Li className="title">{best.title}</Li>
-                                                    <Li className="depth_text">
-                                                        <Ul className="depth_item">
-                                                            {best.brand === "" ? null : <Li className="brand">{best.brand}</Li>}
-                                                            <Li className="size">{best.size}</Li>
-                                                        </Ul>
-                                                    </Li>
-                                                    <Li className="price">{formatNumberWithCommas(best.price)}원</Li>
-                                                </Ul>
-                                            </ALink>
-                                        ))}
-                                    </Div>
-                                    <Div className="show_more">
-                                        <ALink to="/product/free" className="more_btn">
-                                            더보기
-                                            <FaAngleRight />
-                                        </ALink>
-                                    </Div>
-                                </Article>
-                            </>
-                        )}
-                        {filteredExchangeCategory.length === 0 ? null : (
-                            <>
-                                <Article className="product_item_wrap">
-                                    <H3 className="product_item_title">물품을 교환해보세요</H3>
-                                    <Div className="product_item_box">
-                                        {filteredExchangeCategory.slice(0, 3).map((best) => (
-                                            <ALink to={`/product/detail/${best.id}`} key={best.id} className="product_item">
-                                                <Div className="product_image">
-                                                    <Img src={best.imageUrl} alt={best.title} />
-                                                </Div>
-                                                <Ul className="product_col_text">
-                                                    <Li className="title">{best.title}</Li>
-                                                    <Li className="depth_text">
-                                                        <Ul className="depth_item">
-                                                            {best.brand === "" ? null : <Li className="brand">{best.brand}</Li>}
-                                                            <Li className="size">{best.size}</Li>
-                                                        </Ul>
-                                                    </Li>
-                                                    <Li className="price">{formatNumberWithCommas(best.price)}원</Li>
-                                                </Ul>
-                                            </ALink>
-                                        ))}
-                                    </Div>
-                                    <Div className="show_more">
-                                        <ALink to="/product/exchange" className="more_btn">
-                                            더보기
-                                            <FaAngleRight />
-                                        </ALink>
-                                    </Div>
-                                </Article>
-                            </>
-                        )}
-                        {filteredReuseCategory.length === 0 ? null : (
-                            <>
-                                <Article className="product_item_wrap">
-                                    <H3 className="product_item_title">다시 쓸만한 아이템</H3>
-                                    <Div className="product_item_box">
-                                        {filteredReuseCategory.slice(0, 3).map((best) => (
-                                            <ALink to={`/product/detail/${best.id}`} key={best.id} className="product_item">
-                                                <Div className="product_image">
-                                                    <Img src={best.imageUrl} alt={best.title} />
-                                                </Div>
-                                                <Ul className="product_col_text">
-                                                    <Li className="title">{best.title}</Li>
-                                                    <Li className="depth_text">
-                                                        <Ul className="depth_item">
-                                                            {best.brand === "" ? null : <Li className="brand">{best.brand}</Li>}
-                                                            <Li className="size">{best.size}</Li>
-                                                        </Ul>
-                                                    </Li>
-                                                    <Li className="price">{formatNumberWithCommas(best.price)}원</Li>
-                                                </Ul>
-                                            </ALink>
-                                        ))}
-                                    </Div>
-                                    <Div className="show_more">
-                                        <ALink to="/product/reuse" className="more_btn">
-                                            더보기
-                                            <FaAngleRight />
-                                        </ALink>
-                                    </Div>
-                                </Article>
-                            </>
-                        )}
-                    </>
-                )}
-            </Div>
+                </Inner>
+            </Container>
         </Article>
     );
 };

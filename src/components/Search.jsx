@@ -3,9 +3,14 @@ import { useSearchContext } from "../context/useSearchContext";
 
 import { Div, Input, Label, Form, Button } from "../styledComponents";
 import { IoMdSearch } from "react-icons/io";
+import { MdCancel } from "react-icons/md";
 
 const Search = () => {
-    const { search, onChange, onSubmit } = useSearchContext();
+    const { search, setSearch, onChange, onSubmit } = useSearchContext();
+
+    const handleSearchCancelBtnCLick = () => {
+        setSearch("");
+    }
 
     return (
         <Div className="search">
@@ -20,6 +25,10 @@ const Search = () => {
                     value={search}
                     onChange={onChange}
                 ></Input>
+                {search.length > 0 ? 
+                <Button className="search_cancel_btn" type="button" onClick={handleSearchCancelBtnCLick}>
+                    <MdCancel className="search_cancel_icon" />
+                </Button> : null}
                 <Button className="search_btn" type="submit">
                     <IoMdSearch className="search_icon" />
                 </Button>

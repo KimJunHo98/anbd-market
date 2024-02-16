@@ -131,7 +131,7 @@ const useFetchProducts = () => {
         const filteredExchangeCategory = products.filter((result) => result.category === "exchange").sort(compareProductsByDate);
         const filteredReuseCategory = products.filter((result) => result.category === "reuse").sort(compareProductsByDate);
 
-    return { products, product, loading, subCategoryItems, filteredBestCategory, filteredFreeCategory, filteredExchangeCategory,filteredReuseCategory };
+    return { products, product, loading, subCategoryItems, filteredBestCategory, filteredFreeCategory, filteredExchangeCategory, filteredReuseCategory };
 };
 
 export default useFetchProducts;

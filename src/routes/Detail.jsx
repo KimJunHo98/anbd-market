@@ -45,14 +45,24 @@ const Detail = () => {
                             <Div className="detail_text">
                                 <H4 className="title">{product.title}</H4>
                                 <Div className="row_text">
-                                    <P className="subCategory">{product.subCategoryText}</P>
+                                    <P className="subCategory">
+                                        {product.category === "best"
+                                            ? "베스트 > "
+                                            : product.category === "exchange"
+                                            ? "교환 > "
+                                            : product.category === "free"
+                                            ? "나눔 > "
+                                            : product.category === "reuse"
+                                            ? "재사용 > "
+                                            : ""}
+                                        {product.subCategoryText}
+                                    </P>
                                     <P className="price">{product.price}원</P>
                                     <P className="time">{dayjs(product.createdAt).fromNow()}</P>
                                 </Div>
                                 <Div className="row_text">
                                     {product.brand && <P className="brand">{product.brand}</P>}
                                     {product.size && <P className="size">{product.size}</P>}
-                                    
                                 </Div>
                                 <P className="desc">{product.desc}</P>
                             </Div>

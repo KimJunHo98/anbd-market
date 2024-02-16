@@ -3,6 +3,7 @@ import { useStateContext } from "../context/useStateContext";
 import { footerNav } from "../constant";
 
 import Sell from "../components/Sell";
+import Top from "../components/Top";
 import { Container, Div, FooterTag, H2, Inner, Li, Nav, Span, Ul, Paginate } from "../styledComponents";
 
 const Footer = () => {
@@ -14,7 +15,8 @@ const Footer = () => {
             <Container>
                 <Inner className="inner">
                     <Div className="footer">
-                        <Sell isLogIn={isLogIn} />
+                        <Sell />
+                        <Top />
                         <Nav className="footer_nav">
                             <Ul className="quick_menu_list">
                                 {footerNav.map((footer) => (

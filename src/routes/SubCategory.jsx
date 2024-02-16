@@ -22,6 +22,8 @@ const SubCategory = () => {
             result.brand.toLowerCase().includes(search.toLowerCase())
     );
 
+    console.log(productsSubCategory);
+
     return (
         <Section id="subCategory">
             <H2 className="blind">서브 카테고리 페이지</H2>
@@ -52,7 +54,20 @@ const SubCategory = () => {
                                                         {item.brand === "" ? null : <Li className="brand">{item.brand}</Li>}
                                                         <Li className="size">{item.size}</Li>
                                                     </Ul>
-                                                    <P className="time">{dayjs(item.createdAt).fromNow()}</P>
+                                                    <Ul className="row_text">
+                                                        <Li className="time">{dayjs(item.createdAt).fromNow()}</Li>
+                                                        <Li className="state">
+                                                            {item.category === "best"
+                                                                ? "/ 베스트"
+                                                                : item.category === "exchange"
+                                                                ? "/ 교환"
+                                                                : item.category === "free"
+                                                                ? "/ 나눔"
+                                                                : item.category === "reuse"
+                                                                ? "/ 재사용"
+                                                                : ""}
+                                                        </Li>
+                                                    </Ul>
                                                 </Div>
                                             </ALink>
                                         </Article>

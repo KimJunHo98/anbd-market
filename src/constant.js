@@ -5,6 +5,7 @@ import { IoMdHeart } from "react-icons/io";
 import { IoReceiptSharp } from "react-icons/io5";
 
 export const categoryList = [
+    { text: "전체", value: "" },
     { text: "베스트", desc: "(상태가 좋은 물건 판매)", value: "best" },
     { text: "나눔", desc: "(무료 나눔)", value: "free" },
     { text: "교환", desc: "(서로 교환)", value: "exchange" },

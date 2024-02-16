@@ -4,7 +4,7 @@ const SearchContext = createContext();
 
 export const SearchProvider = ({ children }) => {
     const [search, setSearch] = useState("");
-
+    
     const onChange = (e) => {
         setSearch(e.target.value);
     };
