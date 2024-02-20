@@ -1,33 +1,16 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React from "react";
+import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import { useStateContext } from "../context/useStateContext";
 import { categoryList } from "../constant";
 
 import Search from "../components/Search";
-import {
-    H2,
-    ALink,
-    H1,
-    HeaderTag,
-    Container,
-    Inner,
-    Div,
-    Img,
-    Button,
-    Span,
-    Nav,
-    Ul,
-    Li,
-    StyledNavLink,
-} from "../styledComponents";
+import { H2, ALink, H1, HeaderTag, Container, Inner, Div, Img, Button, Span, Nav, Ul, Li } from "../styledComponents";
 
-import { IoMdSearch } from "react-icons/io";
 import { GoHomeFill } from "react-icons/go";
 import { RiArrowLeftSLine } from "react-icons/ri";
 
 const Header = () => {
     const { handleMenuClick } = useStateContext();
-    const [search, setSearch] = useState(false);
     const navigate = useNavigate("");
     const location = useLocation();
 
@@ -39,23 +22,6 @@ const Header = () => {
     const handleHomeBtnClick = () => {
         navigate("/");
     };
-    const handleSearchBtnClick = () => {
-        setSearch((prevSearch) => !prevSearch);
-    };
-    const handleCancelBtnClick = () => {
-        setSearch((prevSearch) => !prevSearch);
-    };
-
-    const renderSearch = () => (
-        <Div className="toggle_search">
-            <Div className="toggle_search_top">
-                <Search />
-                <Button onClick={handleCancelBtnClick} className="cancel_btn">
-                    취소
-                </Button>
-            </Div>
-        </Div>
-    );
 
     return (
         <HeaderTag id="header">
@@ -76,23 +42,13 @@ const Header = () => {
                             </Div>
                             <Div className="header_bottom">
                                 <Search />
-                                <Nav className="header_nav">                        
+                                <Nav className="header_nav">
                                     <Ul className="category_list">
-                                        {/* <Li className="category_items">
-                                            <StyledNavLink to="/" className="category_link" activeclassname="active">
-                                                전체
-                                            </StyledNavLink>
-                                        </Li> */}
                                         {categoryList.map((category) => (
                                             <Li className="category_items" key={category.text}>
-                                                <StyledNavLink
-                                                    exact="true"
-                                                    to={`/product/${category.value}`}
-                                                    className="category_link"
-                                                    activeclassname="active"
-                                                >
+                                                <NavLink to={`/product/${category.value}`} className="category_link" end>
                                                     {category.text}
-                                                </StyledNavLink>
+                                                </NavLink>
                                             </Li>
                                         ))}
                                     </Ul>
@@ -110,14 +66,10 @@ const Header = () => {
                                 <Button onClick={handleHomeBtnClick} className="home_btn">
                                     <GoHomeFill />
                                 </Button>
-                                <Button onClick={handleSearchBtnClick} className="detail_search_btn">
-                                    <IoMdSearch />
-                                </Button>
                                 <Button onClick={handleMenuClick} className="menu_btn">
                                     <Span className="bar" />
                                 </Button>
                             </Div>
-                            {search && renderSearch()}
                         </Div>
                     )}
                 </Inner>

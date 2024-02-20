@@ -1,5 +1,6 @@
 import React from "react";
 import useFetchProducts from "../hooks/useFetchProducts";
+import useFetchPickedItems from "../hooks/useFetchPickedItems";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -13,6 +14,7 @@ dayjs.locale("ko");
 
 const Detail = () => {
     const { product, loading } = useFetchProducts();
+    const { handleAddProduct } = useFetchPickedItems();
 
     return (
         <Section id="detail">
@@ -36,7 +38,7 @@ const Detail = () => {
                                     <H3 className="username">{product.username}</H3>
                                 </Div>
                                 <Div className="user_btns">
-                                    <Button className="pick_btn">
+                                    <Button className="pick_btn" onClick={handleAddProduct}>
                                         <IoMdHeartEmpty />
                                     </Button>
                                     <Button className="buy_btn">구매하기</Button>

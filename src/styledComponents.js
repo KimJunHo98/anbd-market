@@ -720,6 +720,30 @@ export const Li = styled.li`
         padding-bottom: 10px;
         font-weight: 600;
     }
+
+    &.category_items {
+        .category_link {
+            display: block;
+            position: relative;
+            padding: 15px 10px;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 400;
+    
+            &.active {
+                color: var(--primary-color);
+            }
+            &.active:after {
+                content: "";
+                width: 100%;
+                height: 2px;
+                position: absolute;
+                bottom: 0px;
+                left: 0;
+                background-color: var(--primary-color);
+            }
+        }
+    }
 `;
 export const P = styled.p`
     &.nick_name {
@@ -801,27 +825,6 @@ export const Em = styled.em``;
 
 // 링크, 버튼
 export const StyledNavLink = styled(NavLink)`
-    &.category_link {
-        display: block;
-        position: relative;
-        padding: 15px 10px;
-        text-align: center;
-        font-size: 1.4rem;
-        font-weight: 400;
-
-        &.active {
-            color: var(--primary-color);
-        }
-        &.active:after {
-            content: "";
-            width: 100%;
-            height: 2px;
-            position: absolute;
-            bottom: 0px;
-            left: 0;
-            background-color: var(--primary-color);
-        }
-    }
 `;
 export const Paginate = styled(StyledNavLink)`
     &.quick_menu_link {
