@@ -79,7 +79,7 @@ const UploadForm = () => {
                                     onChange={(e) => onChange({ target: e.target })}
                                 >
                                     <Option value="">선택하세요</Option>
-                                    {categoryList.map((category) => (
+                                    {categoryList.slice(1, 5).map((category) => (
                                         <Option key={category.text} value={category.value}>
                                             {category.text} {category.desc}
                                         </Option>
@@ -107,14 +107,13 @@ const UploadForm = () => {
                             </Div>
                             <Div className="register_brand register_input_box">
                                 <Label htmlFor="brand_input" className="brand_label register_label">
-                                    <Span className="required">*</Span>브랜드
+                                    브랜드
                                 </Label>
                                 <Input
                                     id="brand_input"
                                     name="brand"
                                     className="brand_input register_input"
                                     type="text"
-                                    required
                                     maxLength={100}
                                     placeholder="브랜드명을 입력하세요."
                                     value={brand}

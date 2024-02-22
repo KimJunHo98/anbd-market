@@ -43,8 +43,8 @@ const useFetchProducts = () => {
             try {
                 if (category) {
                     // 특정 카테고리에 속하는 제품들을 가져오기 위한 Firestore 쿼리
-                    const q = query(collection(firestore, "product"), where("category", "==", category));
-                    const querySnapshot = await getDocs(q);
+                    const categoryCollectionRef = query(collection(firestore, "product"), where("category", "==", category));
+                    const querySnapshot = await getDocs(categoryCollectionRef);
 
                     const categoryProducts = querySnapshot.docs.map((doc) => ({
                         id: doc.id,
@@ -73,8 +73,8 @@ const useFetchProducts = () => {
             try {
                 if (value) {
                     // 특정 서브카테고리에 속하는 제품들을 가져오기 위한 Firestore 쿼리
-                    const q = query(collection(firestore, "product"), where("subCategory", "==", value));
-                    const querySnapshot = await getDocs(q);
+                    const subCategoryCollectionRef = query(collection(firestore, "product"), where("subCategory", "==", value));
+                    const querySnapshot = await getDocs(subCategoryCollectionRef);
 
                     const subCategoryProducts = querySnapshot.docs.map((doc) => ({
                         id: doc.id,

@@ -82,7 +82,7 @@ export const Aside = styled.aside`
         bottom: 140px;
         right: 10px;
         z-index: 9;
-        transition: all .2s ease;
+        transition: all 0.2s ease;
 
         &.show {
             opacity: 1;
@@ -289,7 +289,14 @@ export const Div = styled.div`
 
     &.home {
         width: 100%;
-        padding: 30px 0;
+        min-height: calc(100vh - 400px);
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-direction: column;
+        gap: 80px 0;
+        padding: 30px 0 100px;
 
         .home_item_box {
             display: -webkit-box;
@@ -301,6 +308,7 @@ export const Div = styled.div`
             gap: 20px 0;
 
             .home_image img {
+                width: 211px;
                 height: 211px;
                 object-fit: cover;
                 border-radius: 15px;
@@ -385,32 +393,49 @@ export const Div = styled.div`
                 padding: 30px 20px;
                 font-size: 2rem;
 
+                .price {
+                    color: #ddd;
+                    font-size: 1.6rem;
+                }
                 .desc {
+                    line-height: 1.4;
                     padding-top: 20px;
                     font-size: 1.6rem;
                     font-weight: 300;
                 }
-                .row_text > p {
-                    display: inline-block;
+
+                .row_text {
+                    display: -webkit-box;
+                    display: -webkit-flex;
+                    display: -ms-flexbox;
+                    display: flex;
+                    gap: 0 10px;
                     font-size: 1.4rem;
                     font-weight: 400;
                     color: #999;
 
-                    &.subCategory {
-                        text-decoration: underline;
+                    &.top {
+                        justify-content: space-between;
+                    }
+
+                    .sub_category {
                         font-size: 1.4rem;
+
+                        .time {
+                            margin-left: 10px;
+                            font-size: 1.2rem;
+                        }
                     }
-                    &.price {
-                        margin-left: 10px;
-                        color: #ddd;
+                    .pick_count {
+                        font-size: 1.6rem;
+
+                        svg {
+                            margin-right: 5px;
+                            vertical-align: top;
+                        }
                     }
-                    &.time {
-                        margin-left: 10px;
-                        font-size: 1.2rem;
-                    }
-                    &.brand,
-                    &.size {
-                        margin-right: 5px;
+                    .brand,
+                    .size {
                         padding: 5px 7px 7px 7px;
                         border-radius: 3px;
                         font-size: 1.2rem;
@@ -423,16 +448,6 @@ export const Div = styled.div`
         }
     }
 
-    &.home {
-        width: 100%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        flex-direction: column;
-        gap: 80px 0;
-        padding: 30px 0 100px;
-    }
     &.product,
     &.category,
     &.sub_category {
@@ -446,6 +461,7 @@ export const Div = styled.div`
         gap: 10px 0;
         padding: 30px 0 69px;
 
+        .product_text,
         .category_text,
         .sub_category_text {
             display: -webkit-box;
@@ -456,6 +472,7 @@ export const Div = styled.div`
             gap: 10px 0;
             font-size: 1.4rem;
         }
+        .product_image,
         .category_image,
         .sub_category_image {
             width: 100px;
@@ -495,6 +512,18 @@ export const Div = styled.div`
         }
     }
 
+    &.receipt,
+    &.notice,
+    &.my_pick {
+        width: 100%;
+        height: calc(100vh - 173.5px);
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-direction: column;
+    }
+
     &.footer {
         position: relative;
     }
@@ -507,15 +536,7 @@ export const Div = styled.div`
         flex-direction: row;
         gap: 0 20px;
 
-        .thumb_img {
-            width: 62px;
-            height: 62px;
-            position: relative;
-
-            img {
-                border-radius: 5px;
-            }
-
+        .thumb_image {
             .delete_btn {
                 width: 30px;
                 padding: 0 0 1px 0;
@@ -667,10 +688,15 @@ export const Ul = styled.ul`
     }
     &.row_text > li.time,
     &.row_text > li.state {
-        padding: 0;
+        padding: 0 5px 0 0;
         font-size: 1.2rem;
         font-weight: 500;
         color: #999;
+        background-color: transparent;
+
+        &.state {
+            text-decoration: underline;
+        }
     }
 
     &.menu_depth {
@@ -729,7 +755,7 @@ export const Li = styled.li`
             text-align: center;
             font-size: 1.4rem;
             font-weight: 400;
-    
+
             &.active {
                 color: var(--primary-color);
             }
@@ -824,8 +850,7 @@ export const Span = styled.span`
 export const Em = styled.em``;
 
 // 링크, 버튼
-export const StyledNavLink = styled(NavLink)`
-`;
+export const StyledNavLink = styled(NavLink)``;
 export const Paginate = styled(StyledNavLink)`
     &.quick_menu_link {
         display: -webkit-box;
@@ -896,6 +921,8 @@ export const ALink = styled(Link)`
     &.home_item {
         max-width: 48%;
     }
+
+    &.product_item,
     &.category_item,
     &.sub_category_item {
         width: 100%;
@@ -1155,7 +1182,10 @@ export const Option = styled.option``;
 export const Img = styled.img`
     &.thumb_image {
         width: 62px;
-        object-fit: cover;
+        height: 62px;
+        position: relative;
+        margin-right: 10px;
+        border-radius: 5px;
     }
 `;
 

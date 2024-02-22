@@ -22,6 +22,13 @@ const Category = () => {
             result.brand.toLowerCase().includes(search.toLowerCase())
     );
 
+    const formatNumberWithCommas = (number) => {
+        if (number === null || number === undefined) {
+            return "N/A";
+        }
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+
     return (
         <Section id="category">
             <H2 className="blind">카테고리 제품 페이지</H2>
@@ -41,18 +48,32 @@ const Category = () => {
                                         <Article className="category_item_wrap" key={product.id}>
                                             <ALink to={`/product/detail/${product.id}`} className="category_item">
                                                 <Div className="category_image">
-                                                    <Img src={product.imageUrl} alt={product.title} />
+                                                    {product.imageUrl && <Img src={product.imageUrl[0]} alt={product.title} />}
                                                 </Div>
                                                 <Div className="category_text">
                                                     <Ul className="col_text">
                                                         <Li className="title">{product.title}</Li>
-                                                        <Li className="price">{product.price}원</Li>
+                                                        <Li className="price">{formatNumberWithCommas(product.price)}원</Li>
                                                     </Ul>
                                                     <Ul className="row_text">
                                                         {product.brand === "" ? null : <Li className="brand">{product.brand}</Li>}
                                                         <Li className="size">{product.size}</Li>
                                                     </Ul>
-                                                    <P className="time">{dayjs(product.createdAt).fromNow()}</P>
+                                                    <Ul className="row_text">
+                                                        <Li className="time">{dayjs(product.createdAt).fromNow()}</Li>
+                                                        <Li className="state">
+                                                            {product.category === "best"
+                                                                ? " 베스트/"
+                                                                : product.category === "exchange"
+                                                                ? " 교환/"
+                                                                : product.category === "free"
+                                                                ? " 나눔/"
+                                                                : product.category === "reuse"
+                                                                ? " 재사용/"
+                                                                : ""}
+                                                            {product.subCategoryText}
+                                                        </Li>
+                                                    </Ul>
                                                 </Div>
                                             </ALink>
                                         </Article>

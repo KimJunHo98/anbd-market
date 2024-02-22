@@ -5,6 +5,12 @@ import useFetchPickedItems from "../hooks/useFetchPickedItems";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Mousewheel, Keyboard } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+
 import { Article, Button, Container, Div, H2, H3, H4, Img, P, Section, Span } from "../styledComponents";
 import { FaUserCircle } from "react-icons/fa";
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
@@ -14,13 +20,15 @@ dayjs.locale("ko");
 
 const Detail = () => {
     const { product, loading } = useFetchProducts();
-    const { handleToggleLike, pickedItems } = useFetchPickedItems();
+    const { handleToggleLike, filteredPickeditem } = useFetchPickedItems();
 
-    const filteredPickeditem = pickedItems.filter((pick) => pick.title === product.title && pick.pickedId === product.useId )
-    console.log(pickedItems);
-    console.log(filteredPickeditem);
-    console.log(product);
-    
+    const formatNumberWithCommas = (number) => {
+        if (number === null || number === undefined) {
+            return "N/A";
+        }
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+
     return (
         <Section id="detail">
             <H2 className="blind">상품 디테일 페이지</H2>
@@ -33,7 +41,25 @@ const Detail = () => {
                     ) : (
                         <Article className="detail_item_wrap">
                             <Div className="detail_image">
-                                <Img src={product.imageUrl} alt={product.title} />
+                                <Swiper
+                                    spaceBetween={0}
+                                    slidesPerView={1}
+                                    pagination={{
+                                        type: "fraction",
+                                        clickable: true,
+                                    }}
+                                    mousewheel={true}
+                                    keyboard={true}
+                                    modules={[Pagination, Mousewheel, Keyboard]}
+                                    className="swiper_wrap"
+                                >
+                                    {product.imageUrl &&
+                                        product.imageUrl.map((url, i) => (
+                                            <SwiperSlide key={url + i}>
+                                                <Img src={url} alt={product.title} />
+                                            </SwiperSlide>
+                                        ))}
+                                </Swiper>
                             </Div>
                             <Div className="detail_top">
                                 <Div className="detail_user">
@@ -44,29 +70,40 @@ const Detail = () => {
                                 </Div>
                                 <Div className="user_btns">
                                     <Button onClick={handleToggleLike} className="pick_btn">
-                                        {filteredPickeditem && <IoMdHeart />}
-                                        {!pickedItems &&  <IoMdHeartEmpty />}
+                                        {filteredPickeditem.length > 0 ? (
+                                            <IoMdHeart style={{ fill: "var(--accent-color)" }} />
+                                        ) : (
+                                            <IoMdHeartEmpty />
+                                        )}
                                     </Button>
                                     <Button className="buy_btn">구매하기</Button>
                                 </Div>
                             </Div>
                             <Div className="detail_text">
                                 <H4 className="title">{product.title}</H4>
-                                <Div className="row_text">
-                                    <P className="subCategory">
+                                <P className="price">{formatNumberWithCommas(product.price)}원</P>
+                                <Div className="row_text top">
+                                    <P className="sub_category">
                                         {product.category === "best"
-                                            ? "베스트 > "
+                                            ? "베스트/"
                                             : product.category === "exchange"
-                                            ? "교환 > "
+                                            ? "교환/"
                                             : product.category === "free"
-                                            ? "나눔 > "
+                                            ? "나눔/"
                                             : product.category === "reuse"
-                                            ? "재사용 > "
+                                            ? "재사용/"
                                             : ""}
                                         {product.subCategoryText}
+                                        <Span className="time">{dayjs(product.createdAt).fromNow()}</Span>
                                     </P>
-                                    <P className="price">{product.price}원</P>
-                                    <P className="time">{dayjs(product.createdAt).fromNow()}</P>
+                                    <P className="pick_count">
+                                        <IoMdHeartEmpty />
+                                        {filteredPickeditem.length > 0 ? (
+                                            <Span className="pick_count_text">{filteredPickeditem[0].count}</Span>
+                                        ) : (
+                                            "0"
+                                        )}
+                                    </P>
                                 </Div>
                                 <Div className="row_text">
                                     {product.brand && <P className="brand">{product.brand}</P>}

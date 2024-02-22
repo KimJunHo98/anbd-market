@@ -1,13 +1,32 @@
 import React from "react";
-import { Container, Div, H2, Inner, Section } from "../styledComponents";
+import { Container, Div, H2, Img, Inner, Li, P, Section, Ul } from "../styledComponents";
+import useFetchPickedItems from "../hooks/useFetchPickedItems";
 
 const Mypick = () => {
+    const { loading, pickedItems } = useFetchPickedItems();
+
+    console.log(pickedItems);
+
     return (
-        <Section>
+        <Section id="myPick">
             <H2 className="blind">찜</H2>
             <Container>
                 <Inner>
-                    <Div>Mypick</Div>
+                    <Div className="my_pick">
+                        {" "}
+                        {loading ? (
+                            <P>Loading...</P>
+                        ) : (
+                            <Ul>
+                                {pickedItems.map((pick) => (
+                                    <>
+                                        <Li key={pick.id}>{pick.title}</Li>
+                                        <Li>{pick.imgUrl && <Img src={pick.imgUrl[0]} alt={pick.title} />}</Li>
+                                    </>
+                                ))}
+                            </Ul>
+                        )}
+                    </Div>
                 </Inner>
             </Container>
         </Section>

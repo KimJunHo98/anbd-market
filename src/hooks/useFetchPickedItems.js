@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useStateContext } from "../context/useStateContext";
 import useFetchProducts from "./useFetchProducts";
-import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, setDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, onSnapshot, query, setDoc, where } from "firebase/firestore";
 import { firestore } from "../firebase";
 
 const useFetchPickedItems = () => {
@@ -14,15 +14,31 @@ const useFetchPickedItems = () => {
         try {
             setLoading(true);
 
-            // picked: true 를 state로 관리해서 불리언값 토글형식으로 바꿔야함
-            const docRef = await addDoc(collection(firestore, "picked"), {
-                picked: true, 
-                title: product.title,
-                username: useObj.displayName,
-                pickedId: useObj.uid, // 사용자가 찜한 상품
-                useId: product.useId, // product의 데이터
-            });
-            const newDocId = docRef.id;
+            let newDocId;
+
+            const isLiked = pickedItems.some(
+                (pick) => pick.pickedId === product.useId && pick.picked === true && pick.title === product.title
+            );
+
+            if (!isLiked) {
+                const docRef = await addDoc(collection(firestore, "picked"), {
+                    picked: true,
+                    title: product.title,
+                    price: product.price,
+                    brand: product.brand,
+                    size: product.size,
+                    category: product.category,
+                    subCategory: product.subCategory,
+                    subCategoryText: product.subCategoryText,
+                    imgUrl: product.imageUrl,
+                    username: useObj.displayName,
+                    pickedId: useObj.uid, // 사용자가 찜한 상품
+                    useId: product.useId, // product의 데이터
+                    count: 1,
+                });
+
+                newDocId = docRef.id;
+            }
 
             await setDoc(doc(collection(firestore, "picked"), newDocId), { id: newDocId }, { merge: true });
         } catch (err) {
@@ -34,15 +50,18 @@ const useFetchPickedItems = () => {
 
     const handleRemoveLike = async () => {
         try {
-            const querySnapshot = await getDocs(collection(firestore, "picked"));
-            const pickedDocs = querySnapshot.docs.filter(
-                (doc) => doc.data().PickedId === product.useId && doc.data().picked === true && doc.data().title === product.title
+            const pickedQuery = query(
+                collection(firestore, "picked"),
+                where("pickedId", "==", product.useId),
+                where("picked", "==", true),
+                where("title", "==", product.title)
             );
 
-            if (pickedDocs.length > 0) {
-                const pickedDocId = pickedDocs[0].id;
-                await deleteDoc(doc(collection(firestore, "picked"), pickedDocId));
-            }
+            const querySnapshot = await getDocs(pickedQuery);
+
+            querySnapshot.forEach(async (doc) => {
+                await deleteDoc(doc.ref);
+            });
         } catch (err) {
             console.error(err);
         } finally {
@@ -55,7 +74,7 @@ const useFetchPickedItems = () => {
             setLoading(true);
 
             const isLiked = pickedItems.some(
-                (pick) => pick.PickedId === product.useId && pick.picked === true && pick.title === product.title
+                (pick) => pick.pickedId === product.useId && pick.picked === true && pick.title === product.title
             );
 
             if (isLiked) {
@@ -76,23 +95,28 @@ const useFetchPickedItems = () => {
         const fetchPickedData = onSnapshot(collection(firestore, "picked"), (snapshot) => {
             try {
                 const pickedData = snapshot.docs.map((doc) => doc.data());
-            
+
                 if (pickedData) {
                     setPickedItems(pickedData);
                 } else {
                     console.log("제품이 존재하지 않습니다.");
+                    setPickedItems((prevDate) => prevDate);
                 }
             } catch (err) {
                 console.error(err);
             } finally {
                 setLoading(false);
-            };
+            }
         });
 
         return () => fetchPickedData();
-    }, []);
+    }, [product]);
 
-    return { handleToggleLike, loading, pickedItems };
+    const filteredPickeditem = pickedItems.filter(
+        (pick) => pick.title === product.title && pick.pickedId === product.useId && pick.picked === true
+    );
+
+    return { handleToggleLike, loading, filteredPickeditem, pickedItems };
 };
 
 export default useFetchPickedItems;

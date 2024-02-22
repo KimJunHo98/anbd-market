@@ -47,7 +47,6 @@ const useUpload = () => {
             }
         }
     };
-    console.log(fileUrls);
 
     const onChange = (e) => {
         const { name, value } = e.target;
