@@ -48,7 +48,17 @@ export const Section = styled.section`
         }
     }
 `;
-export const Article = styled.article``;
+export const Article = styled.article`
+    &.pick_list {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        gap: 0 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #555;
+    }
+`;
 export const Aside = styled.aside`
     &#side_menu {
         position: fixed;
@@ -522,6 +532,43 @@ export const Div = styled.div`
         display: -ms-flexbox;
         display: flex;
         flex-direction: column;
+        gap: 11px 0;
+        padding: 30px 0 69px;
+    }
+
+    &.my_pick {
+        .pick_image {
+            width: 100px;
+
+            img {
+                height: 100px;
+                object-fit: cover;
+                border-radius: 10px;
+                border: 1px solid #555;
+            }
+        }
+        .pick_text {
+            .col_text {
+                padding: 0 0 20px 0;
+
+                .title, .price {
+                    font-size: 1.4rem;
+                }
+            }
+            .row_text {
+                .pick_count {
+                    margin-left: 20px;
+                    font-size: 1.4rem;
+                    background-color: transparent;
+                    color: var(--main-color);
+
+                    svg {
+                        margin-right: 5px;
+                        vertical-align: top;
+                    }
+                }
+            }
+        }
     }
 
     &.footer {
@@ -705,7 +752,6 @@ export const Ul = styled.ul`
     }
     &.menu_depth.open {
         display: block;
-        // border-bottom: 1px solid #111;
     }
 
     &.home_col_text {
