@@ -58,6 +58,7 @@ const Product = () => {
                                                     <Ul className="row_text">
                                                         {product.brand === "" ? null : <Li className="brand">{product.brand}</Li>}
                                                         <Li className="size">{product.size}</Li>
+                                                        {product.soldOut && <Li className="soldout">거래 완료</Li>}
                                                     </Ul>
                                                     <Ul className="row_text">
                                                         <Li className="time">{dayjs(product.createdAt).fromNow()}</Li>

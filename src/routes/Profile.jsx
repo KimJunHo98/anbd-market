@@ -13,7 +13,7 @@ const Profile = () => {
                     <Div className="profile">
                         <Div className="my_profile">
                             <P className="nick_name">{useObj.displayName} 님</P>
-                            판매내역
+                            구매내역
                         </Div>
                     </Div>
                 </Inner>

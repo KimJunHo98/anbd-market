@@ -2,10 +2,6 @@ import React from "react";
 import useFetchProducts from "../hooks/useFetchProducts";
 import useFetchPickedItems from "../hooks/useFetchPickedItems";
 
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
-import "dayjs/locale/ko";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Mousewheel, Keyboard } from "swiper/modules";
 import "swiper/css";
@@ -15,11 +11,15 @@ import { Article, Button, Container, Div, H2, H3, H4, Img, P, Section, Span } fr
 import { FaUserCircle } from "react-icons/fa";
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/ko";
+
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
 const Detail = () => {
-    const { product, loading } = useFetchProducts();
+    const { product, loading, handleBuyBtnClick } = useFetchProducts();
     const { handleToggleLike, filteredPickeditem } = useFetchPickedItems();
 
     const formatNumberWithCommas = (number) => {
@@ -76,7 +76,13 @@ const Detail = () => {
                                             <IoMdHeartEmpty />
                                         )}
                                     </Button>
-                                    <Button className="buy_btn">구매하기</Button>
+                                    <Button
+                                        onClick={handleBuyBtnClick}
+                                        className={`buy_btn ${product.soldOut ? "soldout" : ""}`}
+                                        disabled={product.soldOut}
+                                    >
+                                        {product.soldOut ? "거래완료" : "구매하기"}
+                                    </Button>
                                 </Div>
                             </Div>
                             <Div className="detail_text">
@@ -96,10 +102,10 @@ const Detail = () => {
                                         {product.subCategoryText}
                                         <Span className="time">{dayjs(product.createdAt).fromNow()}</Span>
                                     </P>
-                                    <P className="pick_count">
+                                    <P className="pick">
                                         <IoMdHeartEmpty />
                                         {filteredPickeditem.length > 0 ? (
-                                            <Span className="pick_count_text">{filteredPickeditem[0].count}</Span>
+                                            <Span className="pick_text">{filteredPickeditem[0].count}</Span>
                                         ) : (
                                             "0"
                                         )}

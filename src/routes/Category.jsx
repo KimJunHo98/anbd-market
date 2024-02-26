@@ -1,12 +1,13 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
 import useFetchProducts from "../hooks/useFetchProducts";
+
+import { Container, Div, H2, Inner, Section, ALink, Li, Ul, Article, Img, P } from "../styledComponents";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
-import { Container, Div, H2, Inner, Section, ALink, Li, Ul, Article, Img, P } from "../styledComponents";
-import { useParams } from "react-router-dom";
 
 dayjs.extend(relativeTime);
 dayjs.locale("ko");
@@ -58,6 +59,7 @@ const Category = () => {
                                                     <Ul className="row_text">
                                                         {product.brand === "" ? null : <Li className="brand">{product.brand}</Li>}
                                                         <Li className="size">{product.size}</Li>
+                                                        {product.soldOut && <Li className="soldout">거래 완료</Li>}
                                                     </Ul>
                                                     <Ul className="row_text">
                                                         <Li className="time">{dayjs(product.createdAt).fromNow()}</Li>

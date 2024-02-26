@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getDocs, query, collection, orderBy, where, doc, getDoc } from "firebase/firestore";
+import { useNavigate, useParams } from "react-router-dom";
+import { getDocs, query, collection, orderBy, where, doc, getDoc, updateDoc } from "firebase/firestore";
 import { firestore } from "../firebase";
 
 const useFetchProducts = () => {
@@ -9,6 +9,7 @@ const useFetchProducts = () => {
     const [product, setProduct] = useState("");
     const [subCategoryItems, setSubCategoryItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate("");
 
     // product
     useEffect(() => {
@@ -122,6 +123,29 @@ const useFetchProducts = () => {
         fetchProductDetail();
     }, [id]);
 
+    // 구매처리 함수
+    const handleBuyBtnClick = async () => {
+        try {
+            const productDocRef = doc(firestore, "product", id);
+            const productDocSnapshot = await getDoc(productDocRef);
+
+            if (!productDocSnapshot.exists()) {
+                console.log("해당 제품이 존재하지 않습니다.");
+
+                return;
+            }
+
+            await updateDoc(productDocRef, {
+                soldOut: true,
+            });
+
+            alert("구매 완료");
+            navigate("/");
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     // 최신순으로 정렬
     const compareProductsByDate = (recentA, recentB) => new Date(recentB.createdAt) - new Date(recentA.createdAt);
 
@@ -140,6 +164,7 @@ const useFetchProducts = () => {
         filteredFreeCategory,
         filteredExchangeCategory,
         filteredReuseCategory,
+        handleBuyBtnClick,
     };
 };
 

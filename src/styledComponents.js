@@ -55,6 +55,7 @@ export const Article = styled.article`
         display: -ms-flexbox;
         display: flex;
         gap: 0 10px;
+        position: relative;
         padding-bottom: 10px;
         border-bottom: 1px solid #555;
     }
@@ -152,6 +153,12 @@ export const H3 = styled.h3`
         padding-bottom: 25px;
         font-size: 1.8rem;
         font-weight: 500;
+    }
+
+    &.pick_title,
+    &.receipt_title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
     }
 `;
 export const H4 = styled.h4`
@@ -436,7 +443,7 @@ export const Div = styled.div`
                             font-size: 1.2rem;
                         }
                     }
-                    .pick_count {
+                    .pick {
                         font-size: 1.6rem;
 
                         svg {
@@ -460,7 +467,8 @@ export const Div = styled.div`
 
     &.product,
     &.category,
-    &.sub_category {
+    &.sub_category,
+    &.receipt {
         width: 100%;
         min-height: calc(100vh - 177.5px);
         display: -webkit-box;
@@ -473,7 +481,8 @@ export const Div = styled.div`
 
         .product_text,
         .category_text,
-        .sub_category_text {
+        .sub_category_text,
+        .receipt_text {
             display: -webkit-box;
             display: -webkit-flex;
             display: -ms-flexbox;
@@ -484,7 +493,8 @@ export const Div = styled.div`
         }
         .product_image,
         .category_image,
-        .sub_category_image {
+        .sub_category_image,
+        .receipt_image {
             width: 100px;
 
             img {
@@ -522,11 +532,10 @@ export const Div = styled.div`
         }
     }
 
-    &.receipt,
     &.notice,
     &.my_pick {
         width: 100%;
-        height: calc(100vh - 173.5px);
+        min-height: calc(100vh - 173.5px);
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -549,24 +558,15 @@ export const Div = styled.div`
         }
         .pick_text {
             .col_text {
-                padding: 0 0 20px 0;
+                margin-bottom: 10px;
 
-                .title, .price {
+                .title,
+                .price {
                     font-size: 1.4rem;
                 }
             }
-            .row_text {
-                .pick_count {
-                    margin-left: 20px;
-                    font-size: 1.4rem;
-                    background-color: transparent;
-                    color: var(--main-color);
-
-                    svg {
-                        margin-right: 5px;
-                        vertical-align: top;
-                    }
-                }
+            .state {
+                margin-top: 10px;
             }
         }
     }
@@ -732,6 +732,12 @@ export const Ul = styled.ul`
         &:first-child {
             margin-right: 5px;
         }
+
+        &.soldout {
+            margin-left: 10px;
+            background-color: var(--main-color);
+            color: #111;
+        }
     }
     &.row_text > li.time,
     &.row_text > li.state {
@@ -840,6 +846,20 @@ export const P = styled.p`
 
     &.maximum {
         padding-left: 5px;
+    }
+
+    &.pick_count {
+        position: absolute;
+        bottom: 35px;
+        right: 0;
+        font-size: 1.4rem;
+        background-color: transparent;
+        color: var(--main-color);
+
+        svg {
+            margin-right: 5px;
+            vertical-align: top;
+        }
     }
 `;
 export const Span = styled.span`
@@ -970,7 +990,8 @@ export const ALink = styled(Link)`
 
     &.product_item,
     &.category_item,
-    &.sub_category_item {
+    &.sub_category_item,
+    &.receipt_item {
         width: 100%;
         display: -webkit-box;
         display: -webkit-flex;
@@ -994,7 +1015,8 @@ export const ALink = styled(Link)`
         display: inline-block;
         padding: 10px 30px;
         border-radius: 15px;
-        border: 1px solid var(--main-color);
+        border: 1px solid #ddd;
+        color: #ddd;
         font-size: 1.4rem;
 
         svg {
@@ -1087,6 +1109,11 @@ export const Button = styled.button`
         font-size: 1.6rem;
         font-weight: 500;
         background-color: var(--accent-color);
+
+        &.soldout {
+            background-color: var(--main-color);
+            color: #111;
+        }
     }
 
     &.toggle_button {
