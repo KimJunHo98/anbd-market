@@ -44,6 +44,11 @@ const Header = () => {
                                 <Search />
                                 <Nav className="header_nav">
                                     <Ul className="category_list">
+                                        <Li className="category_items">
+                                            <NavLink to="/product" className="category_link" end>
+                                                전체
+                                            </NavLink>
+                                        </Li>
                                         {categoryList.map((category) => (
                                             <Li className="category_items" key={category.text}>
                                                 <NavLink to={`/product/${category.value}`} className="category_link" end>

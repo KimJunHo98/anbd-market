@@ -38,9 +38,7 @@ export const FooterTag = styled.footer`
         border-top: 1px solid #555;
     }
 `;
-export const MainTag = styled.main`
-    padding-top: 168.5px;
-`;
+export const MainTag = styled.main``;
 export const Section = styled.section`
     &#register {
         .inner {
@@ -50,10 +48,6 @@ export const Section = styled.section`
 `;
 export const Article = styled.article`
     &.pick_list {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
         gap: 0 10px;
         position: relative;
         padding-bottom: 10px;
@@ -65,9 +59,6 @@ export const Aside = styled.aside`
         position: fixed;
         right: -100%;
         top: 0;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         justify-content: flex-end;
         z-index: 999;
@@ -102,15 +93,15 @@ export const Aside = styled.aside`
             opacity: 0;
             pointer-events: none;
         }
+        &.isDetail {
+            bottom: 100px;
+        }
     }
 `;
 export const Nav = styled.nav`
     &.menu_nav {
         width: 100%;
         height: 100%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         flex-direction: column;
         padding: 50px 0;
@@ -123,14 +114,7 @@ export const Nav = styled.nav`
 
 // h1 ~ h6 태그
 export const H1 = styled.h1``;
-export const H2 = styled.h2`
-    &.anbd {
-        font-size: 5rem;
-        font-weight: 800;
-        font-family: var(--Eng-font);
-        color: var(--primary-color);
-    }
-`;
+export const H2 = styled.h2``;
 export const H3 = styled.h3`
     &.signup_title {
         margin-bottom: 30px;
@@ -156,7 +140,8 @@ export const H3 = styled.h3`
     }
 
     &.pick_title,
-    &.receipt_title {
+    &.receipt_title,
+    &.notice_title {
         font-size: 1.8rem;
         margin-bottom: 30px;
     }
@@ -173,9 +158,6 @@ export const Div = styled.div`
         width: 100%;
         max-width: 480px;
         height: 100vh;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -186,9 +168,6 @@ export const Div = styled.div`
 
     &.header {
         width: 100%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -197,9 +176,6 @@ export const Div = styled.div`
         .header_top {
             width: 100%;
             height: 60px;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -212,18 +188,12 @@ export const Div = styled.div`
     &.detail_header {
         width: 100%;
         height: 60px;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
 
         .detail_header_right {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
             display: flex;
             gap: 0 5px;
         }
@@ -245,51 +215,11 @@ export const Div = styled.div`
             }
         }
     }
-    &.toggle_search {
-        width: 100%;
-        max-width: 480px;
-        height: 100vh;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 50%;
-        transform: translateX(-50%);
-        padding: 0 20px 10px;
-        background-color: #222;
-
-        .search {
-            width: 90%;
-
-            .search_input {
-                border: 0 none;
-            }
-        }
-        .toggle_search_top {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .cancel_btn {
-            padding-top: 10px;
-            color: var(--main-color);
-            cursor: pointer;
-        }
-    }
 
     &.loading {
         width: 100%;
         max-width: 480px;
         height: 100vh;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -307,18 +237,12 @@ export const Div = styled.div`
     &.home {
         width: 100%;
         min-height: calc(100vh - 400px);
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         flex-direction: column;
         gap: 80px 0;
         padding: 30px 0 100px;
 
         .home_item_box {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -365,22 +289,24 @@ export const Div = styled.div`
 
     &.detail {
         height: 100%;
-        min-height: calc(100vh - 60px);
+        min-height: 100vh;
         padding-bottom: 69px;
         background-color: #222;
+        width: 100%;
 
         .detail_item_wrap {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
             display: flex;
             flex-direction: column;
-            padding-bottom: 30px;
 
+            .detail_image {
+                width: 480px;
+
+                img {
+                    height: 480px;
+                    object-fit: cover;
+                }
+            }
             .detail_top {
-                display: -webkit-box;
-                display: -webkit-flex;
-                display: -ms-flexbox;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
@@ -388,9 +314,6 @@ export const Div = styled.div`
                 border-bottom: 1px solid #444;
 
                 & > div {
-                    display: -webkit-box;
-                    display: -webkit-flex;
-                    display: -ms-flexbox;
                     display: flex;
                     align-items: center;
                     gap: 0 10px;
@@ -401,9 +324,6 @@ export const Div = styled.div`
                 }
             }
             .detail_text {
-                display: -webkit-box;
-                display: -webkit-flex;
-                display: -ms-flexbox;
                 display: flex;
                 flex-direction: column;
                 gap: 20px 0;
@@ -422,9 +342,6 @@ export const Div = styled.div`
                 }
 
                 .row_text {
-                    display: -webkit-box;
-                    display: -webkit-flex;
-                    display: -ms-flexbox;
                     display: flex;
                     gap: 0 10px;
                     font-size: 1.4rem;
@@ -470,10 +387,7 @@ export const Div = styled.div`
     &.sub_category,
     &.receipt {
         width: 100%;
-        min-height: calc(100vh - 177.5px);
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
+        min-height: calc(100vh - 174.5px);
         display: flex;
         flex-direction: column;
         gap: 10px 0;
@@ -483,9 +397,6 @@ export const Div = styled.div`
         .category_text,
         .sub_category_text,
         .receipt_text {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
             display: flex;
             flex-direction: column;
             gap: 10px 0;
@@ -518,9 +429,6 @@ export const Div = styled.div`
 
         .my_profile {
             width: 100%;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
             display: flex;
             flex-direction: column;
             gap: 5px 0;
@@ -536,9 +444,6 @@ export const Div = styled.div`
     &.my_pick {
         width: 100%;
         min-height: calc(100vh - 173.5px);
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         flex-direction: column;
         gap: 11px 0;
@@ -576,9 +481,6 @@ export const Div = styled.div`
     }
 
     &.add_photo {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         flex-direction: row;
         gap: 0 20px;
@@ -604,9 +506,6 @@ export const Div = styled.div`
     &.register {
         width: 100%;
         height: 100%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -614,26 +513,17 @@ export const Div = styled.div`
 
         .register_input_box,
         .register_textarea {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
             display: flex;
             flex-direction: column;
             gap: 10px 0;
             padding-top: 10px;
         }
         .register_category {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
             display: flex;
             flex-direction: column;
             gap: 10px 0;
 
             .category_btns {
-                display: -webkit-box;
-                display: -webkit-flex;
-                display: -ms-flexbox;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-around;
@@ -650,9 +540,6 @@ export const Div = styled.div`
 
         .side_menu_header {
             width: 100%;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
             display: flex;
             justify-content: space-between;
             padding-bottom: 10px;
@@ -661,20 +548,18 @@ export const Div = styled.div`
 
         .my_page {
             width: 100%;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -ms-flexbox;
             display: flex;
             flex-direction: column;
             margin-top: 30px;
 
             .my_page_items {
-                display: -webkit-box;
-                display: -webkit-flex;
-                display: -ms-flexbox;
                 display: flex;
                 flex-direction: column;
                 gap: 5px 0;
+
+                .nick_name {
+                    color: #111;
+                }
             }
         }
     }
@@ -683,9 +568,6 @@ export const Div = styled.div`
     &.login {
         width: 100%;
         height: calc(100vh - 168.5px);
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -695,27 +577,18 @@ export const Div = styled.div`
 export const Ul = styled.ul`
     &.menu_account {
         width: 60%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         justify-content: flex-end;
     }
 
     &.category_list {
         width: 100%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         justify-content: space-around;
         padding-top: 20px;
     }
 
     &.quick_menu_list {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         justify-content: space-between;
     }
@@ -822,11 +695,14 @@ export const Li = styled.li`
             }
         }
     }
+
+    &.menu_item {
+        padding: 10px 0;
+    }
 `;
 export const P = styled.p`
     &.nick_name {
         font-size: 1.6rem;
-        color: #111;
     }
 
     &.copyright {
@@ -854,7 +730,6 @@ export const P = styled.p`
         right: 0;
         font-size: 1.4rem;
         background-color: transparent;
-        color: var(--main-color);
 
         svg {
             margin-right: 5px;
@@ -910,7 +785,17 @@ export const Span = styled.span`
     }
 
     &.item_title {
-        font-weight: 600;
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: #111;
+    }
+
+    &.depth_text {
+        width: 100%;
+        display: block;
+        padding: 10px 0 10px 10px;
+        font-size: 1.6rem;
+        color: #111;
     }
 `;
 export const Em = styled.em``;
@@ -919,9 +804,6 @@ export const Em = styled.em``;
 export const StyledNavLink = styled(NavLink)``;
 export const Paginate = styled(StyledNavLink)`
     &.quick_menu_link {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -993,9 +875,6 @@ export const ALink = styled(Link)`
     &.sub_category_item,
     &.receipt_item {
         width: 100%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         flex-direction: row;
         gap: 0 10px;
@@ -1006,7 +885,7 @@ export const ALink = styled(Link)`
     &.depth_link {
         width: 100%;
         display: block;
-        padding: 6px 0 6px 10px;
+        padding: 10px 0 10px 10px;
         font-size: 1.6rem;
         color: #111;
     }
@@ -1118,9 +997,6 @@ export const Button = styled.button`
 
     &.toggle_button {
         width: 100%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -1141,9 +1017,6 @@ export const Button = styled.button`
 
 // 폼, 인풋
 export const Form = styled.form`
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: column;
     padding: 0 20px;
@@ -1253,6 +1126,10 @@ export const Option = styled.option``;
 
 // 이미지
 export const Img = styled.img`
+    &.splash_img {
+        width: 150px;
+    }
+
     &.thumb_image {
         width: 62px;
         height: 62px;
@@ -1272,9 +1149,6 @@ export const Error = styled.span`
     color: #ff5252;
 `;
 export const Switcher = styled.div`
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
     padding: 0 20px;
     margin-top: 20px;

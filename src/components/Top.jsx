@@ -3,12 +3,16 @@ import { useStateContext } from "../context/useStateContext";
 
 import { Aside, Button, H2 } from "../styledComponents";
 import { FaArrowUp } from "react-icons/fa6";
+import { useLocation } from "react-router-dom";
 
 const Top = () => {
     const { isLogIn } = useStateContext();
     const [prevScrollPos, setPrevScrollPos] = useState(0);
     const topBtnRef = useRef(null);
+    const location = useLocation("");
 
+    const isDetail = location.pathname.includes("/detail");
+    
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollPos = window.scrollY;
@@ -44,7 +48,7 @@ const Top = () => {
     return (
         <>
             {isLogIn ? (
-                <Aside id="top_btn" className="hide" ref={topBtnRef}>
+                <Aside id="top_btn" className={`hide ${isDetail ? "isDetail" : ""}`} ref={topBtnRef}>
                     <H2 className="blind">상단 이동 버튼</H2>
                     <Button type="button" onClick={handleTopBtnClick} className="top_btn">
                         <FaArrowUp />

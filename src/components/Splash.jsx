@@ -1,10 +1,11 @@
 import React from "react";
-import { Div, H2 } from "../styledComponents";
+import { Div, Img } from "../styledComponents";
 
 const Splash = () => {
+
     return (
         <Div id="splash">
-            <H2 className="anbd">ANBD</H2>
+            <Img src="../images/splash.svg" alt="로고 스플래쉬 이미지" className="splash_img" />
         </Div>
     );
 };

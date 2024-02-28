@@ -43,7 +43,6 @@ const useFetchProducts = () => {
         const fetchCategoryProducts = async () => {
             try {
                 if (category) {
-                    // 특정 카테고리에 속하는 제품들을 가져오기 위한 Firestore 쿼리
                     const categoryCollectionRef = query(collection(firestore, "product"), where("category", "==", category));
                     const querySnapshot = await getDocs(categoryCollectionRef);
 
@@ -73,7 +72,6 @@ const useFetchProducts = () => {
         const fetchSubCategoryProducts = async () => {
             try {
                 if (value) {
-                    // 특정 서브카테고리에 속하는 제품들을 가져오기 위한 Firestore 쿼리
                     const subCategoryCollectionRef = query(collection(firestore, "product"), where("subCategory", "==", value));
                     const querySnapshot = await getDocs(subCategoryCollectionRef);
 

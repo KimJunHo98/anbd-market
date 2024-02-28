@@ -1,9 +1,9 @@
 # ANBD 리펙토링
 
-이 프로젝트는 당근, 중고나라 등의 중고거래 웹&앱을 벤치마킹하여 React 프레임워크와 firebase를 이용하여 중고 물품을 거래하는 사이트 프로젝트 입니다. 
+이 프로젝트는 당근, 중고나라 등의 중고거래 웹&앱을 벤치마킹하여 React 프레임워크와 firebase를 이용한 SPA방식 중고 물품을 거래하는 사이트 프로젝트 입니다. 
 팀프로젝트로 진행했었지만 cloudtype으로 배포한 서버의 기간이 끝나서 firebase를 활용한 서버리스 방식으로 리펙토링을 했습니다. 
-로그인, 로그아웃, 회원가입 기능을 구현하고, 리얼타임 CRUD를 구현하여 업로드, 수정, 삭제를 실시간으로 반영되게 했습니다.
-swiper로 슬라이드 배너를 구현했고 styled-components로 스타일을 작성했으며, 커스텀훅, context를 사용하여 유지보수, 상태관리의 용이성을 높였습니다.
+firebase로 Auth 구현(로그인&로그아웃&회원가입), CURD를 구현했습니다.(업로드, 수정, 삭제).
+swiper를 사용한 슬라이드 배너, styled-components로 스타일을 작성했으며, 커스텀훅, context를 사용하여 유지보수, 상태관리의 용이성을 높였습니다.
 env파일에 노출이 되면 안되는 정보를 작성하여 보호를 했으며 vercel로 배포를 하여 마무리했습니다. 
 
 미리보기 : [https://anbd-market.vercel.app/]
@@ -26,14 +26,20 @@ env파일에 노출이 되면 안되는 정보를 작성하여 보호를 했으�
 - fontawesome을 설치합니다. `@fortawesome/react-fontawesome`
 
 ## 기능 구현
-- firebase를 사용한 실시간 CRUD기능 구현, Auth.js는 Create, Home.js는 Read, upload.js는 Update & Delete의 역할을 함
+- firebase를 사용한 실시간 CRUD기능 구현
 - firebase auth의 createUserWithEmailAndPassword & signInWithEmailAndPassword & signOut 함수를 사용한 로그인 & 로그아웃 & 회원가입 기능
 - firebase cloudStorage에 저장된 데이터를 firebase query를 사용한 실시간 게시글 업로드, deleteDoc & updateDoc 함수를 사용한 수정, 삭제 기능
-- firebase storage를 사용하여 사진 파일의 url을 ref함수를 사용하여 넘겨주고 컴포넌트에서 출력
+- firebase storage를 사용하여 사진 파일의 url을 저장 & 컴포넌트에서 출력
+- 각 카테고리 별로 firebase cloudStorage에 저장된 데이터를 fetch하여 해당 카테고리 상품 출력
 - HashRouter를 사용한 컴포넌트 라우팅
 - useAuth 커스텀훅을 생성하여 state를 관리하고 auth와 관련된 함수 작성
+- useSearchContext, useStateContext 커스텀훅을 생성하여 state 및 함수를 전역으로 관리하고 여러 컴포넌트에 공유
+- useFetchProducts, useFetchPickedItems, useUpload 커스텀훅을 생성하여 state 및 함수를 전역으로 관리하고 여러 컴포넌트에 공유
 - async/await 함수를 사용하여 데이터를 비동기적으로 가져올 수 있게 했음
-- useNavigate 함수를 사용하여 로그인 & 회원가입 시 홈 화면으로 이동, 로그아웃 시 로그인 화면으로 이동
+- useNavigate를 사용하여 로그인 & 회원가입 시 홈 화면으로 이동, 로그아웃 시 로그인 화면으로 이동
+- useMemo를 사용하여 특정 값을 메모이제이션 하여 성능 최적화
+- styled-components로 컴포넌트 기반 스타일링
+- 검색기능, 찜하기 기능, 판매내역 보기, 물품등록
 - firebase의 정보를 암호화 하기 위해 env파일 작성
 
 ## 프로젝트를 진행하며 생긴 문제점 & 해결과정

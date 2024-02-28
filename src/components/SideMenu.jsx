@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import { useStateContext } from "../context/useStateContext";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
+import { subCategoryList, slideMenuList } from "../constant";
 
 import { Aside, Nav, Ul, Li, ALink, Button, Div, Span, P, H2, Em } from "../styledComponents";
 import { IoClose } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
-import { subCategoryList } from "../constant";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 
 const SideMenu = () => {
     const { show, setShow, isLogIn, useObj, handleMenuClick } = useStateContext();
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+    const [isServiceOpen, setIsServiceOpen] = useState(false);
     const navigate = useNavigate();
 
     const handleLogOutClick = () => {
@@ -24,9 +25,11 @@ const SideMenu = () => {
     const handleCancelBtnClick = () => {
         setShow((prevShow) => !prevShow);
     };
-
-    const handleToggleBtnClick = () => {
+    const handleToggleCategoryBtnClick = () => {
         setIsCategoryOpen((prevOpen) => !prevOpen);
+    };
+    const handleToggleServiceBtnClick = () => {
+        setIsServiceOpen((prevOpen) => !prevOpen);
     };
 
     return (
@@ -67,9 +70,9 @@ const SideMenu = () => {
                     </Div>
                 )}
                 <Nav className="menu_nav">
-                    <Ul className="category_menu">
+                    <Ul className="menu_wrap">
                         <Li className="menu_item">
-                            <Button className="toggle_button" onClick={handleToggleBtnClick}>
+                            <Button className="toggle_button" onClick={handleToggleCategoryBtnClick}>
                                 <Span className="item_title">카테고리</Span>
                                 {isCategoryOpen ? (
                                     <Em className="item_icon">
@@ -84,10 +87,36 @@ const SideMenu = () => {
                             <Ul className={`menu_depth ${isCategoryOpen ? "open" : ""}`}>
                                 {subCategoryList.map((item) => (
                                     <Li key={item.text} className="depth_item">
-                                        <ALink to={`/product/subcategory/${item.value}`} onClick={handleMenuClick} className="depth_link">{item.text}</ALink>
+                                        <ALink to={`/product/subcategory/${item.value}`} onClick={handleMenuClick} className="depth_link">
+                                            {item.text}
+                                        </ALink>
                                     </Li>
                                 ))}
                             </Ul>
+                        </Li>
+                        <Li className="menu_item">
+                            <Button className="toggle_button" onClick={handleToggleServiceBtnClick}>
+                                <Span className="item_title">고객센터</Span>
+                                {isServiceOpen ? (
+                                    <Em className="item_icon">
+                                        <FaMinus />
+                                    </Em>
+                                ) : (
+                                    <Em className="item_icon">
+                                        <FaPlus />
+                                    </Em>
+                                )}
+                            </Button>
+                            <Ul className={`menu_depth ${isServiceOpen ? "open" : ""}`}>
+                                {slideMenuList.map((item) => (
+                                    <Li key={item.text} className="depth_item">
+                                        <Span className="depth_text">{item.text}</Span>
+                                    </Li>
+                                ))}
+                            </Ul>
+                        </Li>
+                        <Li className="menu_item">
+                            <Span className="item_title">이벤트</Span>
                         </Li>
                     </Ul>
                 </Nav>

@@ -5,7 +5,6 @@ import { IoMdHeart } from "react-icons/io";
 import { IoReceiptSharp } from "react-icons/io5";
 
 export const categoryList = [
-    { text: "전체", value: "" },
     { text: "베스트", desc: "(상태가 좋은 물건 판매)", value: "best" },
     { text: "나눔", desc: "(무료 나눔)", value: "free" },
     { text: "교환", desc: "(서로 교환)", value: "exchange" },
@@ -25,6 +24,14 @@ export const subCategoryList = [
     { text: "반려동물용품", value: "pet" },
     { text: "도서", value: "books" },
     { text: "기타", value: "other" },
+];
+
+export const slideMenuList = [
+    { text: "공지사항" },
+    { text: "자주 묻는 질문" },
+    { text: "안전결제 문의" },
+    { text: "일반 문의" },
+    { text: "제휴ㆍ광고 문의" },
 ];
 
 export const bannerImages = [
@@ -60,7 +67,7 @@ export const bannerImages = [
 
 export const footerNav = [
     { icon: <GoHomeFill />, path: "/", text: "홈" },
-    { icon: <IoMdHeart />, path: "/mypick", text: "찜목록" },
+    { icon: <IoMdHeart />, path: "/mypick", text: "찜" },
     { icon: <IoReceiptSharp />, path: "/receipt", text: "판매내역" },
     { icon: <FaBell />, path: "/notice", text: "알림" },
     { icon: <RiUser3Fill />, path: "/profile", text: "My" },

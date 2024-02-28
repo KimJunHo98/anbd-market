@@ -100,12 +100,9 @@ const useFetchPickedItems = () => {
                     setPickedItems(pickedData);
                 } else {
                     console.log("제품이 존재하지 않습니다.");
-                    setPickedItems((prevDate) => prevDate);
                 }
             } catch (err) {
                 console.error(err);
-            } finally {
-                setLoading(false);
             }
         });
 
