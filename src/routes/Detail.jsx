@@ -91,13 +91,13 @@ const Detail = () => {
                                 <Div className="row_text top">
                                     <P className="sub_category">
                                         {product.category === "best"
-                                            ? "베스트/"
+                                            ? "베스트>"
                                             : product.category === "exchange"
-                                            ? "교환/"
+                                            ? "교환>"
                                             : product.category === "free"
-                                            ? "나눔/"
+                                            ? "나눔>"
                                             : product.category === "reuse"
-                                            ? "재사용/"
+                                            ? "재사용>"
                                             : ""}
                                         {product.subCategoryText}
                                         <Span className="time">{dayjs(product.createdAt).fromNow()}</Span>

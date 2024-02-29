@@ -43,7 +43,7 @@ const SubCategory = () => {
                                         <Article className="sub_category_item_wrap" key={item.id}>
                                             <ALink to={`/product/detail/${item.id}`} className="sub_category_item">
                                                 <Div className="sub_category_image">
-                                                    <Img src={item.imageUrl} alt={item.title} />
+                                                {item.imageUrl && <Img src={item.imageUrl[0]} alt={item.title} />}
                                                 </Div>
                                                 <Div className="sub_category_text">
                                                     <Ul className="col_text">
@@ -58,14 +58,15 @@ const SubCategory = () => {
                                                         <Li className="time">{dayjs(item.createdAt).fromNow()}</Li>
                                                         <Li className="state">
                                                             {item.category === "best"
-                                                                ? "/ 베스트"
+                                                                ? "베스트>"
                                                                 : item.category === "exchange"
-                                                                ? "/ 교환"
+                                                                ? "교환>"
                                                                 : item.category === "free"
-                                                                ? "/ 나눔"
+                                                                ? "나눔>"
                                                                 : item.category === "reuse"
-                                                                ? "/ 재사용"
+                                                                ? "재사용>"
                                                                 : ""}
+                                                                {item.subCategoryText}
                                                         </Li>
                                                     </Ul>
                                                 </Div>

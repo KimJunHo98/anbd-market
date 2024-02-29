@@ -64,13 +64,13 @@ const Receipt = () => {
                                                                     <Li className="time">{dayjs(sold.createdAt).fromNow()}</Li>
                                                                     <Li className="state">
                                                                         {sold.category === "best"
-                                                                            ? " 베스트/"
+                                                                            ? " 베스트>"
                                                                             : sold.category === "exchange"
-                                                                            ? " 교환/"
+                                                                            ? " 교환>"
                                                                             : sold.category === "free"
-                                                                            ? " 나눔/"
+                                                                            ? " 나눔>"
                                                                             : sold.category === "reuse"
-                                                                            ? " 재사용/"
+                                                                            ? " 재사용>"
                                                                             : ""}
                                                                         {sold.subCategoryText}
                                                                     </Li>

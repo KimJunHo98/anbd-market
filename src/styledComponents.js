@@ -48,6 +48,7 @@ export const Section = styled.section`
 `;
 export const Article = styled.article`
     &.pick_list {
+        display: flex;
         gap: 0 10px;
         position: relative;
         padding-bottom: 10px;
@@ -99,6 +100,10 @@ export const Aside = styled.aside`
     }
 `;
 export const Nav = styled.nav`
+    &.home_nav {
+        padding: 10px 0;
+    }
+
     &.menu_nav {
         width: 100%;
         height: 100%;
@@ -412,7 +417,6 @@ export const Div = styled.div`
                 height: 100px;
                 object-fit: cover;
                 border-radius: 10px;
-                border: 1px solid #555;
             }
         }
     }
@@ -458,7 +462,6 @@ export const Div = styled.div`
                 height: 100px;
                 object-fit: cover;
                 border-radius: 10px;
-                border: 1px solid #555;
             }
         }
         .pick_text {
@@ -575,6 +578,13 @@ export const Div = styled.div`
 `;
 
 export const Ul = styled.ul`
+    &.home_nav_wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px 0;
+        justify-content: space-between;
+    }
+
     &.menu_account {
         width: 60%;
         display: flex;
@@ -659,6 +669,11 @@ export const Ul = styled.ul`
     }
 `;
 export const Li = styled.li`
+    &.home_nav_list {
+        width: 24%;
+
+    }
+
     &.account_list {
         margin-right: 10px;
 
@@ -831,6 +846,11 @@ export const ALink = styled(Link)`
         width: 90px;
         display: block;
         padding: 10px 10px 10px 0;
+    }
+
+    &.home_nav_link {
+        display: block;
+        text-align: center;
     }
 
     &.account_link {
@@ -1128,6 +1148,15 @@ export const Option = styled.option``;
 export const Img = styled.img`
     &.splash_img {
         width: 150px;
+    }
+
+    &.home_nav_thumb {
+        width: 50px;
+        height: 50px;
+        display: block;
+        margin: 0 auto 10px;
+        border-radius: 30px;
+        object-fit: cover;
     }
 
     &.thumb_image {

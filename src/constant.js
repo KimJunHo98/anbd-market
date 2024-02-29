@@ -12,18 +12,18 @@ export const categoryList = [
 ];
 
 export const subCategoryList = [
-    { text: "디지털기기", value: "digital" },
-    { text: "가구/인테리어", value: "furniture" },
-    { text: "여성의류/잡화", value: "women" },
-    { text: "남성의류/잡화", value: "men" },
-    { text: "생활가전", value: "home_appliance" },
-    { text: "주방", value: "kitchen" },
-    { text: "스포츠/레저", value: "sports_leisure" },
-    { text: "취미/게임/음반", value: "hobby_entertainment" },
-    { text: "뷰티/미용", value: "beauty" },
-    { text: "반려동물용품", value: "pet" },
-    { text: "도서", value: "books" },
-    { text: "기타", value: "other" },
+    { text: "디지털기기", value: "digital", src: "../images/nav/digital.jpeg" },
+    { text: "가구/인테리어", value: "furniture", src: "../images/nav/furniture.jpg" },
+    { text: "여성의류/잡화", value: "women", src: "../images/nav/women.jpg" },
+    { text: "남성의류/잡화", value: "men", src: "../images/nav/men.jpg" },
+    { text: "생활가전", value: "home_appliance", src: "../images/nav/home_appliance.jpg" },
+    { text: "주방", value: "kitchen", src: "../images/nav/kitchen.jpg" },
+    { text: "스포츠/캠핑/레저", value: "sports_camping", src: "../images/nav/sports_camping.jpg" },
+    { text: "취미/게임/음반", value: "hobby_entertainment", src: "../images/nav/hobby_entertainment.jpg" },
+    { text: "뷰티/미용", value: "beauty", src: "../images/nav/beauty.jpg" },
+    { text: "반려동물용품", value: "pet", src: "../images/nav/pet.jpg" },
+    { text: "도서", value: "books", src: "../images/nav/books.jpg" },
+    { text: "기타", value: "other", src: "../images/nav/other.png" },
 ];
 
 export const slideMenuList = [

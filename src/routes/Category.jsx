@@ -65,13 +65,13 @@ const Category = () => {
                                                         <Li className="time">{dayjs(product.createdAt).fromNow()}</Li>
                                                         <Li className="state">
                                                             {product.category === "best"
-                                                                ? " 베스트/"
+                                                                ? " 베스트>"
                                                                 : product.category === "exchange"
-                                                                ? " 교환/"
+                                                                ? " 교환>"
                                                                 : product.category === "free"
-                                                                ? " 나눔/"
+                                                                ? " 나눔>"
                                                                 : product.category === "reuse"
-                                                                ? " 재사용/"
+                                                                ? " 재사용>"
                                                                 : ""}
                                                             {product.subCategoryText}
                                                         </Li>

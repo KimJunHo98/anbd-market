@@ -48,13 +48,13 @@ const Mypick = () => {
                                                     </Ul>
                                                     <P className="state">
                                                         {pick.category === "best"
-                                                            ? " 베스트/"
+                                                            ? " 베스트>"
                                                             : pick.category === "exchange"
-                                                            ? " 교환/"
+                                                            ? " 교환>"
                                                             : pick.category === "free"
-                                                            ? " 나눔/"
+                                                            ? " 나눔>"
                                                             : pick.category === "reuse"
-                                                            ? " 재사용/"
+                                                            ? " 재사용>"
                                                             : ""}
                                                         {pick.subCategoryText}
                                                     </P>
