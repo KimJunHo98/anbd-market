@@ -17,15 +17,29 @@ export const Inner = styled.div`
 
 // 시멘틱 태그
 export const HeaderTag = styled.header`
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99;
+    &#header {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
 
-    .inner {
-        border-bottom: 1px solid #555;
-        position: relative;
+        .inner {
+            position: relative;
+            border-bottom: 1px solid #555;
+        }
+    }
+
+    &#detail_header {
+        width: 100%;
+        position: absolute;
+        top: 0; 
+        left: 0;
+        z-index: 99;
+
+        .inner {
+            background-color: transparent;
+        }
     }
 `;
 export const FooterTag = styled.footer`
@@ -57,6 +71,9 @@ export const Article = styled.article`
 `;
 export const Aside = styled.aside`
     &#side_menu {
+        width: 100%;
+        max-width: 480px;
+        height: 100%;
         position: fixed;
         right: -100%;
         top: 0;
@@ -68,8 +85,6 @@ export const Aside = styled.aside`
 
         &.show {
             right: 0;
-            left: 0;
-            bottom: 0;
         }
     }
 
@@ -303,14 +318,6 @@ export const Div = styled.div`
             display: flex;
             flex-direction: column;
 
-            .detail_image {
-                width: 480px;
-
-                img {
-                    height: 480px;
-                    object-fit: cover;
-                }
-            }
             .detail_top {
                 display: flex;
                 flex-direction: row;
@@ -577,6 +584,24 @@ export const Div = styled.div`
     }
 `;
 
+export const DetailImage = styled.div`
+    width: 480px;
+
+    .detail_image {
+        height: 480px;
+        object-fit: cover;
+    }
+
+    @media all and (max-width: 479px) {
+        width: 100%;
+
+        .detail_image {
+            height: auto;
+            object-fit: cover;
+        }
+    }
+`;
+
 export const Ul = styled.ul`
     &.home_nav_wrap {
         display: flex;
@@ -671,7 +696,6 @@ export const Ul = styled.ul`
 export const Li = styled.li`
     &.home_nav_list {
         width: 24%;
-
     }
 
     &.account_list {
@@ -1008,6 +1032,7 @@ export const Button = styled.button`
         font-size: 1.6rem;
         font-weight: 500;
         background-color: var(--accent-color);
+        color: #111;
 
         &.soldout {
             background-color: var(--main-color);

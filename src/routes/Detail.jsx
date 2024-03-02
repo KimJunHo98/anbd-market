@@ -3,11 +3,11 @@ import useFetchProducts from "../hooks/useFetchProducts";
 import useFetchPickedItems from "../hooks/useFetchPickedItems";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Mousewheel, Keyboard } from "swiper/modules";
+import { Pagination, Keyboard } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { Article, Button, Container, Div, H2, H3, H4, Img, P, Section, Span } from "../styledComponents";
+import { Article, Button, Container, DetailImage, Div, H2, H3, H4, Img, P, Section, Span } from "../styledComponents";
 import { FaUserCircle } from "react-icons/fa";
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 
@@ -19,7 +19,7 @@ dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
 const Detail = () => {
-    const { product, loading, handleBuyBtnClick } = useFetchProducts();
+    const { product, loading, handleBuyBtnClick, detailTopRef } = useFetchProducts();
     const { handleToggleLike, filteredPickeditem } = useFetchPickedItems();
 
     const formatNumberWithCommas = (number) => {
@@ -28,6 +28,8 @@ const Detail = () => {
         }
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
+
+    console.log(detailTopRef);
 
     return (
         <Section id="detail">
@@ -40,7 +42,7 @@ const Detail = () => {
                         </Div>
                     ) : (
                         <Article className="detail_item_wrap">
-                            <Div className="detail_image">
+                            <DetailImage>
                                 <Swiper
                                     spaceBetween={0}
                                     slidesPerView={1}
@@ -50,18 +52,18 @@ const Detail = () => {
                                     }}
                                     mousewheel={true}
                                     keyboard={true}
-                                    modules={[Pagination, Mousewheel, Keyboard]}
+                                    modules={[Pagination, Keyboard]}
                                     className="swiper_wrap"
                                 >
                                     {product.imageUrl &&
                                         product.imageUrl.map((url, i) => (
                                             <SwiperSlide key={url + i}>
-                                                <Img src={url} alt={product.title} />
+                                                <Img src={url} alt={product.title} className="detail_image" />
                                             </SwiperSlide>
                                         ))}
                                 </Swiper>
-                            </Div>
-                            <Div className="detail_top">
+                            </DetailImage>
+                            <Div className="detail_top" ref={detailTopRef}>
                                 <Div className="detail_user">
                                     <Span className="thumb">
                                         <FaUserCircle />
