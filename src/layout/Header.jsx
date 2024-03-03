@@ -4,18 +4,16 @@ import { useStateContext } from "../context/useStateContext";
 import { categoryList } from "../constant";
 
 import Search from "../components/Search";
-import { H2, ALink, H1, HeaderTag, Container, Inner, Div, Img, Button, Span, Nav, Ul, Li } from "../styledComponents";
+import { H2, ALink, H1, HeaderTag, Container, Inner, Div, Img, Button, Span, Nav, Ul, Li, Icon } from "../styledComponents";
 
 import { GoHomeFill } from "react-icons/go";
 import { RiArrowLeftSLine } from "react-icons/ri";
 
 const Header = () => {
-    const { handleMenuClick, isDetailTopVisible } = useStateContext();
+    const { handleMenuClick, detailTopVisible } = useStateContext();
     const navigate = useNavigate("");
     const location = useLocation();
     const isDetailPage = location.pathname.includes("/detail");
-
-    console.log(isDetailTopVisible);
 
     const handleBackBtnClick = () => {
         navigate(-1);
@@ -69,16 +67,20 @@ const Header = () => {
                 <HeaderTag id="detail_header">
                     <H2 className="blind">헤더</H2>
                     <Container>
-                        <Inner className="inner">
+                        <Inner className={`inner ${detailTopVisible ? "visible" : ""}`}>
                             <Div className="detail_header">
                                 <Div className="detail_header_left">
                                     <Button onClick={handleBackBtnClick} className="back_btn">
-                                        <RiArrowLeftSLine />
+                                        <Icon className="left_arrow_icon detail_header_icon">
+                                            <RiArrowLeftSLine />
+                                        </Icon>
                                     </Button>
                                 </Div>
                                 <Div className="detail_header_right">
                                     <Button onClick={handleHomeBtnClick} className="home_btn">
-                                        <GoHomeFill />
+                                        <Icon className="home_icon detail_header_icon">
+                                            <GoHomeFill />
+                                        </Icon>
                                     </Button>
                                     <Button onClick={handleMenuClick} className="menu_btn">
                                         <Span className="bar" />

@@ -32,13 +32,19 @@ export const HeaderTag = styled.header`
 
     &#detail_header {
         width: 100%;
-        position: absolute;
-        top: 0; 
+        position: fixed;
+        top: 0;
         left: 0;
         z-index: 99;
 
         .inner {
+            transition: all 0.1s ease;
             background-color: transparent;
+
+            &.visible {
+                background-color: #222;
+                border-bottom: 1px solid #555;
+            }
         }
     }
 `;
@@ -97,11 +103,14 @@ export const Aside = styled.aside`
 
     &#top_btn {
         position: absolute;
-        bottom: 140px;
+        bottom: 100px;
         right: 10px;
         z-index: 9;
         transition: all 0.2s ease;
 
+        &.isLogin {
+            bottom: 140px;
+        }
         &.show {
             opacity: 1;
         }
@@ -120,10 +129,6 @@ export const Nav = styled.nav`
     }
 
     &.menu_nav {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
         padding: 50px 0;
     }
 
@@ -224,11 +229,6 @@ export const Div = styled.div`
             border-radius: 10px;
             background-color: transparent;
             cursor: pointer;
-
-            svg {
-                font-size: 2.4rem;
-                color: var(--main-color);
-            }
 
             &.back_btn {
                 text-align: left;
@@ -374,11 +374,6 @@ export const Div = styled.div`
                     }
                     .pick {
                         font-size: 1.6rem;
-
-                        svg {
-                            margin-right: 5px;
-                            vertical-align: top;
-                        }
                     }
                     .brand,
                     .size {
@@ -430,23 +425,25 @@ export const Div = styled.div`
 
     &.profile {
         width: 100%;
-        height: calc(100vh - 168.5px);
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
+        height: calc(100vh - 174.5px);
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 30px 0;
 
         .my_profile {
             width: 100%;
             display: flex;
-            flex-direction: column;
-            gap: 5px 0;
-            margin-top: 30px;
+            justify-content: space-between;
 
-            .thumb {
-                margin: 0;
+            .my_profile_thumb {
+                .thumb {
+                    vertical-align: middle;
+                    margin: 0 10px 0 0;
+                }
+                .nick_name {
+                    display: inline-block;
+                }
             }
         }
     }
@@ -585,19 +582,17 @@ export const Div = styled.div`
 `;
 
 export const DetailImage = styled.div`
-    width: 480px;
-
     .detail_image {
+        width: 480px;
         height: 480px;
         object-fit: cover;
     }
 
     @media all and (max-width: 479px) {
-        width: 100%;
-
         .detail_image {
+            width: 100%;
             height: auto;
-            object-fit: cover;
+            max-height: 479px;
         }
     }
 `;
@@ -804,12 +799,6 @@ export const Span = styled.span`
         }
     }
 
-    &.thumb {
-        margin-left: 10px;
-        font-size: 3rem;
-        color: #999;
-    }
-
     &.required {
         padding-right: 5px;
         vertical-align: middle;
@@ -837,6 +826,48 @@ export const Span = styled.span`
         color: #111;
     }
 `;
+export const Icon = styled.span`
+    &.thumb,
+    &.setting {
+        margin-left: 10px;
+        font-size: 3rem;
+        color: #999;
+    }
+
+    &.menu_icon {
+        font-size: 2.4rem;
+    }
+
+    &.detail_header_icon {
+        font-size: 2.4rem;
+        color: var(--main-color);
+    }
+
+    &.search_icon {
+        font-size: 2.4rem;
+        color: var(--main-color);
+    }
+    &.search_cancel_icon {
+        font-size: 2rem;
+        color: var(--main-color);
+    }
+
+    &.cancel_icon {
+        font-size: 3rem;
+        color: #111;
+    }
+
+    &.heart_empty_icon {
+        margin-right: 5px;
+        vertical-align: top;
+    }
+
+    &.photo_icon {
+        font-size: 3rem;
+        color: #999;
+    }
+`;
+
 export const Em = styled.em``;
 
 // 링크, 버튼
@@ -850,9 +881,6 @@ export const Paginate = styled(StyledNavLink)`
         padding: 5px 15px;
         font-size: 1.2rem;
 
-        .menu_icon {
-            font-size: 2.4rem;
-        }
         &.active {
             .quick_menu_text {
                 color: var(--primary-color);
@@ -961,11 +989,6 @@ export const Button = styled.button`
     &.cancel_btn {
         width: 40px;
         height: 40px;
-
-        svg {
-            font-size: 3rem;
-            color: #111;
-        }
     }
 
     &.logut_btn {
@@ -984,11 +1007,6 @@ export const Button = styled.button`
         top: 0;
         right: 5px;
         border-radius: 0 30px 30px 0;
-
-        .search_icon {
-            font-size: 2.4rem;
-            color: var(--main-color);
-        }
     }
     &.search_cancel_btn {
         width: 30px;
@@ -997,11 +1015,6 @@ export const Button = styled.button`
         top: 7px;
         right: 40px;
         border-radius: 15px;
-
-        .search_cancel_icon {
-            font-size: 2rem;
-            color: var(--main-color);
-        }
     }
 
     &.category_btn {
@@ -1137,11 +1150,6 @@ export const Label = styled.label`
         border-radius: 5px;
         border: 1px solid #999;
         cursor: pointer;
-
-        svg {
-            font-size: 3rem;
-            color: #999;
-        }
     }
 `;
 export const TextArea = styled.textarea`
@@ -1193,7 +1201,6 @@ export const Img = styled.img`
     }
 `;
 
-// 커스텀
 export const Error = styled.span`
     width: 100%;
     display: block;
@@ -1202,6 +1209,7 @@ export const Error = styled.span`
     font-size: 1.4rem;
     color: #ff5252;
 `;
+
 export const Switcher = styled.div`
     display: flex;
     padding: 0 20px;

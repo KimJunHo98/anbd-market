@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import { subCategoryList, slideMenuList } from "../constant";
 
-import { Aside, Nav, Ul, Li, ALink, Button, Div, Span, P, H2, Em } from "../styledComponents";
+import { Aside, Nav, Ul, Li, ALink, Button, Div, Span, P, H2, HeaderTag, Icon } from "../styledComponents";
 import { IoClose } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 import { FaMinus, FaPlus } from "react-icons/fa6";
@@ -36,9 +36,9 @@ const SideMenu = () => {
         <Aside id="side_menu" className={`${show ? "show" : ""}`}>
             <H2 className="blind">사이드 메뉴</H2>
             <Div className="side_menu_wrap">
-                <Div className="side_menu_header">
+                <HeaderTag className="side_menu_header">
                     <Button className="cancel_btn" onClick={handleCancelBtnClick}>
-                        <IoClose />
+                        <Icon className="cancel_icon"><IoClose /></Icon>
                     </Button>
                     {isLogIn ? (
                         <Button className="logut_btn" onClick={handleLogOutClick}>
@@ -58,13 +58,13 @@ const SideMenu = () => {
                             </Li>
                         </Ul>
                     )}
-                </Div>
+                </HeaderTag>
                 {isLogIn && (
                     <Div className="my_page">
                         <Div className="my_page_items">
-                            <Span className="thumb">
+                            <Icon className="thumb">
                                 <FaUserCircle />
-                            </Span>
+                            </Icon>
                             <P className="nick_name">{useObj.displayName} 님</P>
                         </Div>
                     </Div>
@@ -75,13 +75,13 @@ const SideMenu = () => {
                             <Button className="toggle_button" onClick={handleToggleCategoryBtnClick}>
                                 <Span className="item_title">카테고리</Span>
                                 {isCategoryOpen ? (
-                                    <Em className="item_icon">
+                                    <Icon className="item_icon">
                                         <FaMinus />
-                                    </Em>
+                                    </Icon>
                                 ) : (
-                                    <Em className="item_icon">
+                                    <Icon className="item_icon">
                                         <FaPlus />
-                                    </Em>
+                                    </Icon>
                                 )}
                             </Button>
                             <Ul className={`menu_depth ${isCategoryOpen ? "open" : ""}`}>
@@ -98,13 +98,13 @@ const SideMenu = () => {
                             <Button className="toggle_button" onClick={handleToggleServiceBtnClick}>
                                 <Span className="item_title">고객센터</Span>
                                 {isServiceOpen ? (
-                                    <Em className="item_icon">
+                                    <Icon className="item_icon">
                                         <FaMinus />
-                                    </Em>
+                                    </Icon>
                                 ) : (
-                                    <Em className="item_icon">
+                                    <Icon className="item_icon">
                                         <FaPlus />
-                                    </Em>
+                                    </Icon>
                                 )}
                             </Button>
                             <Ul className={`menu_depth ${isServiceOpen ? "open" : ""}`}>

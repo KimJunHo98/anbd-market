@@ -1,6 +1,6 @@
 import React from "react";
-import { useStateContext } from "../context/useStateContext";
 import { useLocation } from "react-router-dom";
+import { useStateContext } from "../context/useStateContext";
 
 import { ALink, Aside, Div, H2 } from "../styledComponents";
 import { FaPlus } from "react-icons/fa6";
@@ -8,7 +8,6 @@ import { FaPlus } from "react-icons/fa6";
 const Sell = () => {
     const { isLogIn } = useStateContext();
     const location = useLocation("");
-
     const isDetail = location.pathname.includes("/detail");
 
     return (

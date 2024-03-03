@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
 
-import { Div, Input, Label, Form, Button } from "../styledComponents";
+import { Div, Input, Label, Form, Button, Icon } from "../styledComponents";
 import { IoMdSearch } from "react-icons/io";
 import { MdCancel } from "react-icons/md";
 
@@ -41,11 +41,15 @@ const Search = () => {
                     ></Input>
                     {search.length > 0 ? (
                         <Button className="search_cancel_btn" type="button" onClick={handleSearchCancelBtnCLick}>
-                            <MdCancel className="search_cancel_icon" />
+                            <Icon className="search_cancel_icon">
+                                <MdCancel />
+                            </Icon>
                         </Button>
                     ) : null}
                     <Button className="search_btn" type="submit">
-                        <IoMdSearch className="search_icon" />
+                        <Icon className="search_icon">
+                            <IoMdSearch />
+                        </Icon>
                     </Button>
                 </Form>
             ) : (
@@ -64,11 +68,15 @@ const Search = () => {
                     ></Input>
                     {search.length > 0 ? (
                         <Button className="search_cancel_btn" type="button" onClick={handleSearchCancelBtnCLick}>
-                            <MdCancel className="search_cancel_icon" />
+                            <Icon className="search_cancel_icon">
+                                <MdCancel />
+                            </Icon>
                         </Button>
                     ) : null}
                     <Button className="search_btn" type="submit">
-                        <IoMdSearch className="search_icon" />
+                        <Icon className="search_icon">
+                            <IoMdSearch />
+                        </Icon>
                     </Button>
                 </Form>
             )}

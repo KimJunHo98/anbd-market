@@ -4,7 +4,7 @@ import { footerNav } from "../constant";
 
 import Sell from "../components/Sell";
 import Top from "../components/Top";
-import { Container, Div, FooterTag, H2, Inner, Li, Nav, Span, Ul, Paginate } from "../styledComponents";
+import { Container, Div, FooterTag, H2, Inner, Li, Nav, Span, Ul, Paginate, Icon } from "../styledComponents";
 
 const Footer = () => {
     const { isLogIn } = useStateContext();
@@ -29,18 +29,18 @@ const Footer = () => {
                                                     className="quick_menu_link"
                                                     activeclassname="active"
                                                 >
-                                                    <Span className="menu_icon">{footer.icon}</Span>
+                                                    <Icon className="menu_icon">{footer.icon}</Icon>
                                                     <Span className="quick_menu_text">{footer.text}</Span>
                                                 </Paginate>
                                             ) : (
                                                 <Paginate to="/login" exact="true" className="quick_menu_link" activeclassname="active">
-                                                    <Span className="menu_icon">{footer.icon}</Span>
+                                                    <Icon className="menu_icon">{footer.icon}</Icon>
                                                     <Span className="quick_menu_text">{footer.text}</Span>
                                                 </Paginate>
                                             )
                                         ) : (
                                             <Paginate to={footer.path} exact="true" className="quick_menu_link" activeclassname="active">
-                                                <Span className="menu_icon">{footer.icon}</Span>
+                                                <Icon className="menu_icon">{footer.icon}</Icon>
                                                 <Span className="quick_menu_text">{footer.text}</Span>
                                             </Paginate>
                                         )}

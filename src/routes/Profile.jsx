@@ -1,6 +1,8 @@
 import React from "react";
 import { useStateContext } from "../context/useStateContext";
-import { Container, Div, H2, Inner, P, Section } from "../styledComponents";
+import { Container, Div, H2, Icon, Inner, P, Section } from "../styledComponents";
+import { FaUserCircle } from "react-icons/fa";
+import { IoIosSettings } from "react-icons/io";
 
 const Profile = () => {
     const { useObj } = useStateContext();
@@ -12,8 +14,15 @@ const Profile = () => {
                 <Inner>
                     <Div className="profile">
                         <Div className="my_profile">
-                            <P className="nick_name">{useObj.displayName} 님</P>
-                            구매내역
+                            <Div className="my_profile_thumb">
+                                <Icon className="thumb">
+                                    <FaUserCircle />
+                                </Icon>
+                                <P className="nick_name">{useObj.displayName} 님</P>
+                            </Div>
+                            <Icon className="setting">
+                                <IoIosSettings />
+                            </Icon>
                         </Div>
                     </Div>
                 </Inner>

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useRef, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../firebase";
 
 const StateContext = createContext({
@@ -6,18 +6,17 @@ const StateContext = createContext({
     isLoading: true,
     isLogIn: false,
     show: false,
+    detailTopVisible: false,
+    setDetailTopVisible: () => {},
     setShow: () => {},
     handleMenuClick: () => {},
-    isDetailTopVisible: false,
-    detailTopRef: (null)
 });
 
 export const StateProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const [useObj, setUseObj] = useState(null);
     const [show, setShow] = useState(false);
-    const [isDetailTopVisible, setDetailTopVisible] = useState(false);
-    const detailTopRef = useRef(null);
+    const [detailTopVisible, setDetailTopVisible] = useState(false);
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -38,29 +37,6 @@ export const StateProvider = ({ children }) => {
         };
     }, []);
 
-    useEffect(() => {
-        const detailTop = detailTopRef.current;
-        console.log("DetailTopRef in handleScroll:", detailTop);
-        
-        if (detailTop) {
-            const handleScroll = () => {
-                const offsetTop = detailTop.offsetTop + 60;
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop || window.scrollY;
-                const triggerOffset = offsetTop;
-                
-                setDetailTopVisible(scrollTop >= triggerOffset);
-            };
-            
-            window.addEventListener("scroll", handleScroll);
-            
-            return () => {
-                window.removeEventListener("scroll", handleScroll);
-            };
-        }
-    }, []);
-    
-    // console.log(detailTopRef);
-
     const isLogIn = Boolean(useObj);
 
     const handleMenuClick = () => {
@@ -68,7 +44,7 @@ export const StateProvider = ({ children }) => {
     };
 
     return (
-        <StateContext.Provider value={{ useObj, isLoading, isLogIn, show, setShow, handleMenuClick, isDetailTopVisible, detailTopRef }}>
+        <StateContext.Provider value={{ useObj, isLoading, isLogIn, show, setShow, handleMenuClick, detailTopVisible, setDetailTopVisible }}>
             {children}
         </StateContext.Provider>
     );

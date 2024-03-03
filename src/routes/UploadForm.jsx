@@ -2,7 +2,7 @@ import React from "react";
 import useUpload from "../hooks/useUpload";
 import { categoryList, subCategoryList } from "../constant";
 
-import { Container, Div, H2, Inner, Section, Form, Label, Input, Span, TextArea, Select, Option, P, Img } from "../styledComponents";
+import { Container, Div, H2, Inner, Section, Form, Label, Input, Span, TextArea, Select, Option, P, Img, Icon } from "../styledComponents";
 import { FaCamera } from "react-icons/fa";
 
 const UploadForm = () => {
@@ -17,7 +17,7 @@ const UploadForm = () => {
                         <Form className="register_form" onSubmit={onSubmit}>
                             <Div className="add_photo">
                                 <Label htmlFor="photo_input" className="photo_label">
-                                    <FaCamera />
+                                    <Icon className="photo_icon"><FaCamera /></Icon>
                                 </Label>
                                 <Input
                                     id="photo_input"
