@@ -19,17 +19,17 @@ env파일에 노출이 되면 안되는 정보를 작성하여 보호를 했으�
 
 ## 개발환경
 
--   dayjs: ^1.11.10,
--   firebase: ^10.1.0,
--   react: ^18.2.0,
--   react-dom: ^18.2.0,
--   react-icons: ^4.12.0,
--   react-router-dom: ^6.21.1,
--   react-scripts: 5.0.1,
--   styled-components: ^6.1.6,
--   styled-reset: ^4.5.2,
--   swiper: ^10.0.0,
--   web-vitals: ^2.1.4
+-   dayjs: "^1.11.10",
+-   firebase: "^10.1.0",
+-   react: "^18.2.0",
+-   react-dom: "^18.2.0",
+-   react-icons: "^4.12.0",
+-   react-router-dom: "^6.21.1",
+-   react-scripts: "5.0.1",
+-   styled-components: "^6.1.6",
+-   styled-reset: "^4.5.2",
+-   swiper: "^10.0.0",
+-   web-vitals: "^2.1."4
 
 ## 구현 목록
 
@@ -53,11 +53,12 @@ env파일에 노출이 되면 안되는 정보를 작성하여 보호를 했으�
 ✔ 업로드시 업로드시간, 지난시간 구현 <br>
 ✔ 배너 자동 슬라이드<br>
 ✔ 솔드아웃 처리<br>
-✔ 검색 필터 구현<br>
-✔ 컴포넌트마다 검색 기능, 헤더 UI 구성 다르게 구현<br>
+✔ 검색 필터링 구현<br>
+✔ 컴포넌트에 따라 검색 기능 & 헤더 UI 구성 다르게 구현<br>
 ✔ 찜하기 기능 & 카운트 구현<br>
 ✔ 카테고리 & 상세카테고리 별 필터링 구현<br>
 ✔ 로그인 & 회원가입 기능 구현<br>
+✔ 슬라이드 사이드 메뉴<br>
 
 ## 기능 구현
 
@@ -66,7 +67,7 @@ env파일에 노출이 되면 안되는 정보를 작성하여 보호를 했으�
 -   firebase cloudStorage에 저장된 데이터를 firebase query를 사용한 실시간 게시글 업로드, deleteDoc & updateDoc 함수를 사용한 수정, 삭제 기능
 -   firebase storage를 사용하여 사진 파일의 url을 저장 & 컴포넌트에서 출력
 -   각 카테고리 별로 firebase cloudStorage에 저장된 데이터를 fetch하여 해당 카테고리 상품 출력
--   HashRouter를 사용한 컴포넌트 라우팅
+-   BrowserRouter를 사용한 컴포넌트 라우팅
 -   useAuth 커스텀훅을 생성하여 state를 관리하고 auth와 관련된 함수 작성
 -   useSearchContext, useStateContext 커스텀훅을 생성하여 state 및 함수를 전역으로 관리하고 여러 컴포넌트에 공유
 -   useFetchProducts, useFetchPickedItems, useUpload 커스텀훅을 생성하여 state 및 함수를 전역으로 관리하고 여러 컴포넌트에 공유

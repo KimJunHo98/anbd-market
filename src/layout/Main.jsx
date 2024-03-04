@@ -21,9 +21,10 @@ const Main = () => {
     const { isLogIn } = useStateContext();
     const location = useLocation();
     const isDetailPage = location.pathname.includes("/detail");
+    const isProfilePage = location.pathname.includes("/profile");
 
     return (
-        <MainTag style={{paddingTop: `${!isDetailPage ? "172.5px" : ""}`}}>
+        <MainTag style={{paddingTop: `${!isDetailPage && !isProfilePage ? "172.5px" : ""}`}}>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/product" element={<Product />} />

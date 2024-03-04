@@ -47,6 +47,27 @@ export const HeaderTag = styled.header`
             }
         }
     }
+
+    &.profile_header {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 30px 15px 30px;
+
+        .profile_thumb {
+            margin-right: auto;
+        
+            .thumb {
+                vertical-align: middle;
+                margin: 0 10px 0 0;
+            }
+            .nick_name {
+                display: inline-block;
+            }
+        }    
+    }
+    
 `;
 export const FooterTag = styled.footer`
     width: 100%;
@@ -132,6 +153,10 @@ export const Nav = styled.nav`
         padding: 50px 0;
     }
 
+    &.user_action_nav {
+        width: 100%;
+    }
+
     &.footer_nav {
         padding: 6px 0 10px;
     }
@@ -169,6 +194,13 @@ export const H3 = styled.h3`
     &.notice_title {
         font-size: 1.8rem;
         margin-bottom: 30px;
+    }
+
+    &.profile_menu_title {
+        margin: 20px 0;
+        padding: 10px 15px;
+        font-size: 1.6rem;
+        font-weight: 500;
     }
 `;
 export const H4 = styled.h4`
@@ -425,26 +457,15 @@ export const Div = styled.div`
 
     &.profile {
         width: 100%;
-        height: calc(100vh - 174.5px);
+        height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 30px 0;
+        background-color: #222;
 
-        .my_profile {
+        .profile_contents {
             width: 100%;
-            display: flex;
-            justify-content: space-between;
-
-            .my_profile_thumb {
-                .thumb {
-                    vertical-align: middle;
-                    margin: 0 10px 0 0;
-                }
-                .nick_name {
-                    display: inline-block;
-                }
-            }
         }
     }
 
@@ -687,6 +708,16 @@ export const Ul = styled.ul`
             font-weight: 500;
         }
     }
+
+    &.user_action_list {
+        display: flex;
+        text-align: center;
+    }
+    &.profile_menu_list {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+    }
 `;
 export const Li = styled.li`
     &.home_nav_list {
@@ -732,6 +763,42 @@ export const Li = styled.li`
 
     &.menu_item {
         padding: 10px 0;
+    }
+
+    &.action_item {
+        width: 33.3333%;
+        padding: 30px;
+        font-size: 1.4rem;
+        font-weight: 300;
+        border: 1px solid #555;
+
+        &.coupon {
+            border-left: 0;
+            border-right: 0;
+        }
+        &.point {
+            border-left: 0;
+        }
+        &.purchase {
+            padding: 0;
+            border-right: 0;
+        }
+    }
+
+    &.profile_menu_item {
+        width: 50%;
+        padding: 20px 10px;
+        border-top: 1px solid #555;
+        font-size: 1.4rem;
+        font-weight: 300;
+        cursor: pointer;
+
+        &:nth-child(odd) {
+            border-right: 1px solid #555;
+        }
+        &:nth-child(5), &:nth-child(6) {
+            border-bottom: 1px solid #555;
+        }
     }
 `;
 export const P = styled.p`
@@ -831,7 +898,12 @@ export const Icon = styled.span`
     &.setting {
         margin-left: 10px;
         font-size: 3rem;
-        color: #999;
+        color: #eee;
+    }
+    &.setting {
+        margin-right: 10px;
+        font-size: 2.4rem;
+        cursor: pointer;
     }
 
     &.menu_icon {
@@ -866,9 +938,18 @@ export const Icon = styled.span`
         font-size: 3rem;
         color: #999;
     }
+
+    &.action_icon {
+        display: block;
+        font-size: 2.6rem;
+        margin-bottom: 10px;
+    }
 `;
 
 export const Em = styled.em``;
+export const AccentColor = styled.em`
+    color: var(--accent-color);
+`;
 
 // 링크, 버튼
 export const StyledNavLink = styled(NavLink)``;
@@ -974,6 +1055,11 @@ export const ALink = styled(Link)`
             padding-left: 5px;
             vertical-align: top;
         }
+    }
+
+    &.action_link {
+        display: block;
+        padding: 30px;
     }
 `;
 export const Button = styled.button`

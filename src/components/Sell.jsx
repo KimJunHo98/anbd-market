@@ -9,10 +9,11 @@ const Sell = () => {
     const { isLogIn } = useStateContext();
     const location = useLocation("");
     const isDetail = location.pathname.includes("/detail");
+    const isProfilePage = location.pathname.includes("/profile");
 
     return (
         <>
-            {!isDetail && isLogIn ? (
+            {!isDetail && isLogIn && !isProfilePage ? (
                 <Aside id="sell">
                     <H2 className="blind">내 물건 팔기</H2>
                     <Div className="sell">
