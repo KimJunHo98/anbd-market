@@ -134,7 +134,6 @@ const Detail = () => {
                                         <Icon className="heart_empty_icon">
                                             <IoMdHeartEmpty />
                                         </Icon>
-
                                         {filteredPickeditem.length > 0 ? (
                                             <Span className="pick_text">{filteredPickeditem[0].count}</Span>
                                         ) : (

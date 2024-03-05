@@ -81,7 +81,7 @@ export const FooterTag = styled.footer`
 `;
 export const MainTag = styled.main``;
 export const Section = styled.section`
-    &#register {
+    &#upload {
         .inner {
             border-top: 1px solid #ddd;
         }
@@ -531,7 +531,7 @@ export const Div = styled.div`
         }
     }
 
-    &.register {
+    &.upload {
         width: 100%;
         height: 100%;
         display: flex;
@@ -539,14 +539,14 @@ export const Div = styled.div`
         align-items: center;
         padding-bottom: 100px;
 
-        .register_input_box,
-        .register_textarea {
+        .upload_input_box,
+        .upload_textarea {
             display: flex;
             flex-direction: column;
             gap: 10px 0;
             padding-top: 10px;
         }
-        .register_category {
+        .upload_category {
             display: flex;
             flex-direction: column;
             gap: 10px 0;
@@ -1171,7 +1171,7 @@ export const Form = styled.form`
         padding: 0;
     }
 
-    &.register_form {
+    &.upload_form {
         width: 100%;
         padding: 30px 0;
         gap: 30px 0;
@@ -1212,7 +1212,7 @@ export const Input = styled.input`
         display: none;
     }
 
-    &.register_input {
+    &.upload_input {
         width: 100%;
         padding: 10px 0px 10px 15px;
         border-radius: 5px;
@@ -1225,7 +1225,7 @@ export const Input = styled.input`
     }
 `;
 export const Label = styled.label`
-    &.register_label {
+    &.upload_label {
         font-size: 1.4rem;
         font-weight: 500;
         color: var(--secondary-color);

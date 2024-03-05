@@ -9,12 +9,12 @@ const UploadForm = () => {
     const { fileUrls, title, price, brand, size, desc, subCategory, category, onFileChange, onChange, onSubmit } = useUpload();
 
     return (
-        <Section id="register">
+        <Section id="upload">
             <H2 className="blind">물건 등록 폼</H2>
             <Container>
                 <Inner className="inner">
-                    <Div className="register">
-                        <Form className="register_form" onSubmit={onSubmit}>
+                    <Div className="upload">
+                        <Form className="upload_form" onSubmit={onSubmit}>
                             <Div className="add_photo">
                                 <Label htmlFor="photo_input" className="photo_label">
                                     <Icon className="photo_icon"><FaCamera /></Icon>
@@ -26,7 +26,7 @@ const UploadForm = () => {
                                     accept="image/*"
                                     multiple
                                     onChange={onFileChange}
-                                    className="photo_input register_input"
+                                    className="photo_input upload_input"
                                 />
                                 <Div className="file_image_wrap">
                                     {fileUrls && fileUrls.map((url) => <Img key={url} src={url} alt="" className="thumb_image" />)}
@@ -35,14 +35,14 @@ const UploadForm = () => {
                             <P className="maximum">
                                 최대 <Span>{fileUrls.length}</Span> / 10
                             </P>
-                            <Div className="register_title register_input_box">
-                                <Label htmlFor="title_input" className="title_label register_label">
+                            <Div className="upload_title upload_input_box">
+                                <Label htmlFor="title_input" className="title_label upload_label">
                                     <Span className="required">*</Span>제목
                                 </Label>
                                 <Input
                                     id="title_input"
                                     name="title"
-                                    className="title_input register_input"
+                                    className="title_input upload_input"
                                     type="text"
                                     maxLength={100}
                                     placeholder="제목을 입력하세요."
@@ -51,14 +51,14 @@ const UploadForm = () => {
                                     onChange={onChange}
                                 />
                             </Div>
-                            <Div className="register_price register_input_box">
-                                <Label htmlFor="price_input" className="price_label register_label">
+                            <Div className="upload_price upload_input_box">
+                                <Label htmlFor="price_input" className="price_label upload_label">
                                     <Span className="required">*</Span>가격
                                 </Label>
                                 <Input
                                     id="price_input"
                                     name="price"
-                                    className="price_input register_input"
+                                    className="price_input upload_input"
                                     type="text"
                                     placeholder="₩ 가격을 입력하세요."
                                     required
@@ -66,14 +66,14 @@ const UploadForm = () => {
                                     onChange={onChange}
                                 />
                             </Div>
-                            <Div className="register_category">
-                                <Label htmlFor="category_select" className="category_label register_label">
+                            <Div className="upload_category">
+                                <Label htmlFor="category_select" className="category_label upload_label">
                                     <Span className="required">*</Span>카테고리
                                 </Label>
                                 <Select
                                     id="category_select"
                                     name="category"
-                                    className="category_select register_select"
+                                    className="category_select upload_select"
                                     required
                                     value={category}
                                     onChange={(e) => onChange({ target: e.target })}
@@ -86,14 +86,14 @@ const UploadForm = () => {
                                     ))}
                                 </Select>
                             </Div>
-                            <Div className="register_category">
-                                <Label htmlFor="subcategory_select" className="subcategory_label register_label">
+                            <Div className="upload_category">
+                                <Label htmlFor="subcategory_select" className="subcategory_label upload_label">
                                     <Span className="required">*</Span>서브 카테고리
                                 </Label>
                                 <Select
                                     id="subcategory_select"
                                     name="subCategory"
-                                    className="category_select register_select"
+                                    className="category_select upload_select"
                                     value={subCategory}
                                     onChange={(e) => onChange({ target: e.target })}
                                 >
@@ -105,14 +105,14 @@ const UploadForm = () => {
                                     ))}
                                 </Select>
                             </Div>
-                            <Div className="register_brand register_input_box">
-                                <Label htmlFor="brand_input" className="brand_label register_label">
+                            <Div className="upload_brand upload_input_box">
+                                <Label htmlFor="brand_input" className="brand_label upload_label">
                                     브랜드
                                 </Label>
                                 <Input
                                     id="brand_input"
                                     name="brand"
-                                    className="brand_input register_input"
+                                    className="brand_input upload_input"
                                     type="text"
                                     maxLength={100}
                                     placeholder="브랜드명을 입력하세요."
@@ -120,14 +120,14 @@ const UploadForm = () => {
                                     onChange={onChange}
                                 />
                             </Div>
-                            <Div className="register_size register_input_box">
-                                <Label htmlFor="size_input" className="size_label register_label">
+                            <Div className="upload_size upload_input_box">
+                                <Label htmlFor="size_input" className="size_label upload_label">
                                     <Span className="required">*</Span>사이즈
                                 </Label>
                                 <Input
                                     id="size_input"
                                     name="size"
-                                    className="size_input register_input"
+                                    className="size_input upload_input"
                                     type="text"
                                     maxLength={100}
                                     placeholder="사이즈를 입력하세요."
@@ -136,8 +136,8 @@ const UploadForm = () => {
                                     onChange={onChange}
                                 />
                             </Div>
-                            <Div className="register_text register_textarea">
-                                <Label htmlFor="product_desc" className="text_label register_label">
+                            <Div className="upload_text upload_textarea">
+                                <Label htmlFor="product_desc" className="text_label upload_label">
                                     <Span className="required">*</Span>상품설명
                                 </Label>
                                 <TextArea

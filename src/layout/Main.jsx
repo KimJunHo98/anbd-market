@@ -15,7 +15,6 @@ import Product from "../routes/Product";
 import UploadForm from "../routes/UploadForm";
 import Detail from "../routes/Detail";
 import Receipt from "../routes/Receipt";
-import ProtectedRoute from "../components/ProtectedRoute";
 
 const Main = () => {
     const { isLogIn } = useStateContext();
@@ -24,7 +23,7 @@ const Main = () => {
     const isProfilePage = location.pathname.includes("/profile");
 
     return (
-        <MainTag style={{paddingTop: `${!isDetailPage && !isProfilePage ? "172.5px" : ""}`}}>
+        <MainTag style={{ paddingTop: `${!isDetailPage && !isProfilePage ? "172.5px" : ""}` }}>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/product" element={<Product />} />
@@ -32,14 +31,7 @@ const Main = () => {
                 <Route path="/product/subcategory/:value" element={<SubCategory />} />
                 <Route path="/product/detail/:id/*" element={<Detail />} />
                 {isLogIn ? (
-                    <Route
-                        path="/profile"
-                        element={
-                            <ProtectedRoute>
-                                <Profile />
-                            </ProtectedRoute>
-                        }
-                    />
+                    <Route path="/profile" element={<Profile />} />
                 ) : (
                     <>
                         <Route path="/signup" element={<Signup />} />

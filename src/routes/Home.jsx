@@ -1,11 +1,11 @@
 import React from "react";
 import useFetchProducts from "../hooks/useFetchProducts";
+import { subCategoryList } from "../constant";
 
 import Banner from "../components/Banner";
 import HomeContent from "../components/HomeContent";
 
 import { ALink, Container, Div, H2, Img, Inner, Li, Nav, P, Section, Span, Ul } from "../styledComponents";
-import { subCategoryList } from "../constant";
 
 const Home = () => {
     const { loading } = useFetchProducts();

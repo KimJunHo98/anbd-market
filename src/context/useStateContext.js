@@ -7,8 +7,6 @@ const StateContext = createContext({
     isLogIn: false,
     show: false,
     detailTopVisible: false,
-    setDetailTopVisible: () => {},
-    setShow: () => {},
     handleMenuClick: () => {},
 });
 
