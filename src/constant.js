@@ -68,7 +68,7 @@ export const bannerImages = [
 export const footerNav = [
     { icon: <GoHomeFill />, path: "/", text: "홈" },
     { icon: <IoMdHeart />, path: "/mypick", text: "찜" },
-    { icon: <IoReceiptSharp />, path: "/receipt", text: "판매내역" },
+    { icon: <IoReceiptSharp />, path: "/receipt", text: "등록상품" },
     { icon: <FaBell />, path: "/notice", text: "알림" },
     { icon: <RiUser3Fill />, path: "/profile", text: "My" },
 ];

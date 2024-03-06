@@ -122,7 +122,7 @@ const useUpload = () => {
     };
 
     const handleImageDeleteCLick = () => {
-        setFileUrls(null);
+        setFileUrls("");
     };
 
     return { fileUrls, title, price, brand, size, desc, category, onFileChange, onChange, onSubmit, handleImageDeleteCLick };

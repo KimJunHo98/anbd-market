@@ -34,7 +34,7 @@ const Detail = () => {
 
     const handleScroll = () => {
         const detailTop = detailTopRef.current;
-        const gap = 80;
+        const gap = 70;
 
         if (detailTop) {
             const offsetTop = detailTop.offsetTop - gap; // offsetTop에 80px을 뺀 값에 도달하면 state 변경  

@@ -95,6 +95,11 @@ export const Article = styled.article`
         padding-bottom: 10px;
         border-bottom: 1px solid #555;
     }
+
+    &.receipt_item_wrap {
+        display: flex;
+
+    }
 `;
 export const Aside = styled.aside`
     &#side_menu {
@@ -430,7 +435,7 @@ export const Div = styled.div`
         display: flex;
         flex-direction: column;
         gap: 10px 0;
-        padding: 30px 0 69px;
+        padding: 30px 0 68px;
 
         .product_text,
         .category_text,
@@ -539,6 +544,10 @@ export const Div = styled.div`
         align-items: center;
         padding-bottom: 100px;
 
+        .file_image_wrap {
+            position: relative;
+        }
+
         .upload_input_box,
         .upload_textarea {
             display: flex;
@@ -599,6 +608,27 @@ export const Div = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: center;
+    }
+
+    &.option_btn {
+        position: relative;
+        margin-left: auto;
+        color: var(--main-color);
+        border-bottom: 1px solid #555;
+
+        .option_btn_box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 36px;
+            left: 0px;
+            display: none;
+
+            &.show {
+                display: block;
+            }
+        }
     }
 `;
 
@@ -944,6 +974,20 @@ export const Icon = styled.span`
         font-size: 2.6rem;
         margin-bottom: 10px;
     }
+
+    &.dot_icon {
+        padding: 10px;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+
+    &.delete_icon {
+        position: absolute;
+        top: -10px;
+        right: 0px;
+        font-size: 2.4rem;
+        cursor: pointer;
+    }
 `;
 
 export const Em = styled.em``;
@@ -1156,6 +1200,20 @@ export const Button = styled.button`
         font-size: 2.4rem;
         background-color: var(--primary-color);
         color: var(--main-color);
+    }
+
+    &.delete_btn, &.edit_btn {
+        width: 100%;
+        padding: 5px 0;
+        border: 1px solid #fff;
+        color: var(--main-color);
+    }
+    &.delete_btn {
+        border-radius: 5px 5px 0 0;
+        border-bottom: 0;
+    }
+    &.edit_btn {
+        border-radius: 0 0 5px 5px;
     }
 `;
 

@@ -4,9 +4,11 @@ import { categoryList, subCategoryList } from "../constant";
 
 import { Container, Div, H2, Inner, Section, Form, Label, Input, Span, TextArea, Select, Option, P, Img, Icon } from "../styledComponents";
 import { FaCamera } from "react-icons/fa";
+import { TiDelete } from "react-icons/ti";
 
 const UploadForm = () => {
-    const { fileUrls, title, price, brand, size, desc, subCategory, category, onFileChange, onChange, onSubmit } = useUpload();
+    const { fileUrls, title, price, brand, size, desc, subCategory, category, onFileChange, onChange, onSubmit, handleImageDeleteCLick } =
+        useUpload();
 
     return (
         <Section id="upload">
@@ -17,7 +19,9 @@ const UploadForm = () => {
                         <Form className="upload_form" onSubmit={onSubmit}>
                             <Div className="add_photo">
                                 <Label htmlFor="photo_input" className="photo_label">
-                                    <Icon className="photo_icon"><FaCamera /></Icon>
+                                    <Icon className="photo_icon">
+                                        <FaCamera />
+                                    </Icon>
                                 </Label>
                                 <Input
                                     id="photo_input"
@@ -30,6 +34,11 @@ const UploadForm = () => {
                                 />
                                 <Div className="file_image_wrap">
                                     {fileUrls && fileUrls.map((url) => <Img key={url} src={url} alt="" className="thumb_image" />)}
+                                    {fileUrls && (
+                                        <Icon className="delete_icon" onClick={handleImageDeleteCLick}>
+                                            <TiDelete />
+                                        </Icon>
+                                    )}
                                 </Div>
                             </Div>
                             <P className="maximum">
