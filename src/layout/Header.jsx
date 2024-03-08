@@ -70,7 +70,7 @@ const Header = () => {
                         <HeaderTag id="detail_header">
                             <H2 className="blind">헤더</H2>
                             <Container>
-                                <Inner className={`inner ${detailTopVisible ? "visible" : ""}`}>
+                                <Inner className={`inner ${detailTopVisible ? "visible" : "invisible"}`}>
                                     <Div className="detail_header">
                                         <Div className="detail_header_left">
                                             <Button onClick={handleBackBtnClick} className="back_btn">

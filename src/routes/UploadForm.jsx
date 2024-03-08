@@ -34,7 +34,7 @@ const UploadForm = () => {
                                 />
                                 <Div className="file_image_wrap">
                                     {fileUrls && fileUrls.map((url) => <Img key={url} src={url} alt="" className="thumb_image" />)}
-                                    {fileUrls && (
+                                    {fileUrls && fileUrls.length > 0 && (
                                         <Icon className="delete_icon" onClick={handleImageDeleteCLick}>
                                             <TiDelete />
                                         </Icon>
@@ -88,7 +88,7 @@ const UploadForm = () => {
                                     onChange={(e) => onChange({ target: e.target })}
                                 >
                                     <Option value="">선택하세요</Option>
-                                    {categoryList.slice(1, 5).map((category) => (
+                                    {categoryList.slice(0, 4).map((category) => (
                                         <Option key={category.text} value={category.value}>
                                             {category.text} {category.desc}
                                         </Option>

@@ -39,7 +39,10 @@ export const HeaderTag = styled.header`
 
         .inner {
             transition: all 0.1s ease;
-            background-color: transparent;
+
+            &.invisible {
+                background-color: transparent;
+            }
 
             &.visible {
                 background-color: #222;
@@ -57,7 +60,7 @@ export const HeaderTag = styled.header`
 
         .profile_thumb {
             margin-right: auto;
-        
+
             .thumb {
                 vertical-align: middle;
                 margin: 0 10px 0 0;
@@ -65,9 +68,8 @@ export const HeaderTag = styled.header`
             .nick_name {
                 display: inline-block;
             }
-        }    
+        }
     }
-    
 `;
 export const FooterTag = styled.footer`
     width: 100%;
@@ -88,17 +90,8 @@ export const Section = styled.section`
     }
 `;
 export const Article = styled.article`
-    &.pick_list {
-        display: flex;
-        gap: 0 10px;
-        position: relative;
-        padding-bottom: 10px;
-        border-bottom: 1px solid #555;
-    }
-
     &.receipt_item_wrap {
         display: flex;
-
     }
 `;
 export const Aside = styled.aside`
@@ -826,7 +819,8 @@ export const Li = styled.li`
         &:nth-child(odd) {
             border-right: 1px solid #555;
         }
-        &:nth-child(5), &:nth-child(6) {
+        &:nth-child(5),
+        &:nth-child(6) {
             border-bottom: 1px solid #555;
         }
     }
@@ -978,6 +972,7 @@ export const Icon = styled.span`
     &.dot_icon {
         padding: 10px;
         font-size: 2rem;
+        color: var(--main-color);
         cursor: pointer;
     }
 
@@ -1063,6 +1058,7 @@ export const ALink = styled(Link)`
             vertical-align: top;
         }
     }
+
     &.home_item {
         max-width: 48%;
     }
@@ -1104,6 +1100,14 @@ export const ALink = styled(Link)`
     &.action_link {
         display: block;
         padding: 30px;
+    }
+
+    &.pick_item {
+        display: flex;
+        gap: 0 10px;
+        position: relative;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #555;
     }
 `;
 export const Button = styled.button`
@@ -1202,18 +1206,33 @@ export const Button = styled.button`
         color: var(--main-color);
     }
 
-    &.delete_btn, &.edit_btn {
+    &.delete_btn {
         width: 100%;
         padding: 5px 0;
         border: 1px solid #fff;
+        border-radius: 5px;
         color: var(--main-color);
     }
-    &.delete_btn {
-        border-radius: 5px 5px 0 0;
-        border-bottom: 0;
-    }
+
     &.edit_btn {
-        border-radius: 0 0 5px 5px;
+        position: relative;
+
+        .edit {
+            width: 100%;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            display: none;
+            padding: 5px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+            color: var(--main-color);
+            background-color: #222;
+
+            &.show {
+                display: block;
+            }
+        }
     }
 `;
 
@@ -1233,6 +1252,10 @@ export const Form = styled.form`
         width: 100%;
         padding: 30px 0;
         gap: 30px 0;
+    }
+
+    &.edit_form {
+        padding: 0;
     }
 `;
 export const Input = styled.input`

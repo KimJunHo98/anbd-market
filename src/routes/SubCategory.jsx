@@ -16,13 +16,11 @@ const SubCategory = () => {
     const { loading, subCategoryItems } = useFetchProducts();
     const { search } = useSearchContext();
 
-    const productsSubCategory = subCategoryItems.filter(
+    const searchProducts = subCategoryItems.filter(
         (result) =>
             (result.subCategory === value && result.title.toLowerCase().includes(search.toLowerCase())) ||
             result.brand.toLowerCase().includes(search.toLowerCase())
     );
-
-    console.log(productsSubCategory);
 
     return (
         <Section id="subCategory">
@@ -38,8 +36,8 @@ const SubCategory = () => {
                             <>
                                 {subCategoryItems.length === 0 ? (
                                     <P className="not_have">등록된 상품이 없습니다.</P>
-                                ) : productsSubCategory.length > 0 ? (
-                                    productsSubCategory.map((item) => (
+                                ) : searchProducts.length > 0 ? (
+                                    searchProducts.map((item) => (
                                         <Article className="sub_category_item_wrap" key={item.id}>
                                             <ALink to={`/product/detail/${item.id}`} className="sub_category_item">
                                                 <Div className="sub_category_image">
@@ -74,7 +72,7 @@ const SubCategory = () => {
                                         </Article>
                                     ))
                                 ) : (
-                                    productsSubCategory.length === 0 && <P className="not_have">검색하신 상품이 없습니다.</P>
+                                    searchProducts.length === 0 && <P className="not_have">검색하신 상품이 없습니다.</P>
                                 )}
                             </>
                         )}

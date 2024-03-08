@@ -157,6 +157,7 @@ const useFetchProducts = () => {
         products,
         product,
         loading,
+        setLoading,
         subCategoryItems,
         filteredBestCategory,
         filteredFreeCategory,

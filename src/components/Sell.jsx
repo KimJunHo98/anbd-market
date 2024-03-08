@@ -10,10 +10,11 @@ const Sell = () => {
     const location = useLocation("");
     const isDetail = location.pathname.includes("/detail");
     const isProfilePage = location.pathname.includes("/profile");
+    const isUploadPage = location.pathname.includes("/upload");
 
     return (
         <>
-            {!isDetail && isLogIn && !isProfilePage ? (
+            {!isDetail && isLogIn && !isUploadPage && !isProfilePage ? (
                 <Aside id="sell">
                     <H2 className="blind">내 물건 팔기</H2>
                     <Div className="sell">

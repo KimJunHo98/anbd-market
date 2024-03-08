@@ -17,7 +17,7 @@ const Category = () => {
     const { products, loading } = useFetchProducts();
     const { search } = useSearchContext();
 
-    const productsCategory = products.filter(
+    const searchProducts = products.filter(
         (result) =>
             (result.category === category && result.title.toLowerCase().includes(search.toLowerCase())) ||
             result.brand.toLowerCase().includes(search.toLowerCase())
@@ -44,8 +44,8 @@ const Category = () => {
                             <>
                                 {products.length === 0 ? (
                                     <P className="not_have">등록된 상품이 없습니다.</P>
-                                ) : productsCategory.length > 0 ? (
-                                    productsCategory.map((product) => (
+                                ) : searchProducts.length > 0 ? (
+                                    searchProducts.map((product) => (
                                         <Article className="category_item_wrap" key={product.id}>
                                             <ALink to={`/product/detail/${product.id}`} className="category_item">
                                                 <Div className="category_image">
@@ -81,7 +81,7 @@ const Category = () => {
                                         </Article>
                                     ))
                                 ) : (
-                                    productsCategory.length === 0 && <P className="not_have">검색하신 상품이 없습니다.</P>
+                                    searchProducts.length === 0 && <P className="not_have">검색하신 상품이 없습니다.</P>
                                 )}
                             </>
                         )}

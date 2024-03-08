@@ -5,7 +5,7 @@ import { Div, ALink, Article, Ul, Li, Img, H3 } from "../styledComponents";
 import { FaAngleRight } from "react-icons/fa6";
 
 const HomeContent = () => {
-    const { filteredBestCategory, filteredFreeCategory, filteredExchangeCategory, filteredReuseCategory } = useFetchProducts();
+    const { filteredBestCategory, filteredFreeCategory, filteredExchangeCategory, filteredReuseCategory, setLoading } = useFetchProducts();
 
     // 숫자에 쉼표 추가하는 함수
     const formatNumberWithCommas = (number) => {
@@ -14,6 +14,11 @@ const HomeContent = () => {
         }
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
+
+
+    const handleImageLoad = () => {
+        setLoading(false);
+    }
 
     return (
         <>
@@ -27,7 +32,7 @@ const HomeContent = () => {
                                 .slice(0, 3)
                                 .map((best) => (
                                     <ALink to={`/product/detail/${best.id}`} key={best.id} className="home_item">
-                                        <Div className="home_image">{best.imageUrl && <Img src={best.imageUrl[0]} alt={best.title} />}</Div>
+                                        <Div className="home_image">{best.imageUrl && <Img onLoad={handleImageLoad} src={best.imageUrl[0]} alt={best.title} />}</Div>
                                         <Ul className="home_col_text">
                                             <Li className="title">{best.title}</Li>
                                             <Li className="depth_text">
@@ -60,7 +65,7 @@ const HomeContent = () => {
                                 .slice(0, 3)
                                 .map((free) => (
                                     <ALink to={`/product/detail/${free.id}`} key={free.id} className="home_item">
-                                        <Div className="home_image">{free.imageUrl && <Img src={free.imageUrl[0]} alt={free.title} />}</Div>
+                                        <Div className="home_image">{free.imageUrl && <Img onLoad={handleImageLoad} src={free.imageUrl[0]} alt={free.title} />}</Div>
                                         <Ul className="home_col_text">
                                             <Li className="title">{free.title}</Li>
                                             <Li className="depth_text">
@@ -94,7 +99,7 @@ const HomeContent = () => {
                                 .map((exchange) => (
                                     <ALink to={`/product/detail/${exchange.id}`} key={exchange.id} className="home_item">
                                         <Div className="home_image">
-                                            {exchange.imageUrl && <Img src={exchange.imageUrl[0]} alt={exchange.title} />}
+                                            {exchange.imageUrl && <Img onLoad={handleImageLoad} src={exchange.imageUrl[0]} alt={exchange.title} />}
                                         </Div>
                                         <Ul className="home_col_text">
                                             <Li className="title">{exchange.title}</Li>
@@ -129,7 +134,7 @@ const HomeContent = () => {
                                 .map((reuse) => (
                                     <ALink to={`/product/detail/${reuse.id}`} key={reuse.id} className="home_item">
                                         <Div className="home_image">
-                                            {reuse.imageUrl && <Img src={reuse.imageUrl[0]} alt={reuse.title} />}
+                                            {reuse.imageUrl && <Img onLoad={handleImageLoad} src={reuse.imageUrl[0]} alt={reuse.title} />}
                                         </Div>
                                         <Ul className="home_col_text">
                                             <Li className="title">{reuse.title}</Li>
