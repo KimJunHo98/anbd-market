@@ -347,6 +347,7 @@ export const Div = styled.div`
         .detail_item_wrap {
             display: flex;
             flex-direction: column;
+            padding-bottom: 30px;
 
             .detail_top {
                 display: flex;
@@ -1234,6 +1235,12 @@ export const Button = styled.button`
             }
         }
     }
+
+    &.cancel_edit_btn {
+        padding: 10px 0;
+        border-radius: 5px;
+        background-color: var(--primary-color);
+    }
 `;
 
 // 폼, 인풋
@@ -1304,6 +1311,13 @@ export const Input = styled.input`
             color: #ccc;
         }
     }
+
+    &.edit_btn {
+        margin: 30px 0 20px;
+        padding: 10px 0;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 `;
 export const Label = styled.label`
     &.upload_label {
@@ -1330,6 +1344,19 @@ export const TextArea = styled.textarea`
         &::placeholder {
             color: #ccc;
         }
+    }
+
+    &.edit_textbox {
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+        min-width: 300px;
+        padding: 10px;
+        border: 1px solid #555;
+        border-radius: 5px;
+        resize: none;
+        background-color: #222;
+        color: var(--main-color);
     }
 `;
 
