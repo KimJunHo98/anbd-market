@@ -17,22 +17,26 @@ export const StateProvider = ({ children }) => {
     const [detailTopVisible, setDetailTopVisible] = useState(false);
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-            if (user) {
-                setUseObj(user);
-            } else {
-                setUseObj(null);
-            }
-        });
+        const detectAuthState = async () => {
+            const unsubscribe = auth.onAuthStateChanged((user) => {
+                if (user) {
+                    setUseObj(user);
+                } else {
+                    setUseObj(null);
+                }
+            });
 
-        const timeoutId = setTimeout(() => {
-            setIsLoading(false);
-        }, 3000);
+            const timeoutId = setTimeout(() => {
+                setIsLoading(false);
+            }, 3000);
 
-        return () => {
-            clearTimeout(timeoutId);
-            unsubscribe();
+            return () => {
+                clearTimeout(timeoutId);
+                unsubscribe();
+            };
         };
+
+        detectAuthState();
     }, []);
 
     const isLogIn = Boolean(useObj);

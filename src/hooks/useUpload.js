@@ -83,13 +83,13 @@ const useUpload = () => {
             const SubCategoryText = subCategoryList.find((item) => item.value === subCategory)?.text || "";
 
             const docRef = await addDoc(collection(firestore, "product"), {
-                title: title,
-                price: price,
-                brand: brand,
-                size: size,
-                desc: desc,
-                category: category,
-                subCategory: subCategory,
+                title,
+                price,
+                brand,
+                size,
+                desc,
+                category,
+                subCategory,
                 subCategoryText: SubCategoryText,
                 createdAt: Date.now(),
                 username: useObj.displayName,

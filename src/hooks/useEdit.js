@@ -10,7 +10,7 @@ const useEdit = () => {
     const [toggleEditing, setToggleEditing] = useState(false);
     const [newText, setNewText] = useState(product.desc);
 
-    // 버튼 클릭함수
+    // 버튼클릭 관련 함수
     const handleBtnClick = () => {
         setShowBtns((prevShow) => !prevShow);
     };
@@ -23,20 +23,25 @@ const useEdit = () => {
         setToggleEditing(false);
     };
 
-    // 텍스트 수정 함수
+    // 텍스트 수정 관련 함수
     const onChange = (e) => {
         setNewText(e.target.value);
     };
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        // updateDoc 메소드를 사용해 서버에 업데이트 요청
-        const updateTextRef = doc(firestore, "product", product.id);
-        await updateDoc(updateTextRef, {
-            desc: newText,
-        }); 
+        try {
+            // updateDoc 메소드를 사용해 서버에 업데이트 요청
+            const updateTextRef = doc(firestore, "product", product.id);
+            await updateDoc(updateTextRef, {
+                desc: newText,
+            });
 
-        setToggleEditing(false);
+            setToggleEditing(false);
+        } catch (error) {
+            console.error("Error updating text:", error);
+            // 에러 처리 로직 추가 (예: 사용자에게 알림)
+        }
     };
 
     return {
