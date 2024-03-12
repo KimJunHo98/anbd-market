@@ -41,7 +41,7 @@ dayjs.locale("ko");
 
 const Detail = () => {
     const { setDetailTopVisible, isLogIn } = useStateContext();
-    const { product, loading, handleBuyBtnClick } = useFetchProducts();
+    const { product, loading, handleBuyBtnClick, formatNumberWithCommas } = useFetchProducts();
     const { handleToggleLike, filteredPickeditem } = useFetchPickedItems();
     const { handleBtnClick, handleEditBtnClick, showBtns, toggleEditing, onSubmit, newText, onChange, handleCancelBtnClick } = useEdit();
 
@@ -76,13 +76,6 @@ const Detail = () => {
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
-
-    const formatNumberWithCommas = (number) => {
-        if (number === null || number === undefined) {
-            return "N/A";
-        }
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
 
     return (
         <Section id="detail">

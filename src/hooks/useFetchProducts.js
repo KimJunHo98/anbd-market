@@ -23,7 +23,7 @@ const useFetchProducts = () => {
                     ...doc.data(),
                 }));
 
-                if (productsData) {
+                if (productsData.length > 0) {
                     setProducts(productsData);
                 } else {
                     console.log("제품이 존재하지 않습니다.");
@@ -51,7 +51,7 @@ const useFetchProducts = () => {
                         ...doc.data(),
                     }));
 
-                    if (categoryProducts) {
+                    if (categoryProducts.length > 0) {
                         setProducts(categoryProducts);
                     } else {
                         console.log("제품이 존재하지 않습니다.");
@@ -80,7 +80,7 @@ const useFetchProducts = () => {
                         ...doc.data(),
                     }));
 
-                    if (subCategoryProducts) {
+                    if (subCategoryProducts.length > 0) {
                         setSubCategoryItems(subCategoryProducts);
                     } else {
                         console.log("제품이 존재하지 않습니다.");
@@ -144,6 +144,14 @@ const useFetchProducts = () => {
         }
     };
 
+    // 숫자에 쉼표 추가하는 함수
+    const formatNumberWithCommas = (number) => {
+        if (number === null || number === undefined) {
+            return "N/A";
+        }
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+
     // 최신순으로 정렬
     const compareProductsByDate = (recentA, recentB) => new Date(recentB.createdAt) - new Date(recentA.createdAt);
 
@@ -167,6 +175,7 @@ const useFetchProducts = () => {
         filteredExchangeCategory,
         filteredReuseCategory,
         filteredPurchase,
+        formatNumberWithCommas,
         handleBuyBtnClick,
     };
 };

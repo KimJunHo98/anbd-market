@@ -62,7 +62,7 @@ const UploadForm = () => {
                             </Div>
                             <Div className="upload_price upload_input_box">
                                 <Label htmlFor="price_input" className="price_label upload_label">
-                                    <Span className="required">*</Span>가격
+                                    가격
                                 </Label>
                                 <Input
                                     id="price_input"
@@ -70,7 +70,6 @@ const UploadForm = () => {
                                     className="price_input upload_input"
                                     type="text"
                                     placeholder="₩ 가격을 입력하세요."
-                                    required
                                     value={price}
                                     onChange={onChange}
                                 />

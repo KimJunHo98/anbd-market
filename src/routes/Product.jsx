@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useSearchContext } from "../context/useSearchContext";
 import useFetchProducts from "../hooks/useFetchProducts";
 
@@ -12,22 +12,17 @@ dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
 const Product = () => {
-    const { loading, products } = useFetchProducts();
+    const { loading, products, formatNumberWithCommas } = useFetchProducts();
     const { search } = useSearchContext();
 
-    const searchProducts = products.filter(
-        (result) =>
-            (result && result.brand.toLowerCase().includes(search.toLowerCase())) ||
-            result.title.toLowerCase().includes(search.toLowerCase()) ||
-            result.desc.toLowerCase().includes(search.toLowerCase())
-    );
-
-    const formatNumberWithCommas = (number) => {
-        if (number === null || number === undefined) {
-            return "N/A";
-        }
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
+    const searchProducts = useMemo(() => {
+        return products.filter(
+            (result) =>
+                (result && result.brand.toLowerCase().includes(search.toLowerCase())) ||
+                result.title.toLowerCase().includes(search.toLowerCase()) ||
+                result.desc.toLowerCase().includes(search.toLowerCase())
+        );
+    }, [products, search]);
 
     return (
         <Article id="product">

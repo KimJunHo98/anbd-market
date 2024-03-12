@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
 import useFetchProducts from "../hooks/useFetchProducts";
@@ -14,21 +14,16 @@ dayjs.locale("ko");
 
 const Category = () => {
     const { category } = useParams();
-    const { products, loading } = useFetchProducts();
+    const { products, loading, formatNumberWithCommas } = useFetchProducts();
     const { search } = useSearchContext();
 
-    const searchProducts = products.filter(
+    const searchProducts = useMemo(() => {
+        return products.filter(
         (result) =>
             (result.category === category && result.title.toLowerCase().includes(search.toLowerCase())) ||
             result.brand.toLowerCase().includes(search.toLowerCase())
-    );
-
-    const formatNumberWithCommas = (number) => {
-        if (number === null || number === undefined) {
-            return "N/A";
-        }
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
+            );
+        }, [products, search, category]);
 
     return (
         <Section id="category">

@@ -71,7 +71,7 @@ const useUpload = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
 
-        if (!fileUrls || !useObj || !title || !price || !category || !subCategory || !size || !desc || loading) return;
+        if (!fileUrls || !useObj || !title || !category || !subCategory || !size || !desc || loading) return;
 
         try {
             setLoading(true);

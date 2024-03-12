@@ -1,6 +1,7 @@
 import React from "react";
 import { useStateContext } from "../context/useStateContext";
 import useFetchPickedItems from "../hooks/useFetchPickedItems";
+import useFetchProducts from "../hooks/useFetchProducts";
 
 import Login from "./Login";
 
@@ -10,13 +11,7 @@ import { IoMdHeartEmpty } from "react-icons/io";
 const Mypick = () => {
     const { isLogIn } = useStateContext();
     const { loading, pickedItems } = useFetchPickedItems();
-
-    const formatNumberWithCommas = (number) => {
-        if (number === null || number === undefined) {
-            return "N/A";
-        }
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
+    const { formatNumberWithCommas } = useFetchProducts();
 
     return (
         <>

@@ -8,8 +8,6 @@ import Main from "../layout/Main";
 import SideMenu from "./SideMenu";
 import Splash from "./Splash";
 
-import { Div, P } from "../styledComponents";
-
 const AppRouter = () => {
     const { isLoading } = useStateContext();
 
@@ -21,13 +19,7 @@ const AppRouter = () => {
                 <BrowserRouter>
                     <Header />
                     <SideMenu />
-                    {!isLoading ? (
-                        <Main />
-                    ) : (
-                        <Div className="loading">
-                            <P>로딩 중...</P>
-                        </Div>
-                    )}
+                    <Main />
                     <Footer />
                 </BrowserRouter>
             )}

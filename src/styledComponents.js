@@ -280,7 +280,6 @@ export const Div = styled.div`
         justify-content: center;
         align-items: center;
         margin: 0 auto;
-        background-color: #fff;
 
         p {
             width: 100%;

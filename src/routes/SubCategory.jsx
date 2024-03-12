@@ -13,7 +13,7 @@ dayjs.locale("ko");
 
 const SubCategory = () => {
     const { value } = useParams();
-    const { loading, subCategoryItems } = useFetchProducts();
+    const { loading, subCategoryItems, formatNumberWithCommas } = useFetchProducts();
     const { search } = useSearchContext();
 
     const searchProducts = subCategoryItems.filter(
@@ -46,7 +46,7 @@ const SubCategory = () => {
                                                 <Div className="sub_category_text">
                                                     <Ul className="col_text">
                                                         <Li className="title">{item.title}</Li>
-                                                        <Li className="price">{item.price}원</Li>
+                                                        <Li className="price">{formatNumberWithCommas(item.price)}원</Li>
                                                     </Ul>
                                                     <Ul className="row_text">
                                                         {item.brand === "" ? null : <Li className="brand">{item.brand}</Li>}

@@ -15,16 +15,9 @@ dayjs.locale("ko");
 
 const Receipt = () => {
     const { useObj, isLogIn } = useStateContext();
-    const { loading, products } = useFetchProducts();
+    const { loading, products, formatNumberWithCommas } = useFetchProducts();
 
     const filteredMySoldItem = products.filter((item) => (item && item.useId === useObj?.uid) || item.username === useObj?.displayName);
-
-    const formatNumberWithCommas = (number) => {
-        if (number === null || number === undefined) {
-            return "N/A";
-        }
-        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    };
 
     return (
         <>
