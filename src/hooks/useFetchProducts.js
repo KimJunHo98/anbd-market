@@ -152,6 +152,9 @@ const useFetchProducts = () => {
     const filteredFreeCategory = products.filter((result) => result.category === "free").sort(compareProductsByDate);
     const filteredExchangeCategory = products.filter((result) => result.category === "exchange").sort(compareProductsByDate);
     const filteredReuseCategory = products.filter((result) => result.category === "reuse").sort(compareProductsByDate);
+    
+    // 구매 상품 필터링
+    const filteredPurchase = products.filter((result) => result.soldOut === true).sort(compareProductsByDate);
 
     return {
         products,
@@ -163,6 +166,7 @@ const useFetchProducts = () => {
         filteredFreeCategory,
         filteredExchangeCategory,
         filteredReuseCategory,
+        filteredPurchase,
         handleBuyBtnClick,
     };
 };

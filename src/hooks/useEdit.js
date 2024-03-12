@@ -34,7 +34,7 @@ const useEdit = () => {
         const updateTextRef = doc(firestore, "product", product.id);
         await updateDoc(updateTextRef, {
             desc: newText,
-        });
+        }); 
 
         setToggleEditing(false);
     };

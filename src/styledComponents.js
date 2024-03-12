@@ -194,7 +194,8 @@ export const H3 = styled.h3`
         margin-bottom: 30px;
     }
 
-    &.profile_menu_title {
+    &.profile_menu_title,
+    &.profile_alarm_title {
         margin: 20px 0;
         padding: 10px 15px;
         font-size: 1.6rem;
@@ -204,6 +205,11 @@ export const H3 = styled.h3`
 export const H4 = styled.h4`
     &.title {
         font-size: 1.6rem;
+    }
+
+    &.purchase_title {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
     }
 `;
 
@@ -456,15 +462,32 @@ export const Div = styled.div`
 
     &.profile {
         width: 100%;
-        height: 100vh;
+        height: 100%;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 30px 0;
+        padding: 30px 0 69px;
         background-color: #222;
 
         .profile_contents {
             width: 100%;
+
+            .purchase_text_box {
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: space-between;
+
+                .purchase_image {
+                    margin-right: 10px;
+
+                    img {
+                        width: 60px;
+                        height: 60px;
+                        object-fit: cover;
+                    }
+                }
+            }
         }
     }
 
@@ -742,6 +765,9 @@ export const Ul = styled.ul`
         flex-wrap: wrap;
         text-align: center;
     }
+    &.purchase_list {
+        display: flex;
+    }
 `;
 export const Li = styled.li`
     &.home_nav_list {
@@ -825,6 +851,13 @@ export const Li = styled.li`
             border-bottom: 1px solid #555;
         }
     }
+
+    &.purchase_item {
+        width: 100%;
+        padding: 15px;
+        border-top: 1px solid #555;
+        border-bottom: 1px solid #555;
+    }
 `;
 export const P = styled.p`
     &.nick_name {
@@ -861,6 +894,10 @@ export const P = styled.p`
             margin-right: 5px;
             vertical-align: top;
         }
+    }
+
+    &.purchase_text {
+        font-size: 1.4rem;
     }
 `;
 export const Span = styled.span`
@@ -986,7 +1023,11 @@ export const Icon = styled.span`
     }
 `;
 
-export const Em = styled.em``;
+export const Em = styled.em`
+    &.delivery {
+        color: var(--primary-color);
+    }
+`;
 export const AccentColor = styled.em`
     color: var(--accent-color);
 `;
