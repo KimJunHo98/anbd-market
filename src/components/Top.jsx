@@ -44,10 +44,15 @@ const Top = () => {
     };
 
     return (
-        <Aside id="top_btn" className={`hide ${isDetail ? "isDetail" : ""} ${isLogIn ? "isLogin" : ""}`} ref={topBtnRef}>
+        <Aside
+            id="top_btn"
+            className={`hide ${isDetail ? "isDetail" : ""} ${isLogIn ? "isLogin" : ""}`}
+            ref={topBtnRef}
+            role="complementary"
+        >
             <H2 className="blind">상단 이동 버튼</H2>
-            <Button type="button" onClick={handleTopBtnClick} className="top_btn">
-                <FaArrowUp />
+            <Button type="button" onClick={handleTopBtnClick} className="top_btn" role="button" aria-label="상단으로 이동">
+                <FaArrowUp aria-hidden="true" />
             </Button>
         </Aside>
     );

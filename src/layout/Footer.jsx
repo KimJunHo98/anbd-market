@@ -17,7 +17,7 @@ const Footer = () => {
                     <Div className="footer">
                         <Sell />
                         <Top />
-                        <Nav className="footer_nav">
+                        <Nav className="footer_nav" role="navigation">
                             <Ul className="quick_menu_list">
                                 {footerNav.map((footer) => (
                                     <Li className="quick_menu_items" key={footer.text}>
@@ -28,19 +28,41 @@ const Footer = () => {
                                                     exact="true"
                                                     className="quick_menu_link"
                                                     activeclassname="active"
+                                                    role="link"
+                                                    aria-label={footer.text}
                                                 >
-                                                    <Icon className="menu_icon">{footer.icon}</Icon>
+                                                    <Icon className="menu_icon" aria-hidden="true">
+                                                        {footer.icon}
+                                                    </Icon>
                                                     <Span className="quick_menu_text">{footer.text}</Span>
                                                 </Paginate>
                                             ) : (
-                                                <Paginate to="/login" exact="true" className="quick_menu_link" activeclassname="active">
-                                                    <Icon className="menu_icon">{footer.icon}</Icon>
+                                                <Paginate
+                                                    to="/login"
+                                                    exact="true"
+                                                    className="quick_menu_link"
+                                                    activeclassname="active"
+                                                    role="link"
+                                                    aria-label={footer.text}
+                                                >
+                                                    <Icon className="menu_icon" aria-hidden="true">
+                                                        {footer.icon}
+                                                    </Icon>
                                                     <Span className="quick_menu_text">{footer.text}</Span>
                                                 </Paginate>
                                             )
                                         ) : (
-                                            <Paginate to={footer.path} exact="true" className="quick_menu_link" activeclassname="active">
-                                                <Icon className="menu_icon">{footer.icon}</Icon>
+                                            <Paginate
+                                                to={footer.path}
+                                                exact="true"
+                                                className="quick_menu_link"
+                                                activeclassname="active"
+                                                role="link"
+                                                aria-label={footer.text}
+                                            >
+                                                <Icon className="menu_icon" aria-hidden="true">
+                                                    {footer.icon}
+                                                </Icon>
                                                 <Span className="quick_menu_text">{footer.text}</Span>
                                             </Paginate>
                                         )}

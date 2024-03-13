@@ -40,35 +40,35 @@ const Profile = () => {
                 <Div className="profile">
                     <HeaderTag className="profile_header">
                         <Div className="profile_thumb">
-                            <Icon className="thumb">
+                            <Icon className="thumb" aria-hidden="true">
                                 <FaUserCircle />
                             </Icon>
                             <P className="nick_name">{useObj.displayName}</P>
                         </Div>
-                        <Icon className="setting">
+                        <Icon className="setting" aria-hidden="true">
                             <IoSettingsOutline />
                         </Icon>
-                        <Button onClick={handleMenuClick} className="menu_btn">
+                        <Button onClick={handleMenuClick} className="menu_btn" role="button" aria-label="메뉴 열기">
                             <Span className="bar" />
                         </Button>
                     </HeaderTag>
-                    <Nav className="user_action_nav">
+                    <Nav className="user_action_nav" role="navigation">
                         <Ul className="user_action_list">
                             <Li className="point action_item">
-                                <Icon className="action_icon">
+                                <Icon className="action_icon" aria-hidden="true">
                                     <RiMoneyDollarCircleLine />
                                 </Icon>
                                 포인트 <AccentColor>5,000p</AccentColor>
                             </Li>
                             <Li className="coupon action_item">
-                                <Icon className="action_icon">
+                                <Icon className="action_icon" aria-hidden="true">
                                     <RiCoupon3Line />
                                 </Icon>
                                 쿠폰함 <AccentColor>3개</AccentColor>
                             </Li>
                             <Li className="purchase action_item">
-                                <ALink className="action_link">
-                                    <Icon className="action_icon">
+                                <ALink className="action_link" role="link" aria-label="구매내역 보기">
+                                    <Icon className="action_icon" aria-hidden="true">
                                         <TbTruckDelivery />
                                     </Icon>
                                     구매내역
@@ -93,11 +93,17 @@ const Profile = () => {
                             <Ul className="purchase_list">
                                 {filteredPurchase.map((purchase) => (
                                     <Li key={purchase.id} className="purchase_item">
-                                        <ALink to={`/product/detail/${purchase.id}`} className="purchase_link">
+                                        <ALink
+                                            to={`/product/detail/${purchase.id}`}
+                                            className="purchase_link"
+                                            role="link"
+                                            aria-label="구매내역으로 이동"
+                                        >
                                             <H4 className="purchase_title">{purchase.username}님의 상품</H4>
                                             <Div className="purchase_text_box">
                                                 <P className="purchase_text">
-                                                    <Em className="delivery">[배송]</Em> {purchase.title} 상품을 구매하셨습니다. 구매내역에서 확인해보세요.
+                                                    <Em className="delivery">[배송]</Em> {purchase.title} 상품을 구매하셨습니다.
+                                                    구매내역에서 확인해보세요.
                                                 </P>
                                                 <Div className="purchase_image">
                                                     {purchase.imageUrl && <Img src={purchase.imageUrl[0]} alt={purchase.title} />}

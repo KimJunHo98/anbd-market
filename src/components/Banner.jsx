@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 
 const Banner = () => {
     return (
-        <Section id="banner">
+        <Section id="banner" role="banner">
             <H2 className="blind">배너 영역</H2>
             <Container>
                 <Div className="banner">

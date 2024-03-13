@@ -5,7 +5,7 @@ import useFetchProducts from "../hooks/useFetchProducts";
 
 import Login from "./Login";
 
-import { ALink, Article, Container, Div, H2, H3, Img, Inner, Li, P, Section, Ul } from "../styledComponents";
+import { ALink, Article, Container, Div, H2, H3, Img, Inner, Li, Loading, NotHave, P, Section, Ul } from "../styledComponents";
 import { IoMdHeartEmpty } from "react-icons/io";
 
 const Mypick = () => {
@@ -22,19 +22,26 @@ const Mypick = () => {
                         <Inner>
                             <Div className="my_pick">
                                 {loading ? (
-                                    <Div className="loading">
+                                    <Loading role="status" aria-live="assertive">
                                         <P>로딩 중...</P>
-                                    </Div>
+                                    </Loading>
                                 ) : (
                                     <>
                                         {!pickedItems ? (
-                                            <P className="not_have">찜한 상품이 없습니다.</P>
+                                            <NotHave role="status" aria-live="assertive">
+                                                찜한 상품이 없습니다.
+                                            </NotHave>
                                         ) : (
                                             <>
                                                 <H3 className="pick_title">내가 찜한 상품</H3>
                                                 {pickedItems.map((pick) => (
                                                     <Article key={pick.id} className="pick_list">
-                                                        <ALink to={`/product/detail/${pick.id}`} className="pick_item">
+                                                        <ALink
+                                                            to={`/product/detail/${pick.id}`}
+                                                            className="pick_item"
+                                                            role="link"
+                                                            aria-label="상품 상세페이지로 이동"
+                                                        >
                                                             <Div className="pick_image">
                                                                 {pick.imgUrl && <Img src={pick.imgUrl[0]} alt={pick.title} />}
                                                             </Div>
@@ -62,7 +69,7 @@ const Mypick = () => {
                                                                 </P>
                                                             </Div>
                                                             <P className="pick_count">
-                                                                <IoMdHeartEmpty />
+                                                                <IoMdHeartEmpty aria-hidden="true" />
                                                                 {pick.count}
                                                             </P>
                                                         </ALink>

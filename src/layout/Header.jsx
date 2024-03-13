@@ -34,24 +34,24 @@ const Header = () => {
                                 <Div className={isDetailPage ? "detail_header_left" : "header_top"}>
                                     {isDetailPage && (
                                         // 디테일 페이지일 때 뒤로 가기 버튼 표시
-                                        <Button onClick={handleBackBtnClick} className="back_btn">
-                                            <Icon className="left_arrow_icon detail_header_icon">
+                                        <Button onClick={handleBackBtnClick} className="back_btn" role="button" aria-label="뒤로 가기">
+                                            <Icon className="left_arrow_icon detail_header_icon" aria-hidden="true">
                                                 <RiArrowLeftSLine />
                                             </Icon>
                                         </Button>
                                     )}
                                     {!isDetailPage && (
                                         // 디테일 페이지가 아니면 로고 표시
-                                        <H1>
-                                            <ALink to="/" className="header_link">
+                                        <H1 className="header_main_logo">
+                                            <ALink to="/" className="header_link" role="link" aria-label="홈페이지로 이동">
                                                 <Img src="/images/header/main_logo.png" alt="메인로고" className="logo_img" />
                                             </ALink>
                                         </H1>
                                     )}
                                     {!isDetailPage && (
                                         // 디테일 페이지가 아니면 메뉴 버튼 표시
-                                        <Button onClick={handleMenuClick} className="menu_btn">
-                                            <Span className="bar" />
+                                        <Button onClick={handleMenuClick} className="menu_btn" role="button" aria-label="메뉴 열기">
+                                            <Span className="bar" aria-hidden="true" />
                                         </Button>
                                     )}
                                 </Div>
@@ -59,16 +59,29 @@ const Header = () => {
                                     // 디테일 페이지가 아니면 검색과 카테고리 표시
                                     <Div className="header_bottom">
                                         <Search />
-                                        <Nav className="header_nav">
+                                        <Nav className="header_nav" role="navigation">
                                             <Ul className="category_list">
                                                 <Li className="category_items">
-                                                    <NavLink to="/product" className="category_link" end>
+                                                    <NavLink
+                                                        to="/product"
+                                                        className="category_link"
+                                                        end
+                                                        role="link"
+                                                        aria-current="page"
+                                                        aria-label="상품 전체 페이지로 이동"
+                                                    >
                                                         전체
                                                     </NavLink>
                                                 </Li>
                                                 {categoryList.map((category) => (
                                                     <Li className="category_items" key={category.text}>
-                                                        <NavLink to={`/product/${category.value}`} className="category_link" end>
+                                                        <NavLink
+                                                            to={`/product/${category.value}`}
+                                                            className="category_link"
+                                                            end
+                                                            role="link"
+                                                            aria-label={`${category.text} 페이지로 이동`}
+                                                        >
                                                             {category.text}
                                                         </NavLink>
                                                     </Li>
@@ -80,13 +93,18 @@ const Header = () => {
                                 {isDetailPage && (
                                     // 디테일 페이지일 때 홈과 메뉴 버튼 표시
                                     <Div className="detail_header_right">
-                                        <Button onClick={handleHomeBtnClick} className="home_btn">
-                                            <Icon className="home_icon detail_header_icon">
+                                        <Button
+                                            onClick={handleHomeBtnClick}
+                                            className="home_btn"
+                                            role="button"
+                                            aria-label="홈페이지로 가기"
+                                        >
+                                            <Icon className="home_icon detail_header_icon" aria-hidden="true">
                                                 <GoHomeFill />
                                             </Icon>
                                         </Button>
-                                        <Button onClick={handleMenuClick} className="menu_btn">
-                                            <Span className="bar" />
+                                        <Button onClick={handleMenuClick} className="menu_btn" role="button" aria-label="메뉴 열기">
+                                            <Span className="bar" aria-hidden="true" />
                                         </Button>
                                     </Div>
                                 )}

@@ -16,10 +16,10 @@ const UploadForm = () => {
             <Container>
                 <Inner className="inner">
                     <Div className="upload">
-                        <Form className="upload_form" onSubmit={onSubmit}>
+                        <Form className="upload_form" onSubmit={onSubmit} role="form">
                             <Div className="add_photo">
                                 <Label htmlFor="photo_input" className="photo_label">
-                                    <Icon className="photo_icon">
+                                    <Icon className="photo_icon" aria-label="사진 등록">
                                         <FaCamera />
                                     </Icon>
                                 </Label>
@@ -35,7 +35,7 @@ const UploadForm = () => {
                                 <Div className="file_image_wrap">
                                     {fileUrls && fileUrls.map((url) => <Img key={url} src={url} alt="" className="thumb_image" />)}
                                     {fileUrls && fileUrls.length > 0 && (
-                                        <Icon className="delete_icon" onClick={handleImageDeleteCLick}>
+                                        <Icon className="delete_icon" onClick={handleImageDeleteCLick} aria-label="사진 삭제">
                                             <TiDelete />
                                         </Icon>
                                     )}
@@ -58,6 +58,7 @@ const UploadForm = () => {
                                     required
                                     value={title}
                                     onChange={onChange}
+                                    aria-label="제목을 입력하세요."
                                 />
                             </Div>
                             <Div className="upload_price upload_input_box">
@@ -72,6 +73,7 @@ const UploadForm = () => {
                                     placeholder="₩ 가격을 입력하세요."
                                     value={price}
                                     onChange={onChange}
+                                    aria-label="상품 가격을 입력하세요."
                                 />
                             </Div>
                             <Div className="upload_category">
@@ -85,6 +87,7 @@ const UploadForm = () => {
                                     required
                                     value={category}
                                     onChange={(e) => onChange({ target: e.target })}
+                                    aria-label="상품 카테고리를 선택하세요."
                                 >
                                     <Option value="">선택하세요</Option>
                                     {categoryList.slice(0, 4).map((category) => (
@@ -104,6 +107,7 @@ const UploadForm = () => {
                                     className="category_select upload_select"
                                     value={subCategory}
                                     onChange={(e) => onChange({ target: e.target })}
+                                    aria-label="상품 상세 카테고리를 선택하세요."
                                 >
                                     <Option value="">선택하세요</Option>
                                     {subCategoryList.map((subCategory) => (
@@ -126,6 +130,7 @@ const UploadForm = () => {
                                     placeholder="브랜드명을 입력하세요."
                                     value={brand}
                                     onChange={onChange}
+                                    aria-label="브랜드명을 입력하세요."
                                 />
                             </Div>
                             <Div className="upload_size upload_input_box">
@@ -142,6 +147,7 @@ const UploadForm = () => {
                                     required
                                     value={size}
                                     onChange={onChange}
+                                    aria-label="사이즈를 입력하세요."
                                 />
                             </Div>
                             <Div className="upload_text upload_textarea">
@@ -158,9 +164,10 @@ const UploadForm = () => {
                                     value={desc}
                                     onChange={onChange}
                                     placeholder="상품설명을 작성해주세요. 판매할 물건에 대한 설명을 자세히 작성하면 신뢰도가 오를 수 있습니다."
+                                    aria-label="상품에 대한 설명을 작성하세요."
                                 />
                             </Div>
-                            <Input type="submit" value="등록" className="btn_input" />
+                            <Input type="submit" value="등록" className="btn_input" aria-label="등록 하기" />
                         </Form>
                     </Div>
                 </Inner>

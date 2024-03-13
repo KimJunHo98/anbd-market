@@ -23,7 +23,7 @@ const Main = () => {
     const isProfilePage = location.pathname.includes("/profile");
 
     return (
-        <MainTag style={{ paddingTop: `${!isDetailPage && !isProfilePage ? "172.5px" : ""}` }}>
+        <MainTag style={{ paddingTop: `${!isDetailPage && !isProfilePage ? "172.5px" : ""}` }} role="main" aria-labelledby="main-content">
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/product" element={<Product />} />

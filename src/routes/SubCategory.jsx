@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useFetchProducts from "../hooks/useFetchProducts";
 
-import { ALink, Article, Container, Div, H2, Img, Inner, Li, P, Section, Ul } from "../styledComponents";
+import { ALink, Article, Container, Div, H2, Img, Inner, Li, Loading, NotHave, P, Section, Ul } from "../styledComponents";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
@@ -29,19 +29,26 @@ const SubCategory = () => {
                 <Inner>
                     <Div className="sub_category">
                         {loading ? (
-                            <Div className="loading">
+                            <Loading role="status" aria-live="polite">
                                 <P>로딩 중...</P>
-                            </Div>
+                            </Loading>
                         ) : (
                             <>
                                 {subCategoryItems.length === 0 ? (
-                                    <P className="not_have">등록된 상품이 없습니다.</P>
+                                    <NotHave role="status" aria-live="assertive">
+                                        등록된 상품이 없습니다.
+                                    </NotHave>
                                 ) : searchProducts.length > 0 ? (
                                     searchProducts.map((item) => (
                                         <Article className="sub_category_item_wrap" key={item.id}>
-                                            <ALink to={`/product/detail/${item.id}`} className="sub_category_item">
+                                            <ALink
+                                                to={`/product/detail/${item.id}`}
+                                                className="sub_category_item"
+                                                role="link"
+                                                aria-label="상품 상세 페이지로 이동"
+                                            >
                                                 <Div className="sub_category_image">
-                                                {item.imageUrl && <Img src={item.imageUrl[0]} alt={item.title} />}
+                                                    {item.imageUrl && <Img src={item.imageUrl[0]} alt={item.title} />}
                                                 </Div>
                                                 <Div className="sub_category_text">
                                                     <Ul className="col_text">
@@ -64,7 +71,7 @@ const SubCategory = () => {
                                                                 : item.category === "reuse"
                                                                 ? "재사용>"
                                                                 : ""}
-                                                                {item.subCategoryText}
+                                                            {item.subCategoryText}
                                                         </Li>
                                                     </Ul>
                                                 </Div>
@@ -72,7 +79,11 @@ const SubCategory = () => {
                                         </Article>
                                     ))
                                 ) : (
-                                    searchProducts.length === 0 && <P className="not_have">검색하신 상품이 없습니다.</P>
+                                    searchProducts.length === 0 && (
+                                        <NotHave role="status" aria-live="assertive">
+                                            검색하신 상품이 없습니다.
+                                        </NotHave>
+                                    )
                                 )}
                             </>
                         )}

@@ -3,7 +3,7 @@ import useFetchProducts from "../hooks/useFetchProducts";
 import { useStateContext } from "../context/useStateContext";
 
 import DeleteBtn from "../components/DeleteBtn";
-import { ALink, Article, Container, Div, H2, H3, Img, Inner, Li, P, Section, Ul } from "../styledComponents";
+import { ALink, Article, Container, Div, H2, H3, Img, Inner, Li, Loading, NotHave, P, Section, Ul } from "../styledComponents";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -28,19 +28,26 @@ const Receipt = () => {
                         <Inner>
                             <Div className="receipt">
                                 {loading ? (
-                                    <Div className="loading">
+                                    <Loading role="status" aria-live="polite">
                                         <P>로딩 중...</P>
-                                    </Div>
+                                    </Loading>
                                 ) : (
                                     <>
                                         {filteredMySoldItem === 0 ? (
-                                            <P className="not_have">판매한 상품이 없습니다.</P>
+                                            <NotHave role="status" aria-live="polite">
+                                                판매한 상품이 없습니다.
+                                            </NotHave>
                                         ) : (
                                             <>
                                                 <H3 className="receipt_title">나의 등록 상품</H3>
                                                 {filteredMySoldItem.map((sold) => (
                                                     <Article className="receipt_item_wrap" key={sold.id}>
-                                                        <ALink to={`/product/detail/${sold.id}`} className="receipt_item">
+                                                        <ALink
+                                                            to={`/product/detail/${sold.id}`}
+                                                            className="receipt_item"
+                                                            role="link"
+                                                            aria-label="상품 상세 페이지로 이동"
+                                                        >
                                                             <Div className="receipt_image">
                                                                 {sold.imageUrl && <Img src={sold.imageUrl[0]} alt={sold.title} />}
                                                             </Div>

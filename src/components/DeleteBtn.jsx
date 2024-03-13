@@ -48,11 +48,11 @@ const DeleteBtn = ({ deleteItem }) => {
 
     return (
         <Div className="option_btn">
-            <Icon className="dot_icon" onClick={handleBtnClick}>
-                <HiDotsHorizontal />
+            <Icon className="dot_icon" onClick={handleBtnClick} role="button" aria-label="삭제 버튼 보기">
+                <HiDotsHorizontal aria-hidden="true" />
             </Icon>
             <Div className={`option_btn_box ${showBtns ? "show" : ""}`}>
-                <Button className="delete_btn" onClick={handleDeleteBtnClick}>
+                <Button className="delete_btn" onClick={handleDeleteBtnClick} role="button" aria-label="삭제 하기">
                     삭제
                 </Button>
             </Div>

@@ -15,11 +15,11 @@ const Sell = () => {
     return (
         <>
             {!isDetail && isLogIn && !isUploadPage && !isProfilePage ? (
-                <Aside id="sell">
+                <Aside id="sell" role="complementary">
                     <H2 className="blind">내 물건 팔기</H2>
                     <Div className="sell">
-                        <ALink to="/upload" className="sell_link">
-                            <FaPlus className="sell_icon" /> 팔기
+                        <ALink to="/upload" className="sell_link" role="link" aria-label="상품 업로드 페이지로 이동">
+                            <FaPlus className="sell_icon" aria-hidden="true" /> 팔기
                         </ALink>
                     </Div>
                 </Aside>

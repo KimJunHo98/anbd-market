@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useSearchContext } from "../context/useSearchContext";
 import useFetchProducts from "../hooks/useFetchProducts";
 
-import { Div, ALink, H2, Article, Ul, Li, Img, P, Container, Inner } from "../styledComponents";
+import { Div, ALink, H2, Article, Ul, Li, Img, P, Container, Inner, Loading, NotHave } from "../styledComponents";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -31,17 +31,24 @@ const Product = () => {
                 <Inner>
                     <Div className="product">
                         {loading ? (
-                            <Div className="loading">
+                            <Loading role="status" aria-live="assertive">
                                 <P>로딩 중...</P>
-                            </Div>
+                            </Loading>
                         ) : (
                             <>
                                 {products.length === 0 ? (
-                                    <P className="not_have">등록된 상품이 없습니다.</P>
+                                    <NotHave role="status" aria-live="assertive">
+                                        등록된 상품이 없습니다.
+                                    </NotHave>
                                 ) : searchProducts.length > 0 ? (
                                     searchProducts.map((product) => (
                                         <Article className="product_item_wrap" key={product.id}>
-                                            <ALink to={`/product/detail/${product.id}`} className="product_item">
+                                            <ALink
+                                                to={`/product/detail/${product.id}`}
+                                                className="product_item"
+                                                role="link"
+                                                aria-label="상품 상세 페이지로 이동"
+                                            >
                                                 <Div className="product_image">
                                                     {product.imageUrl && <Img src={product.imageUrl[0]} alt={product.title} />}
                                                 </Div>
@@ -75,7 +82,11 @@ const Product = () => {
                                         </Article>
                                     ))
                                 ) : (
-                                    searchProducts.length === 0 && <P className="not_have">검색하신 상품이 없습니다.</P>
+                                    searchProducts.length === 0 && (
+                                        <NotHave role="status" aria-live="assertive">
+                                            검색하신 상품이 없습니다.
+                                        </NotHave>
+                                    )
                                 )}
                             </>
                         )}

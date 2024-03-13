@@ -27,6 +27,7 @@ import {
     Span,
     TextArea,
     Form,
+    Loading,
 } from "../styledComponents";
 import { FaUserCircle } from "react-icons/fa";
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
@@ -83,9 +84,9 @@ const Detail = () => {
             <Container>
                 <Div className="detail">
                     {loading ? (
-                        <Div className="loading">
+                        <Loading role="status" aria-live="assertive">
                             <P>로딩 중...</P>
-                        </Div>
+                        </Loading>
                     ) : (
                         <Article className="detail_item_wrap">
                             <DetailImage>
@@ -111,31 +112,37 @@ const Detail = () => {
                             </DetailImage>
                             <Div className="detail_top" ref={detailTopRef}>
                                 <Div className="detail_user">
-                                    <Icon className="thumb">
+                                    <Icon className="thumb" aria-hidden="true">
                                         <FaUserCircle />
                                     </Icon>
                                     <H3 className="username">{product.username}</H3>
                                 </Div>
                                 <Div className="user_btns">
-                                    <Button onClick={handleToggleLike} className="pick_btn">
+                                    <Button onClick={handleToggleLike} className="pick_btn" role="button">
                                         {filteredPickeditem.length > 0 ? (
-                                            <IoMdHeart style={{ fill: "var(--accent-color)" }} />
+                                            <IoMdHeart style={{ fill: "var(--accent-color)" }} aria-label="찜하기 취소" />
                                         ) : (
-                                            <IoMdHeartEmpty />
+                                            <IoMdHeartEmpty aria-label="찜하기" />
                                         )}
                                     </Button>
                                     <Button
                                         onClick={handleBuyBtnClick}
                                         className={`buy_btn ${product.soldOut ? "soldout" : ""}`}
                                         disabled={product.soldOut}
+                                        role="button"
+                                        aria-label={`${product.soldOut ? "거래완료" : "구매하기"}`}
                                     >
                                         {product.soldOut ? "거래완료" : "구매하기"}
                                     </Button>
-                                    <Button onClick={handleBtnClick} className="edit_btn">
+                                    <Button onClick={handleBtnClick} className="edit_btn" role="button" aria-label="수정 버튼 나타내기">
                                         <Icon className="dot_icon">
                                             <HiDotsHorizontal />
                                         </Icon>
-                                        <Span onClick={handleEditBtnClick} className={`edit ${showBtns ? "show" : ""}`}>
+                                        <Span
+                                            onClick={handleEditBtnClick}
+                                            className={`edit ${showBtns ? "show" : ""}`}
+                                            aria-label="수정 하기"
+                                        >
                                             수정
                                         </Span>
                                     </Button>
@@ -159,7 +166,7 @@ const Detail = () => {
                                         <Span className="time">{dayjs(product.createdAt).fromNow()}</Span>
                                     </P>
                                     <P className="pick">
-                                        <Icon className="heart_empty_icon">
+                                        <Icon className="heart_empty_icon" aria-hidden="true">
                                             <IoMdHeartEmpty />
                                         </Icon>
                                         {filteredPickeditem.length > 0 ? (
@@ -175,7 +182,7 @@ const Detail = () => {
                                 </Div>
                                 {toggleEditing && isLogIn ? (
                                     <Div className="editing_box">
-                                        <Form onSubmit={onSubmit} className="edit_form">
+                                        <Form onSubmit={onSubmit} className="edit_form" role="form">
                                             <TextArea
                                                 className="edit_textbox"
                                                 name="text"
@@ -185,12 +192,24 @@ const Detail = () => {
                                                 onChange={onChange}
                                                 wrap="hard"
                                                 autoFocus="autoFocus"
+                                                aria-label="게시물 수정"
                                             />
                                             <Label htmlFor="edit_btn" className="blind">
                                                 수정하기
                                             </Label>
-                                            <Input id="edit_btn" className="edit_btn" type="submit" value="수정" />
-                                            <Button className="cancel_edit_btn" onClick={handleCancelBtnClick}>
+                                            <Input
+                                                id="edit_btn"
+                                                className="edit_btn"
+                                                type="submit"
+                                                value="수정"
+                                                aria-label="게시물 수정 완료"
+                                            />
+                                            <Button
+                                                className="cancel_edit_btn"
+                                                onClick={handleCancelBtnClick}
+                                                role="button"
+                                                aria-label="취소 하기"
+                                            >
                                                 취소
                                             </Button>
                                         </Form>

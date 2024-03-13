@@ -5,7 +5,7 @@ import { subCategoryList } from "../constant";
 import Banner from "../components/Banner";
 import HomeContent from "../components/HomeContent";
 
-import { ALink, Container, Div, H2, Img, Inner, Li, Nav, P, Section, Span, Ul } from "../styledComponents";
+import { ALink, Container, Div, H2, Img, Inner, Li, Loading, Nav, P, Section, Span, Ul } from "../styledComponents";
 
 const Home = () => {
     const { loading } = useFetchProducts();
@@ -19,16 +19,21 @@ const Home = () => {
                     <Inner className="inner">
                         <Div className="home">
                             {loading ? (
-                                <Div className="loading">
+                                <Loading role="status" aria-live="polite">
                                     <P>로딩 중...</P>
-                                </Div>
+                                </Loading>
                             ) : (
                                 <>
-                                    <Nav className="home_nav">
+                                    <Nav className="home_nav" role="navigation">
                                         <Ul className="home_nav_wrap">
                                             {subCategoryList.map((item) => (
                                                 <Li key={item.text} className="home_nav_list">
-                                                    <ALink to={`/product/subcategory/${item.value}`} className="home_nav_link">
+                                                    <ALink
+                                                        to={`/product/subcategory/${item.value}`}
+                                                        className="home_nav_link"
+                                                        role="link"
+                                                        aria-label={`${item.text} 카테고리 보기`}
+                                                    >
                                                         <Img src={item.src} alt="" className="home_nav_thumb" />
                                                         <Span className="home_nav_link_text">{item.text}</Span>
                                                     </ALink>

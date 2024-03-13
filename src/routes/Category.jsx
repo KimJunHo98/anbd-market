@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
 import useFetchProducts from "../hooks/useFetchProducts";
 
-import { Container, Div, H2, Inner, Section, ALink, Li, Ul, Article, Img, P } from "../styledComponents";
+import { Container, Div, H2, Inner, Section, ALink, Li, Ul, Article, Img, P, Loading, NotHave } from "../styledComponents";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -19,11 +19,11 @@ const Category = () => {
 
     const searchProducts = useMemo(() => {
         return products.filter(
-        (result) =>
-            (result.category === category && result.title.toLowerCase().includes(search.toLowerCase())) ||
-            result.brand.toLowerCase().includes(search.toLowerCase())
-            );
-        }, [products, search, category]);
+            (result) =>
+                (result.category === category && result.title.toLowerCase().includes(search.toLowerCase())) ||
+                result.brand.toLowerCase().includes(search.toLowerCase())
+        );
+    }, [products, search, category]);
 
     return (
         <Section id="category">
@@ -32,17 +32,24 @@ const Category = () => {
                 <Inner>
                     <Div className="category">
                         {loading ? (
-                            <Div className="loading">
+                            <Loading role="status" aria-live="assertive">
                                 <P>로딩 중...</P>
-                            </Div>
+                            </Loading>
                         ) : (
                             <>
                                 {products.length === 0 ? (
-                                    <P className="not_have">등록된 상품이 없습니다.</P>
+                                    <NotHave role="status" aria-live="assertive">
+                                        등록된 상품이 없습니다.
+                                    </NotHave>
                                 ) : searchProducts.length > 0 ? (
                                     searchProducts.map((product) => (
                                         <Article className="category_item_wrap" key={product.id}>
-                                            <ALink to={`/product/detail/${product.id}`} className="category_item">
+                                            <ALink
+                                                to={`/product/detail/${product.id}`}
+                                                className="category_item"
+                                                role="link"
+                                                aria-label="상품 상세 페이지로 이동"
+                                            >
                                                 <Div className="category_image">
                                                     {product.imageUrl && <Img src={product.imageUrl[0]} alt={product.title} />}
                                                 </Div>
@@ -76,7 +83,11 @@ const Category = () => {
                                         </Article>
                                     ))
                                 ) : (
-                                    searchProducts.length === 0 && <P className="not_have">검색하신 상품이 없습니다.</P>
+                                    searchProducts.length === 0 && (
+                                        <NotHave role="status" aria-live="assertive">
+                                            검색하신 상품이 없습니다.
+                                        </NotHave>
+                                    )
                                 )}
                             </>
                         )}

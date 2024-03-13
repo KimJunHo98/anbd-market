@@ -272,23 +272,6 @@ export const Div = styled.div`
         }
     }
 
-    &.loading {
-        width: 100%;
-        max-width: 480px;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto;
-
-        p {
-            width: 100%;
-            padding-top: 30px;
-            text-align: center;
-            font-size: 1.6rem;
-        }
-    }
-
     &.home {
         width: 100%;
         min-height: calc(100vh - 400px);
@@ -663,6 +646,22 @@ export const DetailImage = styled.div`
         }
     }
 `;
+export const Loading = styled.div`
+    width: 100%;
+    max-width: 480px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    p {
+        width: 100%;
+        padding-top: 30px;
+        text-align: center;
+        font-size: 1.6rem;
+    }
+`;
 
 export const Ul = styled.ul`
     &.home_nav_wrap {
@@ -874,10 +873,6 @@ export const P = styled.p`
         color: #999;
     }
 
-    &.not_have {
-        font-size: 1.4rem;
-    }
-
     &.maximum {
         padding-left: 5px;
     }
@@ -899,6 +894,10 @@ export const P = styled.p`
         font-size: 1.4rem;
     }
 `;
+export const NotHave = styled.p`
+    font-size: 1.4rem;
+`;
+
 export const Span = styled.span`
     &.bar {
         width: 20px;
