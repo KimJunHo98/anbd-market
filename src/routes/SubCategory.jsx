@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useFetchProducts from "../hooks/useFetchProducts";
 
-import { ALink, Article, Container, Div, H2, Img, Inner, Li, Loading, NotHave, P, Section, Ul } from "../styledComponents";
+import { ALink, Article, Container, Div, Figcaption, Figure, H2, Img, Inner, Li, Loading, NotHave, P, Section, Ul } from "../styledComponents";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
@@ -47,9 +47,10 @@ const SubCategory = () => {
                                                 role="link"
                                                 aria-label="상품 상세 페이지로 이동"
                                             >
-                                                <Div className="sub_category_image">
+                                                <Figure className="sub_category_image">
                                                     {item.imageUrl && <Img src={item.imageUrl[0]} alt={item.title} />}
-                                                </Div>
+                                                    <Figcaption className="blind">{item.title}</Figcaption>
+                                                </Figure>
                                                 <Div className="sub_category_text">
                                                     <Ul className="col_text">
                                                         <Li className="title">{item.title}</Li>

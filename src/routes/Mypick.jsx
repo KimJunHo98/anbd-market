@@ -5,7 +5,7 @@ import useFetchProducts from "../hooks/useFetchProducts";
 
 import Login from "./Login";
 
-import { ALink, Article, Container, Div, H2, H3, Img, Inner, Li, Loading, NotHave, P, Section, Ul } from "../styledComponents";
+import { ALink, Article, Container, Div, Figcaption, Figure, H2, H3, Img, Inner, Li, Loading, NotHave, P, Section, Ul } from "../styledComponents";
 import { IoMdHeartEmpty } from "react-icons/io";
 
 const Mypick = () => {
@@ -42,9 +42,10 @@ const Mypick = () => {
                                                             role="link"
                                                             aria-label="상품 상세페이지로 이동"
                                                         >
-                                                            <Div className="pick_image">
+                                                            <Figure className="pick_image">
                                                                 {pick.imgUrl && <Img src={pick.imgUrl[0]} alt={pick.title} />}
-                                                            </Div>
+                                                                <Figcaption className="blind">{pick.title}</Figcaption>
+                                                            </Figure>
                                                             <Div className="pick_text">
                                                                 <Ul className="col_text">
                                                                     <Li className="title">{pick.title}</Li>

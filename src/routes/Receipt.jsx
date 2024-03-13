@@ -3,7 +3,7 @@ import useFetchProducts from "../hooks/useFetchProducts";
 import { useStateContext } from "../context/useStateContext";
 
 import DeleteBtn from "../components/DeleteBtn";
-import { ALink, Article, Container, Div, H2, H3, Img, Inner, Li, Loading, NotHave, P, Section, Ul } from "../styledComponents";
+import { ALink, Article, Container, Div, Figcaption, Figure, H2, H3, Img, Inner, Li, Loading, NotHave, P, Section, Ul } from "../styledComponents";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -48,9 +48,10 @@ const Receipt = () => {
                                                             role="link"
                                                             aria-label="상품 상세 페이지로 이동"
                                                         >
-                                                            <Div className="receipt_image">
+                                                            <Figure className="receipt_image">
                                                                 {sold.imageUrl && <Img src={sold.imageUrl[0]} alt={sold.title} />}
-                                                            </Div>
+                                                                <Figcaption className="blind">{sold.title}</Figcaption>
+                                                            </Figure>
                                                             <Div className="receipt_text">
                                                                 <Ul className="col_text">
                                                                     <Li className="title">{sold.title}</Li>

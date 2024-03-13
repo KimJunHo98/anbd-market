@@ -28,6 +28,8 @@ import {
     TextArea,
     Form,
     Loading,
+    Figure,
+    Figcaption,
 } from "../styledComponents";
 import { FaUserCircle } from "react-icons/fa";
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
@@ -105,7 +107,10 @@ const Detail = () => {
                                     {product.imageUrl &&
                                         product.imageUrl.map((url, i) => (
                                             <SwiperSlide key={url + i}>
-                                                <Img src={url} alt={product.title} onLoad={handleImageLoad} className="detail_image" />
+                                                <Figure>
+                                                    <Img src={url} alt={product.title} onLoad={handleImageLoad} className="detail_image" />
+                                                    <Figcaption className="blind">{product.title}</Figcaption>
+                                                </Figure>
                                             </SwiperSlide>
                                         ))}
                                 </Swiper>

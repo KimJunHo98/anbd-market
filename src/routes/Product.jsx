@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useSearchContext } from "../context/useSearchContext";
 import useFetchProducts from "../hooks/useFetchProducts";
 
-import { Div, ALink, H2, Article, Ul, Li, Img, P, Container, Inner, Loading, NotHave } from "../styledComponents";
+import { Div, ALink, H2, Article, Ul, Li, Img, P, Container, Inner, Loading, NotHave, Figure, Figcaption } from "../styledComponents";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -49,9 +49,10 @@ const Product = () => {
                                                 role="link"
                                                 aria-label="상품 상세 페이지로 이동"
                                             >
-                                                <Div className="product_image">
+                                                <Figure className="product_image">
                                                     {product.imageUrl && <Img src={product.imageUrl[0]} alt={product.title} />}
-                                                </Div>
+                                                    <Figcaption className="blind">{product.title}</Figcaption>
+                                                </Figure>
                                                 <Div className="product_text">
                                                     <Ul className="col_text">
                                                         <Li className="title">{product.title}</Li>

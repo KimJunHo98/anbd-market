@@ -3,7 +3,7 @@ import { bannerImages } from "../constant";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Mousewheel, Keyboard, Autoplay } from "swiper/modules";
 
-import { Container, Div, H2, Img, Section } from "../styledComponents";
+import { Container, Div, Figcaption, Figure, H2, Img, Section } from "../styledComponents";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -33,7 +33,10 @@ const Banner = () => {
                         >
                             {bannerImages.slice(5, 7).map((banner) => (
                                 <SwiperSlide className="slide_items" key={banner.title}>
-                                    <Img src={banner.src} alt={banner.title} className="banner_img" />
+                                    <Figure>
+                                        <Img src={banner.src} alt={banner.title} className="banner_img" />
+                                        <Figcaption className="blind">{banner.title}</Figcaption>
+                                    </Figure>
                                 </SwiperSlide>
                             ))}
                         </Swiper>

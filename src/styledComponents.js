@@ -285,13 +285,6 @@ export const Div = styled.div`
             flex-wrap: wrap;
             justify-content: space-between;
             gap: 20px 0;
-
-            .home_image img {
-                width: 211px;
-                height: 211px;
-                object-fit: cover;
-                border-radius: 15px;
-            }
         }
         .show_more {
             margin-top: 30px;
@@ -428,18 +421,6 @@ export const Div = styled.div`
             gap: 10px 0;
             font-size: 1.4rem;
         }
-        .product_image,
-        .category_image,
-        .sub_category_image,
-        .receipt_image {
-            width: 100px;
-
-            img {
-                height: 100px;
-                object-fit: cover;
-                border-radius: 10px;
-            }
-        }
     }
 
     &.profile {
@@ -484,15 +465,6 @@ export const Div = styled.div`
     }
 
     &.my_pick {
-        .pick_image {
-            width: 100px;
-
-            img {
-                height: 100px;
-                object-fit: cover;
-                border-radius: 10px;
-            }
-        }
         .pick_text {
             .col_text {
                 margin-bottom: 10px;
@@ -1433,6 +1405,29 @@ export const Img = styled.img`
         border-radius: 5px;
     }
 `;
+export const Figure = styled.figure`
+    &.home_image img {
+        width: 211px;
+        height: 211px;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+    
+    &.product_image,
+    &.category_image,
+    &.sub_category_image,
+    &.receipt_image,
+    &.pick_image {
+        width: 100px;
+
+        img {
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    }
+`;
+export const Figcaption = styled.figcaption``;
 
 export const Error = styled.span`
     width: 100%;

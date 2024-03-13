@@ -2,7 +2,7 @@ import React from "react";
 import useFetchProducts from "../hooks/useFetchProducts";
 import { FaAngleRight } from "react-icons/fa6";
 
-import { Article, Ul, Li, Img, H3, ALink, Div } from "../styledComponents";
+import { Article, Ul, Li, Img, H3, ALink, Div, Figcaption, Figure } from "../styledComponents";
 
 const HomeContent = () => {
     const { filteredBestCategory, filteredFreeCategory, filteredExchangeCategory, filteredReuseCategory, formatNumberWithCommas } =
@@ -25,7 +25,10 @@ const HomeContent = () => {
                                     role="link"
                                     aria-label="상품 상세 페이지로 이동"
                                 >
-                                    <Div className="home_image">{item.imageUrl && <Img src={item.imageUrl[0]} alt={item.title} />}</Div>
+                                    <Figure className="home_image">
+                                        {item.imageUrl && <Img src={item.imageUrl[0]} alt={item.title} />}
+                                        <Figcaption className="blind">{item.title}</Figcaption>
+                                    </Figure>
                                     <Ul className="home_col_text">
                                         <Li className="title">{item.title}</Li>
                                         <Li className="depth_text">

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
 import useFetchProducts from "../hooks/useFetchProducts";
 
-import { Container, Div, H2, Inner, Section, ALink, Li, Ul, Article, Img, P, Loading, NotHave } from "../styledComponents";
+import { Container, Div, H2, Inner, Section, ALink, Li, Ul, Article, Img, P, Loading, NotHave, Figure, Figcaption } from "../styledComponents";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -50,9 +50,10 @@ const Category = () => {
                                                 role="link"
                                                 aria-label="상품 상세 페이지로 이동"
                                             >
-                                                <Div className="category_image">
+                                                <Figure className="category_image">
                                                     {product.imageUrl && <Img src={product.imageUrl[0]} alt={product.title} />}
-                                                </Div>
+                                                    <Figcaption className="blind">{product.title}</Figcaption>
+                                                </Figure>
                                                 <Div className="category_text">
                                                     <Ul className="col_text">
                                                         <Li className="title">{product.title}</Li>
