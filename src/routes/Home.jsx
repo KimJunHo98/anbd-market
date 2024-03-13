@@ -5,7 +5,7 @@ import { subCategoryList } from "../constant";
 import Banner from "../components/Banner";
 import HomeContent from "../components/HomeContent";
 
-import { ALink, Container, Div, Figcaption, Figure, H2, Img, Inner, Li, Loading, Nav, P, Section, Span, Ul } from "../styledComponents";
+import { ALink, Container, Div, Figure, H2, Img, Inner, Li, Loading, Nav, P, Section, Span, Ul } from "../styledComponents";
 
 const Home = () => {
     const { loading } = useFetchProducts();
@@ -36,7 +36,6 @@ const Home = () => {
                                                     >
                                                         <Figure>
                                                             <Img src={item.src} alt={item.text} className="home_nav_thumb" />
-                                                            <Figcaption className="blind">{item.text}</Figcaption>
                                                         </Figure>
                                                         <Span className="home_nav_link_text">{item.text}</Span>
                                                     </ALink>

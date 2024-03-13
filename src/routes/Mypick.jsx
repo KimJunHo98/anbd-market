@@ -5,7 +5,7 @@ import useFetchProducts from "../hooks/useFetchProducts";
 
 import Login from "./Login";
 
-import { ALink, Article, Container, Div, Figcaption, Figure, H2, H3, Img, Inner, Li, Loading, NotHave, P, Section, Ul } from "../styledComponents";
+import { ALink, Article, Container, Div, Figure, H2, H3, Img, Inner, Li, Loading, NotHave, P, Section, Ul } from "../styledComponents";
 import { IoMdHeartEmpty } from "react-icons/io";
 
 const Mypick = () => {
@@ -44,7 +44,6 @@ const Mypick = () => {
                                                         >
                                                             <Figure className="pick_image">
                                                                 {pick.imgUrl && <Img src={pick.imgUrl[0]} alt={pick.title} />}
-                                                                <Figcaption className="blind">{pick.title}</Figcaption>
                                                             </Figure>
                                                             <Div className="pick_text">
                                                                 <Ul className="col_text">

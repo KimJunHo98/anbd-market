@@ -3,7 +3,7 @@ import { bannerImages } from "../constant";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Mousewheel, Keyboard, Autoplay } from "swiper/modules";
 
-import { Container, Div, Figcaption, Figure, H2, Img, Section } from "../styledComponents";
+import { Container, Div, Figure, H2, Img, Section } from "../styledComponents";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -35,7 +35,6 @@ const Banner = () => {
                                 <SwiperSlide className="slide_items" key={banner.title}>
                                     <Figure>
                                         <Img src={banner.src} alt={banner.title} className="banner_img" />
-                                        <Figcaption className="blind">{banner.title}</Figcaption>
                                     </Figure>
                                 </SwiperSlide>
                             ))}

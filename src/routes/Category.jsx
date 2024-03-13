@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSearchContext } from "../context/useSearchContext";
 import useFetchProducts from "../hooks/useFetchProducts";
 
-import { Container, Div, H2, Inner, Section, ALink, Li, Ul, Article, Img, P, Loading, NotHave, Figure, Figcaption } from "../styledComponents";
+import { Container, Div, H2, Inner, Section, ALink, Li, Ul, Article, Img, P, Loading, NotHave, Figure } from "../styledComponents";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -52,7 +52,6 @@ const Category = () => {
                                             >
                                                 <Figure className="category_image">
                                                     {product.imageUrl && <Img src={product.imageUrl[0]} alt={product.title} />}
-                                                    <Figcaption className="blind">{product.title}</Figcaption>
                                                 </Figure>
                                                 <Div className="category_text">
                                                     <Ul className="col_text">

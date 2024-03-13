@@ -29,7 +29,6 @@ import {
     Form,
     Loading,
     Figure,
-    Figcaption,
 } from "../styledComponents";
 import { FaUserCircle } from "react-icons/fa";
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
@@ -109,7 +108,6 @@ const Detail = () => {
                                             <SwiperSlide key={url + i}>
                                                 <Figure>
                                                     <Img src={url} alt={product.title} onLoad={handleImageLoad} className="detail_image" />
-                                                    <Figcaption className="blind">{product.title}</Figcaption>
                                                 </Figure>
                                             </SwiperSlide>
                                         ))}

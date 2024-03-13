@@ -2,7 +2,7 @@ import React from "react";
 import useFetchProducts from "../hooks/useFetchProducts";
 import { FaAngleRight } from "react-icons/fa6";
 
-import { Article, Ul, Li, Img, H3, ALink, Div, Figcaption, Figure } from "../styledComponents";
+import { Article, Ul, Li, Img, H3, ALink, Div, Figure } from "../styledComponents";
 
 const HomeContent = () => {
     const { filteredBestCategory, filteredFreeCategory, filteredExchangeCategory, filteredReuseCategory, formatNumberWithCommas } =
@@ -27,7 +27,6 @@ const HomeContent = () => {
                                 >
                                     <Figure className="home_image">
                                         {item.imageUrl && <Img src={item.imageUrl[0]} alt={item.title} />}
-                                        <Figcaption className="blind">{item.title}</Figcaption>
                                     </Figure>
                                     <Ul className="home_col_text">
                                         <Li className="title">{item.title}</Li>

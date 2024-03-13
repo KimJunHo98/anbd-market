@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useSearchContext } from "../context/useSearchContext";
 import useFetchProducts from "../hooks/useFetchProducts";
 
-import { Div, ALink, H2, Article, Ul, Li, Img, P, Container, Inner, Loading, NotHave, Figure, Figcaption } from "../styledComponents";
+import { Div, ALink, H2, Article, Ul, Li, Img, P, Container, Inner, Loading, NotHave, Figure } from "../styledComponents";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -51,7 +51,6 @@ const Product = () => {
                                             >
                                                 <Figure className="product_image">
                                                     {product.imageUrl && <Img src={product.imageUrl[0]} alt={product.title} />}
-                                                    <Figcaption className="blind">{product.title}</Figcaption>
                                                 </Figure>
                                                 <Div className="product_text">
                                                     <Ul className="col_text">

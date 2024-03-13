@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useFetchProducts from "../hooks/useFetchProducts";
 
-import { ALink, Article, Container, Div, Figcaption, Figure, H2, Img, Inner, Li, Loading, NotHave, P, Section, Ul } from "../styledComponents";
+import { ALink, Article, Container, Div, Figure, H2, Img, Inner, Li, Loading, NotHave, P, Section, Ul } from "../styledComponents";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
@@ -49,7 +49,6 @@ const SubCategory = () => {
                                             >
                                                 <Figure className="sub_category_image">
                                                     {item.imageUrl && <Img src={item.imageUrl[0]} alt={item.title} />}
-                                                    <Figcaption className="blind">{item.title}</Figcaption>
                                                 </Figure>
                                                 <Div className="sub_category_text">
                                                     <Ul className="col_text">
