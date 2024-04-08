@@ -31,6 +31,17 @@ const Banner = () => {
             <Container>
                 <Div className="banner">
                     <Div className="banner_wrap">
+                        <Button className="playPause_btn" onClick={handleTogglePlayBtnClick} role="button"  aria-label={isPause ? "재생 시작" : "일시 정지"}>
+                            {isPause ? (
+                                <Icon className="playPause_icon" aria-hidden="true">
+                                    <HiPlayPause />
+                                </Icon>
+                            ) : (
+                                <Icon className="playPause_icon" aria-hidden="true">
+                                    <HiMiniPause />
+                                </Icon>
+                            )}
+                        </Button>
                         <Swiper
                             ref={swiperRef}
                             spaceBetween={50}
@@ -57,17 +68,6 @@ const Banner = () => {
                                 </SwiperSlide>
                             ))}
                         </Swiper>
-                        <Button className="playPause_btn" onClick={handleTogglePlayBtnClick}>
-                            {isPause ? (
-                                <Icon className="playPause_icon">
-                                    <HiPlayPause />
-                                </Icon>
-                            ) : (
-                                <Icon className="playPause_icon">
-                                    <HiMiniPause />
-                                </Icon>
-                            )}
-                        </Button>
                     </Div>
                 </Div>
             </Container>
