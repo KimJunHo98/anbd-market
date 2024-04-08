@@ -57,10 +57,12 @@ export const bannerImages = [
     },
     {
         title: "banner6",
+        alt: "카카오톡 초간편 가입 후 2000원 할인 받으세요.",
         src: "/images/banner/img_ban6.svg",
     },
     {
         title: "banner7",
+        alt: "ANBD이용 꿀팁 오픈채팅과 장소찾기를 활용해보세요",
         src: "/images/banner/img_ban7.svg",
     },
 ];

@@ -302,17 +302,18 @@ export const Div = styled.div`
 
         .banner_wrap {
             width: 100%;
+            position: relative;
 
             .swiper_wrap {
                 width: 100%;
 
                 .swiper-pagination.swiper-pagination-fraction.swiper-pagination-horizontal {
                     width: 60px;
-                    left: 90%;
+                    left: 95%;
                     padding: 7px 0;
                     transform: translateX(-90%);
                     border-radius: 15px;
-                    background-color: #111;
+                    background-color: rgba(0, 0, 0, .3);
                 }
             }
         }
@@ -991,6 +992,10 @@ export const Icon = styled.span`
         font-size: 2.4rem;
         cursor: pointer;
     }
+
+    &.playPause_icon {
+        font-size: 1.6rem;
+    }
 `;
 
 export const Em = styled.em`
@@ -1252,6 +1257,18 @@ export const Button = styled.button`
         border-radius: 5px;
         background-color: var(--primary-color);
     }
+
+    &.playPause_btn {
+        height: 24px;
+        position: absolute;
+        left: 18px;
+        bottom: 8px;
+        padding: 0 15px;
+        z-index: 99;
+        border-radius: 15px;
+        background-color: rgba(0, 0, 0, .3);
+        color: var(--main-color);
+    }
 `;
 
 // 폼, 인풋
@@ -1412,7 +1429,7 @@ export const Figure = styled.figure`
         object-fit: cover;
         border-radius: 15px;
     }
-    
+
     &.product_image,
     &.category_image,
     &.sub_category_image,
