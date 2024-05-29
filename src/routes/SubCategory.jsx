@@ -48,7 +48,7 @@ const SubCategory = () => {
                                                 aria-label="상품 상세 페이지로 이동"
                                             >
                                                 <Figure className="sub_category_image">
-                                                    {item.imageUrl && <Img src={item.imageUrl[0]} alt={item.title} />}
+                                                    {item.imageUrl && <Img src={item.imageUrl[0]} alt={item.title} loading="lazy" />}
                                                 </Figure>
                                                 <Div className="sub_category_text">
                                                     <Ul className="col_text">

@@ -50,7 +50,7 @@ const Product = () => {
                                                 aria-label="상품 상세 페이지로 이동"
                                             >
                                                 <Figure className="product_image">
-                                                    {product.imageUrl && <Img src={product.imageUrl[0]} alt={product.title} />}
+                                                    {product.imageUrl && <Img src={product.imageUrl[0]} alt={product.title} loading="lazy" />}
                                                 </Figure>
                                                 <Div className="product_text">
                                                     <Ul className="col_text">

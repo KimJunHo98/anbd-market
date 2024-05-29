@@ -63,7 +63,7 @@ const Banner = () => {
                             {bannerImages.slice(5, 7).map((banner) => (
                                 <SwiperSlide className="slide_items" key={banner.title}>
                                     <Figure>
-                                        <Img src={banner.src} alt={banner.alt} className="banner_img" />
+                                        <Img src={banner.src} alt={banner.alt} loading="lazy" className="banner_img" />
                                     </Figure>
                                 </SwiperSlide>
                             ))}

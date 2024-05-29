@@ -35,7 +35,7 @@ const Home = () => {
                                                         aria-label={`${item.text} 카테고리 보기`}
                                                     >
                                                         <Figure>
-                                                            <Img src={item.src} alt={item.text} className="home_nav_thumb" />
+                                                            <Img src={item.src} alt={item.text} loading="lazy" className="home_nav_thumb" />
                                                         </Figure>
                                                         <Span className="home_nav_link_text">{item.text}</Span>
                                                     </ALink>

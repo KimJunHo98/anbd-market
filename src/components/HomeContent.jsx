@@ -26,7 +26,7 @@ const HomeContent = () => {
                                     aria-label="상품 상세 페이지로 이동"
                                 >
                                     <Figure className="home_image">
-                                        {item.imageUrl && <Img src={item.imageUrl[0]} alt={item.title} />}
+                                        {item.imageUrl && <Img src={item.imageUrl[0]} alt={item.title} loading="lazy" />}
                                     </Figure>
                                     <Ul className="home_col_text">
                                         <Li className="title">{item.title}</Li>

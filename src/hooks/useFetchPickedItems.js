@@ -9,6 +9,8 @@ const useFetchPickedItems = () => {
     const { product } = useFetchProducts();
     const [loading, setLoading] = useState(false);
     const [pickedItems, setPickedItems] = useState([]);
+    const [pickedCount, setPickedCount] = useState([]);
+    const currentUser = useObj.displayName;
 
     // 찜하기 함수
     const handleAddLike = async () => {
@@ -16,26 +18,32 @@ const useFetchPickedItems = () => {
             setLoading(true);
 
             // 이미 찜목록에 있는지 확인
-            const isLiked = pickedItems.some((pick) => pick.id === product.id && pick.picked === true && pick.title === product.title);
+            const isLiked = pickedItems.some(
+                (pick) => pick.id === product.id && pick.picked === true && pick.title === product.title && pick.username === currentUser
+            );
 
             // 찜목록에 없으면 추가
             if (!isLiked) {
-                const pickedDocRef = doc(collection(firestore, "picked"), product.id);
-                await setDoc(pickedDocRef, {
-                    picked: true,
-                    title: product.title,
-                    price: product.price,
-                    brand: product.brand,
-                    size: product.size,
-                    category: product.category,
-                    subCategory: product.subCategory,
-                    subCategoryText: product.subCategoryText,
-                    imgUrl: product.imageUrl,
-                    username: useObj.displayName,
-                    useId: product.useId, // product의 데이터
-                    id: product.id,
-                    count: 1,
-                }, { merge: true });
+                const pickedDocRef = doc(collection(firestore, "picked"), `${product.id}_${currentUser}`);
+                await setDoc(
+                    pickedDocRef,
+                    {
+                        picked: true,
+                        title: product.title,
+                        price: product.price,
+                        brand: product.brand,
+                        size: product.size,
+                        category: product.category,
+                        subCategory: product.subCategory,
+                        subCategoryText: product.subCategoryText,
+                        imgUrl: product.imageUrl,
+                        username: currentUser,
+                        useId: product.useId, // product의 데이터
+                        id: product.id,
+                        count: 1,
+                    },
+                    { merge: true }
+                );
             }
         } catch (err) {
             console.error(err);
@@ -52,7 +60,8 @@ const useFetchPickedItems = () => {
                 collection(firestore, "picked"),
                 where("id", "==", product.id),
                 where("picked", "==", true),
-                where("title", "==", product.title)
+                where("title", "==", product.title),
+                where("username", "==", currentUser)
             );
 
             const querySnapshot = await getDocs(pickedQuery);
@@ -73,7 +82,9 @@ const useFetchPickedItems = () => {
             setLoading(true);
 
             // 이미 찜목록에 있는지 확인
-            const isLiked = pickedItems.some((pick) => pick.id === product.id && pick.picked === true && pick.title === product.title);
+            const isLiked = pickedItems.some(
+                (pick) => pick.id === product.id && pick.picked === true && pick.title === product.title && pick.username === currentUser
+            );
 
             if (isLiked) {
                 // 이미 찜한 상태면 제거
@@ -91,7 +102,7 @@ const useFetchPickedItems = () => {
 
     useEffect(() => {
         // onSnapshot 메소드를 사용하여 실시간 업데이트를 감지하고 찜한 데이터를 가져옴
-        const fetchPickedData = onSnapshot(collection(firestore, "picked"), (snapshot) => {
+        const fetchPickedData = onSnapshot(query(collection(firestore, "picked"), where("username", "==", currentUser)), (snapshot) => {
             try {
                 const pickedData = snapshot.docs.map((doc) => doc.data());
 
@@ -106,14 +117,33 @@ const useFetchPickedItems = () => {
         });
 
         return () => fetchPickedData();
-    }, [product]);
+    }, [product, currentUser]);
+
+    // 전체 찜카운트 가져오기
+    useEffect(() => {
+        // onSnapshot 메소드를 사용하여 실시간 업데이트를 감지하고 모든 사용자의 찜한 데이터를 가져옴
+        const fetchPickedData = onSnapshot(collection(firestore, "picked"), (snapshot) => {
+            try {
+                const pickedData = snapshot.docs.map((doc) => doc.data());
+    
+                if (pickedData) {
+                    setPickedCount(pickedData);
+                } else {
+                    console.log("찜한 상품이 존재하지 않습니다.");
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        });
+    
+        return () => fetchPickedData();
+    }, [product]);    
 
     // 현재 제품에 대한 필터링된 찜한 항목을 가져옴
-    const filteredPickeditem = pickedItems.filter(
-        (pick) => pick.title === product.title && pick.id === product.id && pick.picked === true
-    );
+    const filteredPickeditem = pickedItems.filter((pick) => pick.title === product.title && pick.id === product.id && pick.picked === true);
+    const filteredPickedCount = pickedCount.filter((pick) => pick.title === product.title && pick.picked === true);
 
-    return { handleToggleLike, loading, filteredPickeditem, pickedItems };
+    return { handleToggleLike, loading, filteredPickeditem, filteredPickedCount, pickedItems };
 };
 
 export default useFetchPickedItems;

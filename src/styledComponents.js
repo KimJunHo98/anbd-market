@@ -206,11 +206,6 @@ export const H4 = styled.h4`
     &.title {
         font-size: 1.6rem;
     }
-
-    &.purchase_title {
-        font-size: 1.4rem;
-        margin-bottom: 20px;
-    }
 `;
 
 // div 태그
@@ -738,6 +733,7 @@ export const Ul = styled.ul`
     }
     &.purchase_list {
         display: flex;
+        flex-direction: column;
     }
 `;
 export const Li = styled.li`

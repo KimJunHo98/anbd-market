@@ -30,6 +30,7 @@ import { TbTruckDelivery } from "react-icons/tb";
 const Profile = () => {
     const { useObj, handleMenuClick } = useStateContext();
     const { filteredPurchase } = useFetchProducts();
+    const currentUser = useObj.displayName;
 
     console.log(filteredPurchase);
 
@@ -43,7 +44,7 @@ const Profile = () => {
                             <Icon className="thumb" aria-hidden="true">
                                 <FaUserCircle />
                             </Icon>
-                            <P className="nick_name">{useObj.displayName}</P>
+                            <P className="nick_name">{currentUser}</P>
                         </Div>
                         <Icon className="setting" aria-hidden="true">
                             <IoSettingsOutline />
@@ -99,14 +100,15 @@ const Profile = () => {
                                             role="link"
                                             aria-label="구매내역으로 이동"
                                         >
-                                            <H4 className="purchase_title">{purchase.username}님의 상품</H4>
                                             <Div className="purchase_text_box">
                                                 <P className="purchase_text">
                                                     <Em className="delivery">[배송]</Em> {purchase.title} 상품을 구매하셨습니다.
                                                     구매내역에서 확인해보세요.
                                                 </P>
                                                 <Div className="purchase_image">
-                                                    {purchase.imageUrl && <Img src={purchase.imageUrl[0]} alt={purchase.title} />}
+                                                    {purchase.imageUrl && (
+                                                        <Img src={purchase.imageUrl[0]} alt={purchase.title} loading="lazy" />
+                                                    )}
                                                 </Div>
                                             </Div>
                                         </ALink>

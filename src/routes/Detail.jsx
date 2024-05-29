@@ -42,12 +42,14 @@ dayjs.extend(relativeTime);
 dayjs.locale("ko");
 
 const Detail = () => {
-    const { setDetailTopVisible, isLogIn } = useStateContext();
+    const { setDetailTopVisible, isLogIn, useObj } = useStateContext();
     const { product, loading, handleBuyBtnClick, formatNumberWithCommas } = useFetchProducts();
-    const { handleToggleLike, filteredPickeditem } = useFetchPickedItems();
+    const { handleToggleLike, filteredPickeditem, filteredPickedCount } = useFetchPickedItems();
     const { handleBtnClick, handleEditBtnClick, showBtns, toggleEditing, onSubmit, newText, onChange, handleCancelBtnClick } = useEdit();
-
     const detailTopRef = useRef(null);
+    const currentUser = useObj.displayName;
+
+    console.log(filteredPickedCount);
 
     const handleScroll = () => {
         const detailTop = detailTopRef.current;
@@ -118,7 +120,7 @@ const Detail = () => {
                                     <Icon className="thumb" aria-hidden="true">
                                         <FaUserCircle />
                                     </Icon>
-                                    <H3 className="username">{product.username}</H3>
+                                    <H3 className="username">{currentUser}</H3>
                                 </Div>
                                 <Div className="user_btns">
                                     <Button onClick={handleToggleLike} className="pick_btn" role="button">
@@ -172,8 +174,8 @@ const Detail = () => {
                                         <Icon className="heart_empty_icon" aria-hidden="true">
                                             <IoMdHeartEmpty />
                                         </Icon>
-                                        {filteredPickeditem.length > 0 ? (
-                                            <Span className="pick_text">{filteredPickeditem[0].count}</Span>
+                                        {filteredPickedCount.length > 0 ? (
+                                            <Span className="pick_text">{filteredPickedCount.length}</Span>
                                         ) : (
                                             "0"
                                         )}

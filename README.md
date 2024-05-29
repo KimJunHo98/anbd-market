@@ -7,6 +7,8 @@ swiper를 사용한 슬라이드 배너, styled-components로 스타일을 작�
 env파일에 노출이 되면 안되는 정보를 작성하여 보호를 했으며 vercel로 배포를 하여 마무리했습니다.
 
 미리보기 : [https://anbd-market.vercel.app/]
+테스트 계정1 : ID(example@domain.com), PASSWORD(asd1234!)
+테스트 계정2 : ID(example@naver.com), PASSWORD(asd1234!)
 
 ## 사용스택
 

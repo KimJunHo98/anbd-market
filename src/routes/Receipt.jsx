@@ -49,7 +49,7 @@ const Receipt = () => {
                                                             aria-label="상품 상세 페이지로 이동"
                                                         >
                                                             <Figure className="receipt_image">
-                                                                {sold.imageUrl && <Img src={sold.imageUrl[0]} alt={sold.title} />}
+                                                                {sold.imageUrl && <Img src={sold.imageUrl[0]} alt={sold.title} loading="lazy" />}
                                                             </Figure>
                                                             <Div className="receipt_text">
                                                                 <Ul className="col_text">

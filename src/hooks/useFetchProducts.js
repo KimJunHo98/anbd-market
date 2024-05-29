@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useStateContext } from "../context/useStateContext";
 import { getDocs, query, collection, orderBy, where, doc, getDoc, updateDoc } from "firebase/firestore";
 import { firestore } from "../firebase";
 
 const useFetchProducts = () => {
+    const { useObj } = useStateContext();
     const { category, id, value } = useParams();
     const [products, setProducts] = useState([]);
     const [product, setProduct] = useState("");
     const [subCategoryItems, setSubCategoryItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate("");
+    const currentUser = useObj.displayName;
 
     // product
     useEffect(() => {
@@ -135,6 +138,7 @@ const useFetchProducts = () => {
 
             await updateDoc(productDocRef, {
                 soldOut: true,
+                buyer: currentUser,
             });
 
             alert("구매 완료");
@@ -161,8 +165,10 @@ const useFetchProducts = () => {
     const filteredExchangeCategory = products.filter((result) => result.category === "exchange").sort(compareProductsByDate);
     const filteredReuseCategory = products.filter((result) => result.category === "reuse").sort(compareProductsByDate);
     
-    // 구매 상품 필터링
-    const filteredPurchase = products.filter((result) => result.soldOut === true).sort(compareProductsByDate);
+    // 구매 상품 필터링(구매 유저 정보)
+    const filteredPurchase = products
+        .filter((result) => result.soldOut === true && result.buyer === currentUser) // 현재 유저의 구매 상품 필터링
+        .sort(compareProductsByDate);
 
     return {
         products,
