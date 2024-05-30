@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useStateContext } from "../context/useStateContext";
 import { MainTag } from "../styledComponents";
 
@@ -18,12 +18,9 @@ import Receipt from "../routes/Receipt";
 
 const Main = () => {
     const { isLogIn } = useStateContext();
-    const location = useLocation();
-    const isDetailPage = location.pathname.includes("/detail");
-    const isProfilePage = location.pathname.includes("/profile");
 
     return (
-        <MainTag style={{ paddingTop: `${!isDetailPage && !isProfilePage ? "172.5px" : ""}` }} role="main" aria-labelledby="main-content">
+        <MainTag role="main" aria-labelledby="main-content">
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/product" element={<Product />} />

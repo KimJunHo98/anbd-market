@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useSearchContext } from "../context/useSearchContext";
 import useFetchProducts from "../hooks/useFetchProducts";
 
-import { Div, ALink, H2, Article, Ul, Li, Img, P, Container, Inner, Loading, NotHave, Figure } from "../styledComponents";
+import { Div, ALink, H2, Article, Ul, Li, Img, P, Container, Inner, Loading, NotHave, Figure, Section } from "../styledComponents";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -25,7 +25,7 @@ const Product = () => {
     }, [products, search]);
 
     return (
-        <Article id="product">
+        <Section id="product">
             <H2 className="blind">상품 페이지</H2>
             <Container>
                 <Inner>
@@ -93,7 +93,7 @@ const Product = () => {
                     </Div>
                 </Inner>
             </Container>
-        </Article>
+        </Section>
     );
 };
 

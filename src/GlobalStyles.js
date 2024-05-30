@@ -31,6 +31,7 @@ const GlobalStyles = createGlobalStyle`
     body {
         background-color: #eee;
         color: var(--main-color);
+        scroll-behavior: smooth;
     }
     body, input, textarea, select, option, button, table {
         font-family: var(--main-font);

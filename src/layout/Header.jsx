@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, NavLink } from "react-router-dom";
 import { useStateContext } from "../context/useStateContext";
 import { categoryList } from "../constant";
@@ -11,10 +11,25 @@ import { RiArrowLeftSLine } from "react-icons/ri";
 
 const Header = () => {
     const { handleMenuClick, detailTopVisible } = useStateContext();
+    const [isScrolled, setIsScrolled] = useState(false);
     const navigate = useNavigate("");
     const location = useLocation();
     const isDetailPage = location.pathname.includes("/detail");
     const isProfilePage = location.pathname.includes("/profile");
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = window.scrollY;
+
+            setIsScrolled(scrollTop > 0.5);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
     const handleBackBtnClick = () => {
         navigate(-1);
@@ -26,7 +41,7 @@ const Header = () => {
     return (
         <>
             {!isProfilePage && (
-                <HeaderTag id={isDetailPage ? "detail_header" : "header"}>
+                <HeaderTag id={isDetailPage ? "detail_header" : "header"} className={isScrolled ? "sticky" : ""}>
                     <H2 className="blind">헤더</H2>
                     <Container>
                         <Inner className={`inner ${isDetailPage && detailTopVisible ? "visible" : "invisible"}`}>

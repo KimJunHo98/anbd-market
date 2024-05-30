@@ -19,10 +19,13 @@ export const Inner = styled.div`
 export const HeaderTag = styled.header`
     &#header {
         width: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 99;
+
+        &.sticky {
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 99;
+        }
 
         .inner {
             position: relative;
@@ -269,7 +272,7 @@ export const Div = styled.div`
 
     &.home {
         width: 100%;
-        min-height: calc(100vh - 400px);
+        height: 100%;
         display: flex;
         flex-direction: column;
         gap: 80px 0;
@@ -402,7 +405,7 @@ export const Div = styled.div`
     &.sub_category,
     &.receipt {
         width: 100%;
-        min-height: calc(100vh - 174.5px);
+        height: 100vh;
         display: flex;
         flex-direction: column;
         gap: 10px 0;
@@ -453,7 +456,7 @@ export const Div = styled.div`
     &.notice,
     &.my_pick {
         width: 100%;
-        min-height: calc(100vh - 173.5px);
+        height: 100vh;
         display: flex;
         flex-direction: column;
         gap: 11px 0;

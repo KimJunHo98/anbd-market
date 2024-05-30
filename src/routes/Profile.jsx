@@ -11,7 +11,6 @@ import {
     Em,
     H2,
     H3,
-    H4,
     HeaderTag,
     Icon,
     Img,
@@ -31,8 +30,6 @@ const Profile = () => {
     const { useObj, handleMenuClick } = useStateContext();
     const { filteredPurchase } = useFetchProducts();
     const currentUser = useObj.displayName;
-
-    console.log(filteredPurchase);
 
     return (
         <Section id="profile">
