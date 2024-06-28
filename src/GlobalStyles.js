@@ -93,20 +93,6 @@ const GlobalStyles = createGlobalStyle`
         height: 100%;
     }
 
-    // 미디어쿼리
-    @media all and (min-width: 1024px) and (max-width: 1440px) {
-        
-    }
-    @media all and (min-width: 768px) and (max-width: 1023px) {
-        
-    }
-    @media all and (max-width: 767px) {
-        
-    }
-    @media all and (max-width: 480px) {
-        
-    }
-
     // 스크롤바
     body::-webkit-scrollbar {
         width: 0;
