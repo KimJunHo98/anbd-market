@@ -24,7 +24,7 @@ export const HeaderTag = styled.header`
             position: sticky;
             top: 0;
             left: 0;
-            z-index: 99;
+            z-index: 9999;
         }
 
         .inner {
@@ -38,7 +38,7 @@ export const HeaderTag = styled.header`
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 99;
+        z-index: 9999;
 
         .inner {
             transition: all 0.1s ease;
@@ -306,12 +306,13 @@ export const Div = styled.div`
                 width: 100%;
 
                 .swiper-pagination.swiper-pagination-fraction.swiper-pagination-horizontal {
-                    width: 60px;
-                    left: 95%;
-                    padding: 7px 0;
-                    transform: translateX(-90%);
+                    width: 80px;
+                    left: auto;
+                    right: 40px;
+                    padding: 7px 0 7px 15px;
+                    text-align: left;
                     border-radius: 15px;
-                    background-color: rgba(0, 0, 0, .3);
+                    background-color: rgba(0, 0, 0, 0.3);
                 }
             }
         }
@@ -993,7 +994,7 @@ export const Icon = styled.span`
     }
 
     &.playPause_icon {
-        font-size: 1.6rem;
+        fonst-size: 1.4rem;
     }
 `;
 
@@ -1260,12 +1261,9 @@ export const Button = styled.button`
     &.playPause_btn {
         height: 24px;
         position: absolute;
-        left: 18px;
-        bottom: 8px;
-        padding: 0 15px;
+        right: 55px;
+        bottom: 7px;
         z-index: 99;
-        border-radius: 15px;
-        background-color: rgba(0, 0, 0, .3);
         color: var(--main-color);
     }
 `;
