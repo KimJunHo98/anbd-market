@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import { useStateContext } from "../context/useStateContext";
 import useFetchProducts from "./useFetchProducts";
 import { collection, deleteDoc, doc, getDocs, onSnapshot, query, setDoc, where } from "firebase/firestore";
@@ -13,7 +13,7 @@ const useFetchPickedItems = () => {
     const currentUser = useObj.displayName;
 
     // 찜하기 함수
-    const handleAddLike = async () => {
+    const handleAddLike = useCallback(async () => {
         try {
             setLoading(true);
 
@@ -50,10 +50,10 @@ const useFetchPickedItems = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [pickedItems, product, currentUser]);
 
     // 찜하기 취소 함수
-    const handleRemoveLike = async () => {
+    const handleRemoveLike = useCallback(async () => {
         try {
             // 찜목록을 가져오는 쿼리
             const pickedQuery = query(
@@ -74,10 +74,10 @@ const useFetchPickedItems = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [product, currentUser]);
 
     // 찜하기 기능 토글 함수
-    const handleToggleLike = async () => {
+    const handleToggleLike = useCallback(async () => {
         try {
             setLoading(true);
 
@@ -98,50 +98,47 @@ const useFetchPickedItems = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [pickedItems, product, currentUser, handleAddLike, handleRemoveLike]);
 
+    // 찜목록 실시간 업데이트
     useEffect(() => {
-        // onSnapshot 메소드를 사용하여 실시간 업데이트를 감지하고 찜한 데이터를 가져옴
         const fetchPickedData = onSnapshot(query(collection(firestore, "picked"), where("username", "==", currentUser)), (snapshot) => {
             try {
                 const pickedData = snapshot.docs.map((doc) => doc.data());
-
-                if (pickedData) {
-                    setPickedItems(pickedData);
-                } else {
-                    console.log("제품이 존재하지 않습니다.");
-                }
+                setPickedItems(pickedData);
             } catch (err) {
                 console.error(err);
             }
         });
 
         return () => fetchPickedData();
-    }, [product, currentUser]);
+    }, [currentUser]);
 
-    // 전체 찜카운트 가져오기
+    // 전체 찜카운트 실시간 업데이트
     useEffect(() => {
-        // onSnapshot 메소드를 사용하여 실시간 업데이트를 감지하고 모든 사용자의 찜한 데이터를 가져옴
-        const fetchPickedData = onSnapshot(collection(firestore, "picked"), (snapshot) => {
+        const fetchPickedCountData = onSnapshot(collection(firestore, "picked"), (snapshot) => {
             try {
-                const pickedData = snapshot.docs.map((doc) => doc.data());
-    
-                if (pickedData) {
-                    setPickedCount(pickedData);
-                } else {
-                    console.log("찜한 상품이 존재하지 않습니다.");
-                }
+                const pickedCountData = snapshot.docs.map((doc) => doc.data());
+                setPickedCount(pickedCountData);
             } catch (err) {
                 console.error(err);
             }
         });
-    
-        return () => fetchPickedData();
-    }, [product]);    
 
-    // 현재 제품에 대한 필터링된 찜한 항목을 가져옴
-    const filteredPickeditem = pickedItems.filter((pick) => pick.title === product.title && pick.id === product.id && pick.picked === true);
-    const filteredPickedCount = pickedCount.filter((pick) => pick.title === product.title && pick.picked === true);
+        return () => fetchPickedCountData();
+    }, []);
+
+    // 현재 제품에 대한 필터링된 찜한 항목
+    const filteredPickeditem = useMemo(() => 
+        pickedItems.filter((pick) => pick.title === product.title && pick.id === product.id && pick.picked === true),
+        [pickedItems, product]
+    );
+
+    // 전체 찜 카운트에서 필터링된 항목
+    const filteredPickedCount = useMemo(() => 
+        pickedCount.filter((pick) => pick.title === product.title && pick.picked === true),
+        [pickedCount, product]
+    );
 
     return { handleToggleLike, loading, filteredPickeditem, filteredPickedCount, pickedItems };
 };
