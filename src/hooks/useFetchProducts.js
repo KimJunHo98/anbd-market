@@ -24,7 +24,11 @@ const useFetchProducts = () => {
                 ...doc.data(),
             }));
 
-            setProducts(productsData);
+            if (productsData) {
+                setProducts(productsData);
+            } else {
+                console.log("제품이 존재하지 않습니다.");
+            }
         } catch (err) {
             console.error(err);
         } finally {
@@ -43,7 +47,11 @@ const useFetchProducts = () => {
                     ...doc.data(),
                 }));
 
-                setProducts(categoryProducts);
+                if (categoryProducts) {
+                    setProducts(categoryProducts);
+                } else {
+                    console.log("제품이 존재하지 않습니다.");
+                }
             }
         } catch (err) {
             console.error(err);
@@ -63,7 +71,11 @@ const useFetchProducts = () => {
                     ...doc.data(),
                 }));
 
-                setSubCategoryItems(subCategoryProducts);
+                if (subCategoryProducts) {
+                    setSubCategoryItems(subCategoryProducts);
+                } else {
+                    console.log("제품이 존재하지 않습니다.");
+                }
             }
         } catch (err) {
             console.error(err);
@@ -142,7 +154,6 @@ const useFetchProducts = () => {
     const filteredFreeCategory = useMemo(() => products.filter((result) => result.category === "free").sort(compareProductsByDate), [products, compareProductsByDate]);
     const filteredExchangeCategory = useMemo(() => products.filter((result) => result.category === "exchange").sort(compareProductsByDate), [products, compareProductsByDate]);
     const filteredReuseCategory = useMemo(() => products.filter((result) => result.category === "reuse").sort(compareProductsByDate), [products, compareProductsByDate]);
-
     const filteredPurchase = useMemo(() => products
         .filter((result) => result.soldOut === true && result.buyer === currentUser)
         .sort(compareProductsByDate), [products, currentUser, compareProductsByDate]);

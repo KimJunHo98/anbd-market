@@ -49,8 +49,6 @@ const Detail = () => {
     const detailTopRef = useRef(null);
     const currentUser = useObj.displayName;
 
-    console.log(filteredPickedCount);
-
     const handleScroll = () => {
         const detailTop = detailTopRef.current;
         const gap = 80;
